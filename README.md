@@ -5,6 +5,13 @@ This is Bits of Good's Design System, which is an internal collection of compone
 
 Run the development server from the root directory:
 
+First time:
+```bash
+npm i
+npm run dev
+```
+
+Otherwise:
 ```bash
 npm run dev
 ```
