@@ -8,15 +8,10 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        primary: "var(--primary)",
-        secondary: "var(--secondary)",
+      screens: {
+        'mobile': '640px',
+        'desktop': '1024px',
       },
-      fontFamily: {
-        "open-sans": "var(--font-open-sans)",
-      }
     },
   },
   plugins: [],
