@@ -17,3 +17,21 @@ body {
 #__next {
   padding: 0;
 }
+
+@font-face {
+  font-family: 'Visby Extra Bold';
+  src:
+    url('/fonts/visbyextrabold-webfont.woff2') format('woff2'),
+    url('/fonts/visbyextrabold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans Regular';
+  src:
+    url('/fonts/opensans-regular-webfont.woff2') format('woff2'),
+    url('/fonts/opensans-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
