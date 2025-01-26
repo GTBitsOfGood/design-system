@@ -35,3 +35,37 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+@layer components {
+  .text-display {
+    @apply text-mobile-display desktop:text-desktop-display font-heading;
+  }
+
+  .text-heading-1 {
+    @apply text-mobile-heading-1 desktop:text-desktop-heading-1 font-heading;
+  }
+
+  .text-heading-2 {
+    @apply text-mobile-heading-2 desktop:text-desktop-heading-2 font-heading;
+  }
+
+  .text-heading-3 {
+    @apply text-mobile-heading-3 desktop:text-desktop-heading-3 font-heading;
+  }
+
+  .text-heading-4 {
+    @apply text-mobile-heading-4 desktop:text-desktop-heading-4 font-heading;
+  }
+
+  .text-paragraph-1 {
+    @apply text-mobile-paragraph-1 desktop:text-desktop-paragraph-1 font-paragraph;
+  }
+
+  .text-paragraph-2 {
+    @apply text-mobile-paragraph-2 desktop:text-desktop-paragraph-2 font-paragraph;
+  }
+
+  .text-small {
+    @apply text-mobile-small desktop:text-desktop-small font-paragraph;
+  }
+}

@@ -4,7 +4,7 @@ export default function Home() {
       className={`flex flex-col h-screen`}
     >
       <div className="flex items-center justify-center w-full h-[7%] border-solid border-b-2 mb-4">
-        <h1 className="desktop:text-desktop-heading-1 text-mobile-heading-1 font-heading">
+        <h1 className="text-heading-1">
           Bits of Good Design System Component Overview
         </h1>
       </div>
@@ -14,7 +14,7 @@ export default function Home() {
             Put all switches here. Make sure all of the ones in Figma are here and match the design in Figma.
           */}
           <div className="flex flex-col items-center justify-between border-solid border-2">
-            <h3 className="self-start ml-4 desktop:text-desktop-heading-3 text-mobile-heading-3 font-heading">
+            <h3 className="self-start ml-4 text-heading-3">
               Switches:
             </h3>
           </div>
@@ -23,7 +23,7 @@ export default function Home() {
             Put all icons here. Make sure all of the ones in Figma are here and match the design in Figma.
           */}
           <div className="flex flex-col items-center justify-between border-solid border-2">
-            <h3 className="self-start ml-4 desktop:text-desktop-heading-3 text-mobile-heading-3 font-heading">
+            <h3 className="self-start ml-4 text-heading-3">
               Icons:
             </h3>
           </div>
@@ -32,7 +32,7 @@ export default function Home() {
             Put all buttons here. Make sure all of the ones in Figma are here and match the design in Figma.
           */}
           <div className="flex flex-col items-center justify-between border-solid border-2">
-            <h3 className="self-start ml-4 desktop:text-desktop-heading-3 text-mobile-heading-3 font-heading">
+            <h3 className="self-start ml-4 text-heading-3">
               Buttons:
             </h3>
           </div>
@@ -41,7 +41,7 @@ export default function Home() {
             Put all checkboxes here. Make sure all of the ones in Figma are here and match the design in Figma.
           */}
           <div className="flex flex-col items-center justify-between border-solid border-2">
-            <h3 className="self-start ml-4 desktop:text-desktop-heading-3 text-mobile-heading-3 font-heading">
+            <h3 className="self-start ml-4 text-heading-3">
               Checkboxes:
             </h3>
           </div>
@@ -51,7 +51,7 @@ export default function Home() {
             Put all dropdown and dropdown options here. Make sure all of the ones in Figma are here and match the design in Figma.
           */}
           <div className="flex flex-col items-center justify-between border-solid border-2">
-            <h3 className="self-start ml-4 desktop:text-desktop-heading-3 text-mobile-heading-3 font-heading">
+            <h3 className="self-start ml-4 text-heading-3">
               Dropdowns:
             </h3>
           </div>
@@ -60,7 +60,7 @@ export default function Home() {
             Put all form elements here. Make sure all of the ones in Figma are here and match the design in Figma.
           */}
           <div className="flex flex-col items-center justify-between border-solid border-2">
-            <h3 className="self-start ml-4 desktop:text-desktop-heading-3 text-mobile-heading-3 font-heading">
+            <h3 className="self-start ml-4 text-heading-3">
               Forms:
             </h3>
           </div>
