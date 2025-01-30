@@ -46,7 +46,7 @@ const BogIcon: React.FC<BogIconProps> = ({ name }) => {
   const iconName = iconMap[name] || name.replace(/-/g, '').charAt(0).toUpperCase() + name.replace(/-/g, '').slice(1);
 
   // Get the icon component from PhosphorIcons
-  const IconComponent = PhosphorIcons[iconName] as React.ElementType;
+  const IconComponent = PhosphorIcons[iconName as keyof typeof PhosphorIcons] || null;
 
   if (!IconComponent) {
     console.warn(`BogIcon: Unknown icon name "${name}"`);
