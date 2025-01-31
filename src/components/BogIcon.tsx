@@ -43,7 +43,13 @@ const BogIcon: React.FC<BogIconProps> = ({ name }) => {
 
   // Handle chevron special case (use caret with weight="fill")
   const isChevron = name.startsWith('chevron-');
-  const iconName = iconMap[name] || name.replace(/-/g, '').charAt(0).toUpperCase() + name.replace(/-/g, '').slice(1);
+  let iconName = iconMap[name];
+  if (isChevron) {
+    iconName = 'Caret' + name.charAt(8).toUpperCase() + name.slice(9);
+  } else if (iconName === undefined) {
+    iconName = name.charAt(0).toUpperCase() + name.slice(1);
+    iconName = iconName.replace(/-(.)/g, (_, nextChar) => nextChar.toUpperCase());
+  }
 
   // Get the icon component from PhosphorIcons
   const IconComponent = PhosphorIcons[iconName as keyof typeof PhosphorIcons] || null;
