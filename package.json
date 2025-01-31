@@ -12,10 +12,12 @@
     "format:check": "prettier \"./**/*.{js,jsx,ts,tsx}\" -l"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.7",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
     "@typescript-eslint/parser": "^8.19.1",
     "eslint-plugin-react-hooks": "^5.1.0",
     "next": "15.1.4",
+    "phosphor-react": "^1.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -40,8 +42,12 @@
       "pre-commit": "lint-staged"
     }
   },
-	"lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["eslint"],
-    "*.{js,jsx,css,ts,tsx}": ["prettier --write"]
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint"
+    ],
+    "*.{js,jsx,css,ts,tsx}": [
+      "prettier --write"
+    ]
   }
 }
