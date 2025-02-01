@@ -6,7 +6,6 @@ interface BogIconProps {
 }
 
 const weightFillIcons = new Set([
-  'caution',
   'map-pin',
   'chats',
   'calendar',
@@ -17,13 +16,20 @@ const weightFillIcons = new Set([
   'share',
   'copy',
   'gear',
-  'info',
   'pause',
   'play',
   'user',
   'folder',
   'bell',
+  'arrow-fat-up',
+  'arrow-fat-down',
+  'arrow-fat-left',
+  'arrow-fat-right',
+  'hand-heart',
+  'download',
 ]);
+
+const boldFillIcons = new Set(['check', 'search', 'info', 'plus', 'x', 'success', 'error', 'warning']);
 
 const BogIcon: React.FC<BogIconProps> = ({ name }) => {
   // Map custom names to actual Phosphor components
@@ -31,7 +37,7 @@ const BogIcon: React.FC<BogIconProps> = ({ name }) => {
     chats: 'ChatsCircle',
     calendar: 'CalendarDots',
     download: 'DownloadSimple',
-    pushpin: 'PushpinSimple',
+    pushpin: 'PushPinSimple',
     close: 'XCircle',
     search: 'MagnifyingGlass',
     share: 'ShareFat',
@@ -39,6 +45,8 @@ const BogIcon: React.FC<BogIconProps> = ({ name }) => {
     user: 'UserCircle',
     folder: 'FolderSimple',
     bell: 'BellSimpleRinging',
+    success: 'CheckCircle',
+    error: 'WarningOctagon',
   };
 
   // Handle chevron special case (use caret with weight="fill")
@@ -58,8 +66,14 @@ const BogIcon: React.FC<BogIconProps> = ({ name }) => {
     console.warn(`BogIcon: Unknown icon name "${name}"`);
     return null;
   }
+  let weight = 'regular';
+  if (weightFillIcons.has(name) || isChevron) {
+    weight = 'fill';
+  } else if (boldFillIcons.has(name)) {
+    weight = 'bold';
+  }
 
-  return <IconComponent weight={isChevron || weightFillIcons.has(name) ? 'fill' : 'regular'} />;
+  return <IconComponent weight={weight} />;
 };
 
 export default BogIcon;

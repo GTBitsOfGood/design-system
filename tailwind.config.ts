@@ -3,15 +3,15 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       screens: {
-        'mobile': '640px',
-        'desktop': '1024px',
+        mobile: '640px',
+        desktop: '1024px',
       },
       colors: {
         'brand-text': '#FC5B43',
