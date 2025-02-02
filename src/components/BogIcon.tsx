@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ElementType } from 'react';
 import * as PhosphorIcons from '@phosphor-icons/react';
 
 interface BogIconProps {
@@ -60,7 +60,7 @@ const BogIcon: React.FC<BogIconProps> = ({ name }) => {
   }
 
   // Get the icon component from PhosphorIcons
-  const IconComponent = PhosphorIcons[iconName as keyof typeof PhosphorIcons] || null;
+  const IconComponent = (PhosphorIcons[iconName as keyof typeof PhosphorIcons] as ElementType) || null;
 
   if (!IconComponent) {
     console.warn(`BogIcon: Unknown icon name "${name}"`);
