@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <div className={`flex flex-col min-h-screen bg-brand-fill text-grey-text-strong`}>
-      <div className="flex items-center justify-center w-full h-[7%] border-brand-fill border-solid border-b-2 rounded-b-sm mb-4 bg-gradient-to-r from-brand-text from-30% via-brand-stroke-weak via-45% to-brand-stroke-strong to-60%">
+      <div className="flex items-center justify-center w-full h-[15%] border-brand-fill border-solid border-b-2 rounded-b-sm mb-4 bg-linear-to-r from-brand-text from-30% via-brand-stroke-weak via-45% to-brand-stroke-strong to-60%">
         <h1 className="text-heading-1">Bits of Good Design System Component Overview</h1>
       </div>
       <div className="flex h-[95%] w-[100%] justify-between pb-4 px-8">
