@@ -1,4 +1,5 @@
 import BogIcon from '../components/BogIcon';
+import BogCheckBox from '@/components/BogCheckbox';
 
 export default function Home() {
   const icons = [
@@ -123,11 +124,13 @@ export default function Home() {
             <h3 className="self-start ml-4 text-heading-3">Buttons:</h3>
           </div>
 
-          {/* 
-            Put all checkboxes here. Make sure all of the ones in Figma are here and match the design in Figma.
-          */}
-          <div className="flex flex-col items-center justify-between border-grey-stroke-strong border-solid rounded-sm border-2 mb-8">
+          <div className="flex flex-col items-start justify-between p-1 border-grey-stroke-strong border-solid rounded-sm border-2 mb-8">
             <h3 className="self-start ml-4 text-heading-3">Checkboxes:</h3>
+            <BogCheckBox label="Checkbox with label" />
+            <BogCheckBox label="Checkbox disabled" disabled />
+            <BogCheckBox label="Checked and disabled" checked disabled />
+            <BogCheckBox label="Indeterminate" checked="indeterminate" />
+            <BogCheckBox />
           </div>
         </div>
         <div className="flex flex-col justify-between w-[45%]">
