@@ -19,7 +19,6 @@
 
 /* hover state for checkboxes that are not disabled */
 .checkbox:not(.disabled):not([data-state='indeterminate']):hover {
-  background-color: white;
   border-color: var(--color-brand-stroke-strong);
 }
 
@@ -60,8 +59,8 @@
 }
 
 .checkboxIcon {
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
 }
 
 .checkboxLabel {

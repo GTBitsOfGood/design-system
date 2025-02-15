@@ -1,5 +1,5 @@
 import BogIcon from '../components/BogIcon';
-import BogCheckBox from '@/components/BogCheckbox';
+import BogCheckBox from '@/components/BogCheckbox/BogCheckbox';
 
 export default function Home() {
   const icons = [
