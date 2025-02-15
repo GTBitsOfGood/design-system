@@ -1,4 +1,7 @@
+import { BogradioGroup } from '@/components/BogRadioGroup/BogRadioGroup';
 import BogIcon from '../components/BogIcon';
+import { BogRadioItem } from '@/components/BogRadioItem/BogRadioItem';
+import { useState } from 'react';
 
 export default function Home() {
   const icons = [
@@ -44,6 +47,8 @@ export default function Home() {
     'warning',
     'success',
   ];
+
+  const [radioValue, setRadioValue] = useState('3');
 
   return (
     <div className={`flex flex-col min-h-screen bg-brand-fill text-grey-text-strong`}>
@@ -126,8 +131,16 @@ export default function Home() {
           {/* 
             Put all checkboxes here. Make sure all of the ones in Figma are here and match the design in Figma.
           */}
-          <div className="flex flex-col items-center justify-between border-grey-stroke-strong border-solid rounded-sm border-2 mb-8">
-            <h3 className="self-start ml-4 text-heading-3">Checkboxes:</h3>
+          <div className="flex flex-col justify-between items-center mb-8 rounded-sm border-2 border-solid border-grey-stroke-strong">
+            <h3 className="self-start ml-4 text-heading-3">Checkboxes/Radio:</h3>
+
+            <BogradioGroup value={radioValue} onValueChange={setRadioValue}>
+              <BogRadioItem label="Option 1" value={'1'} />
+              <BogRadioItem label="Option 2" value={'2'} />
+              <BogRadioItem label="Disabled 3" value={'3'} disabled={true} />
+              <BogRadioItem label="Option 4" value={'4'} />
+            </BogradioGroup>
+            <p className="text-paragraph-1">Radio value: {radioValue}</p>
           </div>
         </div>
         <div className="flex flex-col justify-between w-[45%]">
