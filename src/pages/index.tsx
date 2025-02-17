@@ -2,6 +2,7 @@ import { BogRadioGroup } from '@/components/BogRadioGroup/BogRadioGroup';
 import BogIcon from '../components/BogIcon';
 import { BogRadioItem } from '@/components/BogRadioItem/BogRadioItem';
 import { useState } from 'react';
+import BogCheckBox from '@/components/BogCheckbox/BogCheckbox';
 
 export default function Home() {
   const icons = [
@@ -141,6 +142,13 @@ export default function Home() {
               <BogRadioItem label="Option 4" value={'4'} />
             </BogRadioGroup>
             <p className="text-paragraph-1">Radio value: {radioValue}</p>
+          <div className="flex flex-col items-start justify-between p-1 border-grey-stroke-strong border-solid rounded-sm border-2 mb-8">
+            <h3 className="self-start ml-4 text-heading-3">Checkboxes:</h3>
+            <BogCheckBox label="Checkbox with label" />
+            <BogCheckBox label="Checkbox disabled" disabled />
+            <BogCheckBox label="Checked and disabled" checked disabled />
+            <BogCheckBox label="Indeterminate" checked="indeterminate" />
+            <BogCheckBox />
           </div>
         </div>
         <div className="flex flex-col justify-between w-[45%]">
