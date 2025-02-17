@@ -1,4 +1,4 @@
-import { BogradioGroup } from '@/components/BogRadioGroup/BogRadioGroup';
+import { BogRadioGroup } from '@/components/BogRadioGroup/BogRadioGroup';
 import BogIcon from '../components/BogIcon';
 import { BogRadioItem } from '@/components/BogRadioItem/BogRadioItem';
 import { useState } from 'react';
@@ -134,12 +134,12 @@ export default function Home() {
           <div className="flex flex-col justify-between items-center mb-8 rounded-sm border-2 border-solid border-grey-stroke-strong">
             <h3 className="self-start ml-4 text-heading-3">Checkboxes/Radio:</h3>
 
-            <BogradioGroup value={radioValue} onValueChange={setRadioValue}>
+            <BogRadioGroup value={radioValue} onValueChange={setRadioValue}>
               <BogRadioItem label="Option 1" value={'1'} />
               <BogRadioItem label="Option 2" value={'2'} />
               <BogRadioItem label="Disabled 3" value={'3'} disabled={true} />
               <BogRadioItem label="Option 4" value={'4'} />
-            </BogradioGroup>
+            </BogRadioGroup>
             <p className="text-paragraph-1">Radio value: {radioValue}</p>
           </div>
         </div>
