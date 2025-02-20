@@ -3,18 +3,25 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import { MinusIcon, CheckIcon } from '@radix-ui/react-icons';
 import styles from './checkbox.module.css';
 
-interface BogCheckboxProps extends React.ComponentPropsWithoutRef<typeof Checkbox.Root> {
-  label: string;
+interface BogCheckboxProps extends React.ComponentProps<typeof Checkbox.Root> {
+  label?: string;
+  disabled?: boolean;
+  checked?: boolean | 'indeterminate';
+  required?: boolean;
+  name: string;
 }
 
-const BogCheckBox: React.FC<BogCheckboxProps> = ({ label, className = '', disabled = false, checked, ...props }) => {
+const BogCheckbox = ({ label = '', disabled = false, checked, required = false, name }: BogCheckboxProps) => {
   return (
-    <div className={styles.checkboxContainer}>
+    <div
+      className={`${styles.checkboxContainer} ${disabled ? styles.disabled : ''} ${checked === 'indeterminate' ? styles.indeterminate : ''}`}
+    >
       <Checkbox.Root
-        className={`${styles.checkbox} ${className} ${disabled ? styles.disabled : ''}`}
+        className={`${styles.checkbox} ${disabled ? styles.disabled : ''}`}
         disabled={disabled}
         checked={checked}
-        {...props}
+        required={required}
+        name={name}
       >
         <Checkbox.Indicator className={styles.checkboxIndicator}>
           {checked === 'indeterminate' ? (
@@ -25,7 +32,9 @@ const BogCheckBox: React.FC<BogCheckboxProps> = ({ label, className = '', disabl
         </Checkbox.Indicator>
       </Checkbox.Root>
       {label && (
-        <label className={`${styles.checkboxLabel} ${disabled ? styles.disabled : ''}`} htmlFor={props.id}>
+        <label
+          className={`${styles.checkboxLabel} ${disabled ? styles.disabled : ''} ${checked === 'indeterminate' ? styles.indeterminate : ''}`}
+        >
           {label}
         </label>
       )}
@@ -33,4 +42,4 @@ const BogCheckBox: React.FC<BogCheckboxProps> = ({ label, className = '', disabl
   );
 };
 
-export default BogCheckBox;
+export default BogCheckbox;

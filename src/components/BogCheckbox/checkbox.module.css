@@ -4,6 +4,14 @@
   gap: 8px;
 }
 
+.checkboxContainer.disabled {
+  cursor: not-allowed;
+}
+
+.checkboxContainer.indeterminate {
+  cursor: not-allowed;
+}
+
 .checkbox {
   all: unset;
   width: 16px;
@@ -74,5 +82,9 @@
   font-size: var(--text-mobile-paragraph-2);
   line-height: var(--text-mobile-paragraph-2--line-height);
   color: var(--color-grey-off-state);
+  cursor: not-allowed;
+}
+
+.checkboxLabel.indeterminate {
   cursor: not-allowed;
 }

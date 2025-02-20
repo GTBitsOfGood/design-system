@@ -11,7 +11,7 @@ export interface BogRadioItemProps {
 export function BogRadioItem({ label, value, disabled = false }: BogRadioItemProps) {
   const id = useId();
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-disabled={disabled}>
       <RadioGroup.Item className={styles.radio} value={value} disabled={disabled} id={id}>
         <RadioGroup.Indicator className={styles.indicator} />
       </RadioGroup.Item>
