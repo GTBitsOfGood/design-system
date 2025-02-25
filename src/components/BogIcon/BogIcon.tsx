@@ -1,6 +1,6 @@
 import React, { ElementType } from 'react';
 import * as PhosphorIcons from '@phosphor-icons/react';
-import './styles.modules.css';
+import './styles.module.css';
 
 // Include all props from Phosphor Icons
 interface BogIconProps {
