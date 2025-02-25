@@ -1,0 +1,76 @@
+.bog-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 8px;
+  border: none;
+}
+
+/* Variants */
+.bog-button--primary {
+  background-color: #0066ff;
+  color: white;
+}
+
+.bog-button--primary:hover:not(:disabled) {
+  background-color: #0052cc;
+}
+
+.bog-button--secondary {
+  background-color: #e6f0ff;
+  color: #0066ff;
+}
+
+.bog-button--secondary:hover:not(:disabled) {
+  background-color: #cce0ff;
+}
+
+.bog-button--tertiary {
+  background-color: transparent;
+  color: #0066ff;
+}
+
+.bog-button--tertiary:hover:not(:disabled) {
+  background-color: #f5f8ff;
+}
+
+/* Sizes */
+.bog-button--small {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.bog-button--medium {
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
+.bog-button--large {
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+/* States */
+.bog-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bog-button--full-width {
+  width: 100%;
+}
+
+/* Icon positioning */
+.bog-button__icon {
+  display: flex;
+  align-items: center;
+}
+
+.bog-button__text {
+  flex: 1;
+  text-align: center;
+}
