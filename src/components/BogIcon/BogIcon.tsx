@@ -1,8 +1,17 @@
 import React, { ElementType } from 'react';
 import * as PhosphorIcons from '@phosphor-icons/react';
+import './styles.modules.css';
 
+// Include all props from Phosphor Icons
 interface BogIconProps {
   name: string;
+  size?: number | string;
+  color?: string;
+  weight?: 'thin' | 'light' | 'regular' | 'bold' | 'fill' | 'duotone';
+  mirrored?: boolean;
+  alt?: string;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 const weightFillIcons = new Set([
@@ -31,7 +40,16 @@ const weightFillIcons = new Set([
 
 const boldFillIcons = new Set(['check', 'search', 'info', 'plus', 'x', 'success', 'error', 'warning']);
 
-const BogIcon: React.FC<BogIconProps> = ({ name }) => {
+const BogIcon: React.FC<BogIconProps> = ({
+  name,
+  size,
+  color,
+  weight: customWeight,
+  mirrored,
+  alt,
+  className,
+  style,
+}) => {
   // Map custom names to actual Phosphor components
   const iconMap: Record<string, string> = {
     chats: 'ChatsCircle',
@@ -66,14 +84,30 @@ const BogIcon: React.FC<BogIconProps> = ({ name }) => {
     console.warn(`BogIcon: Unknown icon name "${name}"`);
     return null;
   }
-  let weight = 'regular';
-  if (weightFillIcons.has(name) || isChevron) {
-    weight = 'fill';
-  } else if (boldFillIcons.has(name)) {
-    weight = 'bold';
+
+  // Only use default weight if custom weight is not provided
+  let weight = customWeight;
+  if (!weight) {
+    if (weightFillIcons.has(name) || isChevron) {
+      weight = 'fill';
+    } else if (boldFillIcons.has(name)) {
+      weight = 'bold';
+    } else {
+      weight = 'regular';
+    }
   }
 
-  return <IconComponent weight={weight} />;
+  return (
+    <IconComponent
+      weight={weight}
+      size={size}
+      color={color}
+      mirrored={mirrored}
+      alt={alt}
+      className={className}
+      style={style}
+    />
+  );
 };
 
 export default BogIcon;

@@ -1,5 +1,6 @@
 import { BogRadioGroup } from '@/components/BogRadioGroup/BogRadioGroup';
-import BogIcon from '../components/BogIcon';
+import BogIcon from '../components/BogIcon/BogIcon';
+import BogButton from '../components/BogButton/BogButton';
 import { BogRadioItem } from '@/components/BogRadioItem/BogRadioItem';
 import { useState } from 'react';
 import BogCheckbox from '@/components/BogCheckbox/BogCheckbox';
@@ -127,6 +128,11 @@ export default function Home() {
           */}
           <div className="flex flex-col items-center justify-between border-grey-stroke-strong border-solid rounded-sm border-2 mb-8">
             <h3 className="self-start ml-4 text-heading-3">Buttons:</h3>
+            <div className="flex gap-4 p-4">
+              <BogButton>Regular Button</BogButton>
+              <BogButton disabled>Disabled Button</BogButton>
+              <BogButton leftIcon={<BogIcon name="plus" />}>Button with Icon</BogButton>
+            </div>
           </div>
 
           {/* 
