@@ -14,6 +14,12 @@ const DEPENDENCIES = [
   'phosphor-react',
   'radix-ui',
 ];
+const FONTS = [
+  'visbyextrabold-webfont.woff2',
+  'visbyextrabold-webfont.woff',
+  'opensans-regular-webfont.woff2',
+  'opensans-regular-webfont.woff',
+];
 
 export const init = new Command()
   .command('init')
@@ -115,5 +121,38 @@ export default config;
       await writeFile(stylePath, styles, 'utf8');
       console.log('BOG theme and tailwindcss stylesheet created.');
       console.log('make sure to import it into your src/app/layout.tsx or src/pages/_app.tsx');
+    }
+
+    const { setupFonts } = await prompts({
+      name: 'setupFonts',
+      type: 'confirm',
+      message: 'Do you want to set up the Bits of Good fonts?',
+      initial: true,
+    });
+
+    if (!setupFonts) {
+      console.error('Skipping the Bits of Good fonts setup. Your project may not look like the Design System Website.');
+    } else {
+      const { fontPath } = await prompts({
+        name: 'fontPath',
+        type: 'text',
+        message: 'Where is the public directory for your project?',
+        initial: './public/',
+      });
+      await mkdir(path.join(fontPath, 'fonts'), { recursive: true });
+
+      await Promise.all(
+        FONTS.map(async (font) => {
+          const response = await fetch(
+            `https://raw.githubusercontent.com/GTBitsOfGood/design-system/main/public/fonts/${font}`
+          );
+          if (!response.ok) {
+            throw new Error(`Failed to download font: ${font}, status: ${response.status}`);
+          }
+          const fontData = await response.arrayBuffer();
+          await writeFile(path.join(fontPath, 'fonts', font), Buffer.from(fontData), 'binary');
+        })
+      );
+      console.log('BOG fonts downloaded successfully.');
     }
   });
