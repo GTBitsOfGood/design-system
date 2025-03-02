@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { MinusIcon, CheckIcon } from '@radix-ui/react-icons';
-import styles from './checkbox.module.css';
+import styles from './styles.module.css';
 
 interface BogCheckboxProps extends React.ComponentProps<typeof Checkbox.Root> {
   label?: string;
