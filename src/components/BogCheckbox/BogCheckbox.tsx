@@ -9,12 +9,23 @@ interface BogCheckboxProps extends React.ComponentProps<typeof Checkbox.Root> {
   checked?: boolean | 'indeterminate';
   required?: boolean;
   name: string;
+  style?: React.CSSProperties;
 }
 
-const BogCheckbox = ({ label = '', disabled = false, checked, required = false, name }: BogCheckboxProps) => {
+const BogCheckbox = ({
+  label = '',
+  disabled = false,
+  checked,
+  required = false,
+  name,
+  style,
+  className,
+  ...props
+}: BogCheckboxProps) => {
   return (
     <div
-      className={`${styles.checkboxContainer} ${disabled ? styles.disabled : ''} ${checked === 'indeterminate' ? styles.indeterminate : ''}`}
+      style={style}
+      className={`${styles.checkboxContainer} ${disabled ? styles.disabled : ''} ${checked === 'indeterminate' ? styles.indeterminate : ''} ${className}`}
     >
       <Checkbox.Root
         className={`${styles.checkbox} ${disabled ? styles.disabled : ''}`}
@@ -22,6 +33,7 @@ const BogCheckbox = ({ label = '', disabled = false, checked, required = false, 
         checked={checked}
         required={required}
         name={name}
+        {...props}
       >
         <Checkbox.Indicator className={styles.checkboxIndicator}>
           {checked === 'indeterminate' ? (
