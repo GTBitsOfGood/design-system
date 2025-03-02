@@ -128,15 +128,49 @@ export default function Home() {
           */}
           <div className="flex flex-col items-center justify-between border-grey-stroke-strong border-solid rounded-sm border-2 mb-8">
             <h3 className="self-start ml-4 text-heading-3">Buttons:</h3>
-            <div className="flex gap-4 p-4">
-              <BogButton>Regular Button</BogButton>
-              <BogButton disabled>Disabled Button</BogButton>
-              <BogButton leftIcon={<BogIcon name="plus" />}>Button with Icon</BogButton>
+            <div className="flex flex-col gap-4 p-4">
+              <div className="flex gap-4 justify-between items-center">
+                <BogButton size="small">Button</BogButton>
+                <BogButton>Button</BogButton>
+                <BogButton size="large">Button</BogButton>
+              </div>
+              <div className="flex gap-4 justify-between items-center">
+                <BogButton variant="secondary" size="small">
+                  Button
+                </BogButton>
+                <BogButton variant="secondary">Button</BogButton>
+                <BogButton variant="secondary" size="large">
+                  Button
+                </BogButton>
+              </div>
+              <div className="flex gap-4 justify-between items-center">
+                <BogButton variant="tertiary" size="small">
+                  Button
+                </BogButton>
+                <BogButton variant="tertiary">Button</BogButton>
+                <BogButton variant="tertiary" size="large">
+                  Button
+                </BogButton>
+              </div>
+              <div className="flex gap-4 justify-between items-center">
+                <BogButton disabled>Button</BogButton>
+                <BogButton disabled variant="secondary">
+                  Button
+                </BogButton>
+                <BogButton disabled variant="tertiary">
+                  Button
+                </BogButton>
+              </div>
+              <div className="flex gap-4 justify-between items-center">
+                <BogButton icon={{ icon: <BogIcon name="plus" />, position: 'left' }}>Button with Icon</BogButton>
+                <BogButton icon={{ icon: <BogIcon name="plus" />, position: 'right' }}>Button with Icon</BogButton>
+                <BogButton className="bg-black">Tailwind Styled</BogButton>
+              </div>
             </div>
           </div>
 
           {/* 
-            Put all checkboxes here. Make sure all of the ones in Figma are here and match the design in Figma.
+            Put all checkboxes/radio groups here. Make sure all of the ones in Figma are here and match the design in Figma.
           */}
           <div className="flex flex-col justify-between items-center mb-8 rounded-sm border-2 border-solid border-grey-stroke-strong">
             <h3 className="self-start ml-4 text-heading-3">Checkboxes/Radio:</h3>
