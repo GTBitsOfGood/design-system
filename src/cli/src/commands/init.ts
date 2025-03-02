@@ -116,7 +116,7 @@ export default config;
           name: 'stylePath',
           type: 'text',
           message:
-            'Where should the global stylesheet containing the BoG theme live? (input the file name, not the directory)',
+            "Where should the global stylesheet containing the BoG theme live? (input the file name relative to your project's root directory)",
           initial: 'src/styles/globals.css',
         });
 
@@ -146,7 +146,7 @@ export default config;
         const { fontPath } = await prompts({
           name: 'fontPath',
           type: 'text',
-          message: 'Where is the public directory for your project?',
+          message: 'Where is the public directory for your project relative to the root directory?',
           initial: './public/',
         });
         await mkdir(path.join(root, fontPath, 'fonts'), { recursive: true });
