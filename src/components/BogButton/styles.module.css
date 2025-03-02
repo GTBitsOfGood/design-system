@@ -1,76 +1,106 @@
-.bog-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  gap: 8px;
-  border: none;
-}
+@layer base {
+  .button {
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-family: var(--font-paragraph);
+    height: fit-content;
+    display: inline-block;
 
-/* Variants */
-.bog-button--primary {
-  background-color: #0066ff;
-  color: white;
-}
+    &.small {
+      padding: 0.25rem 0.5rem;
+      font-size: var(--text-mobile-small);
+      line-height: var(--text-mobile-small--line-height);
+      @media (width >= 1024px) {
+        font-size: var(--text-desktop-small);
+        line-height: var(--text-desktop-small--line-height);
+      }
+    }
 
-.bog-button--primary:hover:not(:disabled) {
-  background-color: #0052cc;
-}
+    &.medium {
+      padding: 0.5rem 0.75rem;
+      font-size: var(--text-mobile-paragraph-2);
+      line-height: var(--text-mobile-paragraph-2--line-height);
+      @media (width >= 1024px) {
+        font-size: var(--text-desktop-paragraph-2);
+        line-height: var(--text-desktop-paragraph-2--line-height);
+      }
+    }
 
-.bog-button--secondary {
-  background-color: #e6f0ff;
-  color: #0066ff;
-}
+    &.large {
+      padding: 0.75rem 1rem;
+      font-size: var(--text-mobile-paragraph-1);
+      line-height: var(--text-mobile-paragraph-1--line-height);
+      @media (width >= 1024px) {
+        font-size: var(--text-desktop-paragraph-1);
+        line-height: var(--text-desktop-paragraph-1--line-height);
+      }
+    }
 
-.bog-button--secondary:hover:not(:disabled) {
-  background-color: #cce0ff;
-}
+    &.primary {
+      background-color: var(--color-brand-text);
+      color: white;
 
-.bog-button--tertiary {
-  background-color: transparent;
-  color: #0066ff;
-}
+      &:disabled {
+        cursor: not-allowed;
+        background-color: var(--color-grey-fill-weaker);
+        color: white;
+      }
 
-.bog-button--tertiary:hover:not(:disabled) {
-  background-color: #f5f8ff;
-}
+      &:not(:disabled):hover {
+        background-color: var(--color-brand-hover);
+      }
 
-/* Sizes */
-.bog-button--small {
-  padding: 6px 12px;
-  font-size: 14px;
-}
+      &:not(:disabled):active {
+        background-color: var(--color-brand-text);
+      }
+    }
 
-.bog-button--medium {
-  padding: 8px 16px;
-  font-size: 16px;
-}
+    &.secondary {
+      border: 1px solid var(--color-brand-stroke-strong);
+      color: var(--color-brand-text);
+      background-color: white;
 
-.bog-button--large {
-  padding: 10px 20px;
-  font-size: 18px;
-}
+      &:disabled {
+        cursor: not-allowed;
+        border-color: var(--color-grey-stroke-weak);
+        color: var(--color-grey-off-state);
+      }
 
-/* States */
-.bog-button--disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+      &:not(:disabled):hover {
+        border-color: var(--color-brand-hover);
+        color: var(--color-brand-hover);
+      }
 
-.bog-button--full-width {
-  width: 100%;
-}
+      &:not(:disabled):active {
+        border-color: var(--color-brand-stroke-strong);
+        color: var(--color-brand-hover);
+      }
+    }
 
-/* Icon positioning */
-.bog-button__icon {
-  display: flex;
-  align-items: center;
-}
+    &.tertiary {
+      color: var(--color-brand-text);
+      background-color: transparent;
 
-.bog-button__text {
-  flex: 1;
-  text-align: center;
+      &:disabled {
+        cursor: not-allowed;
+        color: var(--color-grey-off-state);
+      }
+
+      &:not(:disabled):hover {
+        color: var(--color-brand-hover);
+      }
+
+      &:not(:disabled):active {
+        color: var(--color-brand-text);
+      }
+    }
+
+    .contentContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.25rem;
+      height: fit-content;
+    }
+  }
 }

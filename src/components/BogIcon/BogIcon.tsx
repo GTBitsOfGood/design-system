@@ -38,7 +38,24 @@ const weightFillIcons = new Set([
   'download',
 ]);
 
-const boldFillIcons = new Set(['check', 'search', 'info', 'plus', 'x', 'success', 'error', 'warning']);
+const boldFillIcons = new Set([
+  'check',
+  'search',
+  'info',
+  'plus',
+  'x',
+  'success',
+  'error',
+  'warning',
+  'arrow-up',
+  'arrow-down',
+  'arrow-left',
+  'arrow-right',
+  'caret-up',
+  'caret-down',
+  'caret-left',
+  'caret-right',
+]);
 
 const BogIcon: React.FC<BogIconProps> = ({
   name,
