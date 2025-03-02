@@ -1,6 +1,5 @@
 import { Command } from 'commander';
-import { copy } from 'fs-extra';
-import { existsSync } from 'fs';
+import fs, { existsSync } from 'fs';
 import path from 'path';
 import prompts from 'prompts';
 
@@ -26,7 +25,7 @@ export const add = new Command()
             value: component,
           })),
           validate: (components) =>
-            components.length > 0 ? true : 'please select atleast one component from the list',
+            components.length > 0 ? true : 'please select at least one component from the list',
         });
 
         selectComponents = components || [];
@@ -40,6 +39,7 @@ export const add = new Command()
       const { installPath } = await prompts({
         type: 'text',
         name: 'installPath',
+        initial: './',
         message: 'please enter the path where the components should be installed:',
         validate: (input) => (input.trim().length > 0 ? true : 'please enter a valid path'),
       });
@@ -75,11 +75,22 @@ export const add = new Command()
           .split('-')
           .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
           .join('')}`;
-
-        const sourcePath = path.join(__dirname, '../../../components', folderName);
         const destPath = path.join(installPath, folderName);
 
-        await copy(sourcePath, destPath);
+        if (!fs.existsSync(destPath)) {
+          fs.mkdirSync(destPath, { recursive: true });
+        }
+
+        const componentContent = await fetch(
+          `https://raw.githubusercontent.com/GTBitsOfGood/design-system/refs/heads/production/src/components/${folderName}/${folderName}.tsx`
+        );
+        const styles = await fetch(
+          `https://raw.githubusercontent.com/GTBitsOfGood/design-system/refs/heads/production/src/components/${folderName}/styles.module.css`
+        );
+        const componentText = await componentContent.text();
+        const stylesText = await styles.text();
+        fs.writeFileSync(path.join(destPath, `${folderName}.tsx`), componentText);
+        fs.writeFileSync(path.join(destPath, 'styles.module.css'), stylesText);
         console.log(`Added ${folderName} to ${installPath}.`);
       }
 
@@ -90,7 +101,7 @@ export const add = new Command()
       }
 
       console.log(`successfully installed ${validComponents.length} component(s)!`);
-    } catch (error) {
-      console.error(`Error: ${error.message || 'unknown error occured'}`);
+    } catch (error: any) {
+      console.error(`Error: ${error.message || 'unknown error occurred'}`);
     }
   });
