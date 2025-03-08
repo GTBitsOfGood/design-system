@@ -9,7 +9,7 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    border-radius: calc(infinity * 1px);
+    border-radius: 9999px;
     cursor: pointer;
 
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, --tw-gradient-from,
@@ -29,7 +29,7 @@
   .bog-switch-thumb {
     display: block;
     background-color: var(--color-white);
-    border-radius: calc(infinity * 1px);
+    border-radius: 9999px;
     box-shadow: var(--shadow-sm);
 
     transition-property: transform, translate, scale, rotate;
@@ -58,7 +58,7 @@
   }
 
   .bog-switch-small[data-state='checked'] .bog-switch-thumb-small {
-    translate: calc(100%) var(--tw-translate-y);
+    transform: translateX(100%);
     margin-right: calc(var(--spacing) * 0.5);
   }
 
