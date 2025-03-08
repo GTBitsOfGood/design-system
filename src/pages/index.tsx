@@ -4,6 +4,8 @@ import BogButton from '../components/BogButton/BogButton';
 import { BogRadioItem } from '@/components/BogRadioItem/BogRadioItem';
 import { useState } from 'react';
 import BogCheckbox from '@/components/BogCheckbox/BogCheckbox';
+import { BogForm } from '@/components/BogForm/BogForm';
+import { BogTextInput } from '@/components/BogTextInput/BogTextInput';
 
 export default function Home() {
   const icons = [
@@ -206,6 +208,34 @@ export default function Home() {
           */}
           <div className="flex flex-col items-center justify-between border-grey-stroke-strong border-solid rounded-sm border-2 mb-8">
             <h3 className="self-start ml-4 text-heading-3">Forms:</h3>
+            <BogForm
+              className="w-full px-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const data = Object.fromEntries(new FormData(e.currentTarget));
+                console.log(data);
+              }}
+            >
+              <BogTextInput name="name" label="Name" placeholder="Enter your name" />
+              <BogTextInput name="email" label="Email" placeholder="Enter your email" />
+              <BogTextInput
+                name="password"
+                label="Password"
+                placeholder="Enter your password"
+                type="password"
+                required
+              />
+              <BogTextInput name="phone" label="Phone" placeholder="Enter your phone number" type="tel" disabled />
+              <BogTextInput multiline name="message" label="Message" placeholder="Enter your message" />
+              <BogCheckbox label="Checkbox" name="checkbox" />
+              {/* you have to include a `name` prop when using BogRadioGroup in a form! */}
+              <BogRadioGroup name="radio">
+                <BogRadioItem label="Option 1" value={'1'} />
+                <BogRadioItem label="Option 2" value={'2'} />
+                <BogRadioItem label="Option 3" value={'3'} />
+                <BogRadioItem label="Option 4" value={'4'} />
+              </BogRadioGroup>
+            </BogForm>
           </div>
 
           {/* Temp placeholder for style */}
