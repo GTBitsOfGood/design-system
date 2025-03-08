@@ -4,7 +4,7 @@ import BogButton from '../BogButton/BogButton';
 import type { FormEventHandler } from 'react';
 
 export interface BogFormProps {
-  onSubmit?: FormEventHandler<HTMLFormElement>;
+  onSubmit: FormEventHandler<HTMLFormElement>;
   submitLabel?: string;
   style?: React.CSSProperties;
   className?: string;

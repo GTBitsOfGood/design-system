@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 
 export interface BogTextInputProps {
   multiline?: boolean;
-  type?: 'text' | 'email' | 'password' | 'tel';
+  type?: 'text' | 'email' | 'password' | 'tel' | 'search';
   name: string;
   label: string;
   placeholder?: string;
@@ -20,13 +20,13 @@ export function BogTextInput({
   label,
   multiline = false,
   placeholder,
-  required = true,
+  required = false,
   disabled = false,
   style,
   className,
 }: BogTextInputProps) {
   return (
-    <Form.Field name={name}>
+    <Form.Field name={name} className={className} style={style}>
       <div className="flex flex-row gap-x-2 text-paragraph-2">
         <Form.Label>{label}</Form.Label>
         <Form.Message match="valueMissing" className="text-status-red-text">

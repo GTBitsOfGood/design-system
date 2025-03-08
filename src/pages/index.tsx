@@ -217,7 +217,7 @@ export default function Home() {
               }}
             >
               <BogTextInput name="name" label="Name" placeholder="Enter your name" />
-              <BogTextInput name="email" label="Email" placeholder="Enter your email" />
+              <BogTextInput name="email" label="Email" placeholder="Enter your email" type="email" />
               <BogTextInput
                 name="password"
                 label="Password"
