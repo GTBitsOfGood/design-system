@@ -8,7 +8,6 @@ export const diff = new Command()
   .command('diff')
   .description('Update all components to the latest version')
   .action(async () => {
-    // Prompt user for the component directory location
     const { componentDir } = await inquirer.prompt([
       {
         type: 'input',
@@ -22,6 +21,17 @@ export const diff = new Command()
         },
       },
     ]);
+
+    // Fetch the latest remote production branch from GitHub
+    try {
+      console.log('Fetching latest remote production branch...');
+      execSync('git fetch origin production', { stdio: 'inherit' });
+    } catch (err) {
+      console.error(
+        'Failed to fetch remote production branch. Please ensure your remote repository is set up correctly.' + err
+      );
+      process.exit(1);
+    }
 
     // Scan the provided directory for BoG component folders
     let componentFolders: string[] = [];
@@ -50,13 +60,11 @@ export const diff = new Command()
       let diffOutput = '';
       try {
         // Run git diff command against the production branch for the component folder
-        diffOutput = execSync(`git diff production -- "${folderPath}"`, { encoding: 'utf8' });
+        diffOutput = execSync(`git diff origin/production -- "${folderPath}"`, { encoding: 'utf8' });
       } catch (error: any) {
-        // In some cases execSync might throw an error; if so, try to capture the stdout for diff output
         diffOutput = error.stdout || '';
       }
 
-      // If there is any diff output, then there are differences
       if (diffOutput && diffOutput.trim() !== '') {
         const { upgrade } = await inquirer.prompt([
           {
@@ -70,7 +78,7 @@ export const diff = new Command()
         if (upgrade) {
           try {
             // Overwrite the local folder with the version from production
-            execSync(`git checkout production -- "${folderPath}"`, { stdio: 'inherit' });
+            execSync(`git checkout origin/production -- "${folderPath}"`, { stdio: 'inherit' });
             console.log(`${folder} successfully upgraded.`);
             upgradedComponents.push(folder);
           } catch (err) {
