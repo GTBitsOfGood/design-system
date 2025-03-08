@@ -38,12 +38,19 @@
   }
 
   .bog-switch[data-state='checked'] {
-    background-color: var(--color-blue-600);
+    background-color: var(--color-brand-text);
   }
 
   .bog-switch[data-disabled] {
-    opacity: 50%;
     pointer-events: none;
+    cursor: not-allowed;
+    background-color: var(--color-grey-fill-weak);
+  }
+
+  .bog-switch[data-disabled][data-state='checked'] {
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: var(--color-brand-stroke-weak);
   }
 
   .bog-switch-small {
