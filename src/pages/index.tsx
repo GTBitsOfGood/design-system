@@ -4,6 +4,7 @@ import BogButton from '../components/BogButton/BogButton';
 import { BogRadioItem } from '@/components/BogRadioItem/BogRadioItem';
 import { useState } from 'react';
 import BogCheckbox from '@/components/BogCheckbox/BogCheckbox';
+import BogSwitch from '@/components/BogSwitch/BogSwitch';
 
 export default function Home() {
   const icons = [
@@ -64,6 +65,30 @@ export default function Home() {
           */}
           <div className="flex flex-col items-center justify-between border-grey-stroke-strong border-solid border-2 rounded-sm mb-8">
             <h3 className="self-start ml-4 text-heading-3">Switches:</h3>
+            <div className="flex flex-col gap-4 p-4">
+              {/* Switch - No Label */}
+              <div className="flex items-center gap-4">
+                <BogSwitch defaultChecked />
+                <BogSwitch />
+                <BogSwitch defaultChecked disabled />
+                <BogSwitch disabled />
+              </div>
+
+              {/* Switch - Label */}
+              <div className="flex items-center gap-4">
+                <BogSwitch label="Toggle" defaultChecked />
+                <BogSwitch label="Toggle" />
+                <BogSwitch label="Toggle" defaultChecked disabled />
+                <BogSwitch label="Toggle" disabled />
+              </div>
+
+              {/* Different sizes */}
+              <div className="flex items-center gap-4">
+                <BogSwitch size="small" label="Small" />
+                <BogSwitch size="medium" label="Medium" />
+                <BogSwitch size="large" label="Large" />
+              </div>
+            </div>
           </div>
 
           {/* 
