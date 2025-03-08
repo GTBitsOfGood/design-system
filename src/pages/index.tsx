@@ -4,7 +4,7 @@ import BogButton from '../components/BogButton/BogButton';
 import { BogRadioItem } from '@/components/BogRadioItem/BogRadioItem';
 import { useState } from 'react';
 import BogCheckbox from '@/components/BogCheckbox/BogCheckbox';
-import BogSwitch from '@/components/BogSwitch/BogSwitch';
+import { BogSwitch } from '@/components/BogSwitch/BogSwitch';
 
 export default function Home() {
   const icons = [
