@@ -44,7 +44,7 @@ export function BogTextInput({
             required={required}
             disabled={disabled}
             rows={4}
-            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2 placeholder:text-grey-stroke-strong`}
+            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
           />
         ) : (
           <input
@@ -53,7 +53,7 @@ export function BogTextInput({
             placeholder={placeholder}
             required={required}
             disabled={disabled}
-            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2 placeholder:text-grey-stroke-strong`}
+            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
           />
         )}
       </Form.Control>

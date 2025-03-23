@@ -16,6 +16,12 @@
     &:disabled {
       color: var(--color-grey-off-state);
       cursor: not-allowed;
+      &::placeholder {
+        color: var(--color-grey-off-state);
+      }
+    }
+    &::placeholder {
+      color: var(--color-grey-stroke-strong);
     }
   }
 }

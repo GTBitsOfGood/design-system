@@ -6,6 +6,7 @@ import { useState } from 'react';
 import BogCheckbox from '@/components/BogCheckbox/BogCheckbox';
 import { BogForm } from '@/components/BogForm/BogForm';
 import { BogTextInput } from '@/components/BogTextInput/BogTextInput';
+import { BogSwitch } from '@/components/BogSwitch/BogSwitch';
 
 export default function Home() {
   const icons = [
