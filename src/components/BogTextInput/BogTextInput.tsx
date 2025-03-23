@@ -27,7 +27,7 @@ export function BogTextInput({
 }: BogTextInputProps) {
   return (
     <Form.Field name={name} className={className} style={style}>
-      <div className="flex flex-row gap-x-2 text-paragraph-2">
+      <div className="flex flex-row gap-x-2 text-paragraph-2 py-1">
         <Form.Label>{label}</Form.Label>
         <Form.Message match="valueMissing" className="text-status-red-text">
           Please enter a value for {label}
@@ -44,7 +44,7 @@ export function BogTextInput({
             required={required}
             disabled={disabled}
             rows={4}
-            className={`${styles.input} text-paragraph-2`}
+            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2 placeholder:text-grey-stroke-strong`}
           />
         ) : (
           <input
@@ -53,7 +53,7 @@ export function BogTextInput({
             placeholder={placeholder}
             required={required}
             disabled={disabled}
-            className={`${styles.input} text-paragraph-2`}
+            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2 placeholder:text-grey-stroke-strong`}
           />
         )}
       </Form.Control>

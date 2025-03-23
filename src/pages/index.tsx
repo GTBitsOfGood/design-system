@@ -212,8 +212,7 @@ export default function Home() {
               className="w-full px-4"
               onSubmit={(e) => {
                 e.preventDefault();
-                const data = Object.fromEntries(new FormData(e.currentTarget));
-                console.log(data);
+                e.currentTarget.reset();
               }}
             >
               <BogTextInput name="name" label="Name" placeholder="Enter your name" />
