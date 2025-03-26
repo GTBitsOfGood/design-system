@@ -1,17 +1,32 @@
 import { Form } from 'radix-ui';
 import styles from './styles.module.css';
+import { useState } from 'react';
 
 export interface BogTextInputProps {
   multiline?: boolean;
   type?: 'text' | 'email' | 'password' | 'tel' | 'search';
   name: string;
   label: string;
-  placeholder?: string;
+  placeholder?: React.ReactElement | string;
   required?: boolean;
   disabled?: boolean;
-
   style?: React.CSSProperties;
   className?: string;
+}
+
+interface CustomPlaceholderProps {
+  placeholder: React.ReactElement | string;
+  value: string;
+}
+
+function CustomPlaceholder({ placeholder, value }: CustomPlaceholderProps) {
+  return (
+    <>
+      {!value && (
+        <div className="absolute left-2 top-2 text-gray-500 flex items-center pointer-events-none">{placeholder}</div>
+      )}
+    </>
+  );
 }
 
 export function BogTextInput({
@@ -25,6 +40,8 @@ export function BogTextInput({
   style,
   className,
 }: BogTextInputProps) {
+  const [value, setValue] = useState<string>('');
+
   return (
     <Form.Field name={name} className={className} style={style}>
       <div className="flex flex-row gap-x-2 text-paragraph-2 py-1">
@@ -36,27 +53,30 @@ export function BogTextInput({
           Please provide a valid {label}
         </Form.Message>
       </div>
-      <Form.Control asChild>
-        {multiline ? (
-          <textarea
-            name={name}
-            placeholder={placeholder}
-            required={required}
-            disabled={disabled}
-            rows={4}
-            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
-          />
-        ) : (
-          <input
-            name={name}
-            type={type}
-            placeholder={placeholder}
-            required={required}
-            disabled={disabled}
-            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
-          />
-        )}
-      </Form.Control>
+      <div className="relative">
+        {placeholder !== undefined && <CustomPlaceholder placeholder={placeholder} value={value} />}
+        <Form.Control asChild>
+          {multiline ? (
+            <textarea
+              name={name}
+              required={required}
+              disabled={disabled}
+              rows={4}
+              className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
+              onChange={(e) => setValue(e.target.value)}
+            />
+          ) : (
+            <input
+              name={name}
+              type={type}
+              required={required}
+              disabled={disabled}
+              className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
+              onChange={(e) => setValue(e.target.value)}
+            />
+          )}
+        </Form.Control>
+      </div>
     </Form.Field>
   );
 }
