@@ -4,6 +4,7 @@ import BogButton from '../components/BogButton/BogButton';
 import { BogRadioItem } from '@/components/BogRadioItem/BogRadioItem';
 import { useState } from 'react';
 import BogCheckbox from '@/components/BogCheckbox/BogCheckbox';
+import BogDropdown from '@/components/BogDropdown/BogDropdown';
 
 export default function Home() {
   const icons = [
@@ -199,6 +200,31 @@ export default function Home() {
           */}
           <div className="flex flex-col items-center justify-between border-grey-stroke-strong border-solid rounded-sm border-2 mb-8">
             <h3 className="self-start ml-4 text-heading-3">Dropdowns:</h3>
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-lg font-semibold">Normal Dropdown</h2>
+            <BogDropdown type="normal" options={['option 1', 'option 2', 'option 3']} placeholder="Placeholder" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-lg font-semibold">Checkbox Dropdown</h2>
+            <BogDropdown type="checkbox" options={['option 1', 'option 2', 'option 3']} placeholder="Placeholder" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-lg font-semibold">Search Dropdown</h2>
+            <BogDropdown type="search" options={['option 1', 'option 2', 'option 3']} placeholder="Placeholder" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-lg font-semibold">Radio Dropdown</h2>
+            <BogDropdown type="radio" options={['option 1', 'option 2', 'option 3']} placeholder="Placeholder" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-lg font-semibold">Disabled Dropdown</h2>
+            <BogDropdown
+              type="normal"
+              options={['option 1', 'option 2', 'option 3']}
+              placeholder="This dropdown is disabled"
+              disabled={true}
+            />
           </div>
 
           {/* 
