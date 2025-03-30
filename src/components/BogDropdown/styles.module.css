@@ -1,0 +1,125 @@
+@layer base {
+  .bogDropdownBox {
+    width: 100%;
+    min-width: 400px;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .bogDropdownTrigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    border: 1px solid;
+    border-color: var(--color-grey-off-state);
+    border-radius: 4px;
+    padding: 12px 8px;
+  }
+
+  .bogDropdownTrigger:hover:not(.bogDropdownDisabled) {
+    border-color: var(--color-brand-stroke-strong);
+  }
+
+  .bogDropdownTrigger:focus:not(.bogDropdownDisabled) {
+    border-color: var(--color-brand-stroke-strong);
+    box-shadow: 0 0 0 2px rgba(var(--color-brand-stroke-strong-rgb), 0.2);
+  }
+
+  .bogDropdownDisabled {
+    cursor: not-allowed;
+    background-color: #ffffff;
+    border-color: var(--color-grey-off-state);
+    color: var(--color-grey-off-state);
+    opacity: 0.7;
+  }
+
+  .bogDropdownTriggerContent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--text-desktop-paragraph-2);
+    line-height: var(--text-desktop-paragraph-2--line-height);
+  }
+
+  .bogDropdownTriggerText {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bogDropdownIcon {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
+
+  .bogDropdownContent {
+    display: inline-block;
+    width: 100%;
+    min-width: 400px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-grey-off-state);
+  }
+
+  .bogDropdownItem {
+    cursor: pointer;
+    width: 100%;
+    user-select: none;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  .bogDropdownItem:hover {
+    background-color: var(--color-status-red-stroke-weak);
+    border-color: var(--color-status-red-stroke-weak);
+    outline: none;
+  }
+
+  .bogDropdownItem:focus {
+    background-color: var(--color-status-red-stroke-weak);
+  }
+
+  .bogDropdownItemSelected {
+    font-weight: 500;
+    background-color: rgba(var(--color-status-red-stroke-weak-rgb), 0.5);
+  }
+
+  .bogDropdownRadioContent,
+  .bogCheckboxContainer,
+  .bogDropdownItemContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bogDropdownItemText {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bogDropdownSearchContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bogDropdownSearchInputField {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: var(--text-desktop-paragraph-2);
+    padding: 0;
+    background: transparent;
+  }
+}
