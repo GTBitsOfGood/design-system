@@ -6,7 +6,7 @@ export interface BogTextInputProps {
   multiline?: boolean;
   type?: 'text' | 'email' | 'password' | 'tel' | 'search';
   name: string;
-  label: string;
+  label?: string;
   placeholder?: React.ReactElement | string;
   required?: boolean;
   disabled?: boolean;

@@ -3,7 +3,17 @@ import fs, { existsSync } from 'fs';
 import path from 'path';
 import prompts from 'prompts';
 
-const COMPONENTS = ['checkbox', 'radio-group', 'radio-item', 'button', 'icon', 'form', 'switch', 'text-input'];
+const COMPONENTS = [
+  'checkbox',
+  'radio-group',
+  'radio-item',
+  'button',
+  'icon',
+  'form',
+  'switch',
+  'text-input',
+  'dropdown',
+];
 
 export const add = new Command()
   .command('add')
