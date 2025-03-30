@@ -1,0 +1,27 @@
+@layer base {
+  .input {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--color-solid-bg-sunken);
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-grey-stroke-weak);
+    &:hover:not(:disabled) {
+      border-color: var(--color-brand-stroke-strong);
+    }
+    &:focus {
+      outline: none;
+      border-color: var(--color-brand-stroke-strong);
+      box-shadow: 0 0 0 2px var(--color-brand-stroke-weak);
+    }
+    &:disabled {
+      color: var(--color-grey-off-state);
+      cursor: not-allowed;
+      &::placeholder {
+        color: var(--color-grey-off-state);
+      }
+    }
+    &::placeholder {
+      color: var(--color-grey-stroke-strong);
+    }
+  }
+}
