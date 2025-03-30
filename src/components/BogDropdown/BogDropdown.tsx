@@ -1,222 +1,173 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import BogCheckbox from '../BogCheckbox/BogCheckbox';
-import { BogRadioGroup } from '../BogRadioGroup/BogRadioGroup';
-import { BogRadioItem } from '../BogRadioItem/BogRadioItem';
-import BogIcon from '../BogIcon/BogIcon';
+import { DropdownMenu } from 'radix-ui';
 import styles from './styles.module.css';
+import BogIcon from '../BogIcon/BogIcon';
+import BogCheckbox from '../BogCheckbox/BogCheckbox';
+import { BogRadioItem } from '../BogRadioItem/BogRadioItem';
+import { BogRadioGroup } from '../BogRadioGroup/BogRadioGroup';
+import { CheckedState } from '@radix-ui/react-checkbox';
 
-export interface BogDropdownProps {
-  type: 'normal' | 'checkbox' | 'radio' | 'search';
+interface BogDropdownProps extends React.HTMLAttributes<HTMLDivElement> {
+  type?: 'normal' | 'checkbox' | 'radio' | 'search';
   options: string[];
+  name: string;
+  label?: string;
   placeholder?: string;
-  className?: string;
-  style?: React.CSSProperties;
   disabled?: boolean;
   onSelectionChange?: (selection: string | string[]) => void;
 }
 
-const BogDropdown: React.FC<BogDropdownProps> = ({
-  type,
+export default function BogDropdown({
+  type = 'normal',
   options,
-  placeholder = 'Placeholder',
-  className = '',
-  style = {},
+  name,
+  label,
+  placeholder,
   disabled = false,
   onSelectionChange,
-}) => {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<string[]>([]);
-  const [searchValue, setSearchValue] = useState('');
-  const [filteredOptions, setFilteredOptions] = useState<string[]>(options);
-  const inputRef = useRef<HTMLInputElement>(null);
+  style,
+  className,
+}: BogDropdownProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selected, setSelected] = useState<string | string[]>(type === 'checkbox' ? [] : '');
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [triggerWidth, setTriggerWidth] = useState<number | null>(null);
+  const [filter, setFilter] = useState<string>('');
 
   useEffect(() => {
-    if (type === 'search') {
-      setFilteredOptions(options.filter((option) => option.toLowerCase().includes(searchValue.toLowerCase())));
-    } else {
-      setFilteredOptions(options);
+    if (triggerRef.current) {
+      setTriggerWidth(triggerRef.current.offsetWidth);
     }
-  }, [options, searchValue, type]);
+  }, [isOpen]);
 
-  useEffect(() => {
-    if (onSelectionChange) {
-      if (type === 'checkbox') {
-        onSelectionChange(selected);
-      } else {
-        onSelectionChange(selected[0] || '');
-      }
+  const openInput = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+      setIsOpen(true);
     }
-  }, [selected, type, onSelectionChange]);
+  };
 
-  const handleSelect = (option: string) => {
+  const handleSelect = (e: Event | React.FormEvent<HTMLButtonElement> | CheckedState | string, value: string) => {
+    let newSelected = selected;
+    console.log('selected', selected, 'value', value);
     if (type === 'checkbox') {
-      const newSelected = selected.includes(option)
-        ? selected.filter((item) => item !== option)
-        : [...selected, option];
-      setSelected(newSelected);
+      const checked = e as CheckedState;
+      console.log('checkbox');
+      if (Array.isArray(selected)) {
+        console.log('is array');
+        if (checked === true) {
+          console.log('checked');
+          if (!selected.includes(value)) {
+            newSelected = [...selected, value];
+          }
+          setSelected(newSelected);
+        } else if (checked === false) {
+          console.log('unchecked');
+          newSelected = selected.filter((item) => item !== value);
+          setSelected(newSelected);
+        }
+      } else {
+        newSelected = value;
+        setSelected(newSelected);
+      }
     } else {
-      setSelected([option]);
-      if (type !== 'search') {
-        setOpen(false);
-      }
-      if (type === 'search') {
-        setSearchValue(option);
-        setOpen(false);
-      }
+      newSelected = value;
+      setSelected(newSelected);
+    }
+    if (onSelectionChange) {
+      onSelectionChange(newSelected);
     }
   };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-    if (!open) {
-      setOpen(true);
+  const renderItems = (): React.ReactElement[] => {
+    if (type === 'search') {
+      return options
+        .filter((option) => option.includes(filter))
+        .map((option) => (
+          <DropdownMenu.Item onSelect={(e) => handleSelect(e, option)} className={styles.dropdownItem} key={option}>
+            {option}
+          </DropdownMenu.Item>
+        ));
+    } else if (type === 'checkbox') {
+      return options.map((option) => (
+        <DropdownMenu.Item onSelect={(e) => e.preventDefault()} className={styles.dropdownItem} key={option}>
+          <BogCheckbox name={option} label={option} onCheckedChange={(e) => handleSelect(e, option)} />
+        </DropdownMenu.Item>
+      ));
+    } else if (type === 'radio') {
+      return options.map((option) => (
+        <DropdownMenu.Item onSelect={(e) => e.preventDefault()} className={styles.dropdownItem} key={option}>
+          <BogRadioItem key={option} value={option} label={option} checked={selected === option} />
+        </DropdownMenu.Item>
+      ));
+    } else {
+      return options.map((option) => (
+        <DropdownMenu.Item onSelect={(e) => handleSelect(e, option)} className={styles.dropdownItem} key={option}>
+          {option}
+        </DropdownMenu.Item>
+      ));
     }
   };
-
-  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      if (filteredOptions.length > 0) {
-        handleSelect(filteredOptions[0]);
-      }
-    }
-  };
-
-  const handleSearchFocus = () => {
-    if (type === 'search' && !open) {
-      setOpen(true);
-    }
-  };
-
-  const renderSearchInput = () => {
-    if (type !== 'search') return null;
-
-    return (
-      <div
-        className={`${styles.bogDropdownTrigger} ${disabled ? styles.bogDropdownDisabled : ''}`}
-        onClick={() => !disabled && setOpen(true)}
-      >
-        <div className={styles.bogDropdownSearchContainer}>
-          <input
-            ref={inputRef}
-            type="text"
-            className={styles.bogDropdownSearchInputField}
-            value={searchValue}
-            onChange={handleSearchChange}
-            onFocus={handleSearchFocus}
-            onKeyDown={handleSearchKeyDown}
-            placeholder={placeholder}
-            disabled={disabled}
-          />
-          <BogIcon
-            name="search"
-            size={16}
-            className={styles.bogDropdownIcon}
-            onClick={() => !disabled && setOpen(true)}
-          />
-        </div>
-      </div>
-    );
-  };
-
-  const displayText = selected.length > 0 ? selected.join(', ') : placeholder;
 
   return (
-    <div className={`${styles.bogDropdownBox} ${className}`} style={style}>
-      {type === 'search' ? (
-        // trying custom separate implementation for search
-        <>
-          {renderSearchInput()}
-          {open && (
-            <div className={styles.bogDropdownContent}>
-              {filteredOptions.map((option, index) => (
-                <div
-                  key={index}
-                  className={`${styles.bogDropdownItem} ${selected.includes(option) ? styles.bogDropdownItemSelected : ''}`}
-                  onClick={() => {
-                    handleSelect(option);
-                    if (inputRef.current) {
-                      inputRef.current.focus();
-                    }
-                  }}
-                >
-                  <div className={styles.bogDropdownItemContent}>
-                    <span className={styles.bogDropdownItemText}>{option}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </>
-      ) : (
-        // Radix UI implementation for this part (was v buggy for search)
-        <DropdownMenu.Root open={open} onOpenChange={setOpen}>
-          <DropdownMenu.Trigger
-            ref={triggerRef}
-            className={`${styles.bogDropdownTrigger} ${disabled ? styles.bogDropdownDisabled : ''}`}
-            disabled={disabled}
-          >
-            <div className={styles.bogDropdownTriggerContent}>
-              <span className={styles.bogDropdownTriggerText}>{displayText}</span>
-              <BogIcon name="caret-down" size={16} className={styles.bogDropdownIcon} />
-            </div>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content className={styles.bogDropdownContent} sideOffset={4} align="start">
-              {type === 'radio' ? (
-                <BogRadioGroup value={selected[0] || ''} onChange={(option) => handleSelect(option)}>
-                  {filteredOptions.map((option, index) => (
-                    <DropdownMenu.Item
-                      key={index}
-                      className={`${styles.bogDropdownItem} ${selected.includes(option) ? styles.bogDropdownItemSelected : ''}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleSelect(option);
-                      }}
-                    >
-                      <div className={styles.bogDropdownRadioContent}>
-                        <BogRadioItem value={option} id={`radio-${index}`} />
-                        <span className={styles.bogDropdownItemText}>{option}</span>
-                      </div>
-                    </DropdownMenu.Item>
-                  ))}
-                </BogRadioGroup>
+    <div className={`${styles.dropdownContainer} ${className}`} style={style}>
+      <label className={styles.label}>{label}</label>
+      <DropdownMenu.Root modal={false} open={isOpen} onOpenChange={setIsOpen}>
+        <DropdownMenu.Trigger
+          ref={triggerRef}
+          className={styles.trigger}
+          data-disabled={disabled}
+          disabled={disabled}
+          onClick={() => openInput()}
+        >
+          {type === 'search' ? (
+            <>
+              <input
+                type="text"
+                ref={inputRef}
+                value={filter}
+                name={name}
+                placeholder={
+                  selected.length > 0 ? (Array.isArray(selected) ? selected.join(', ') : selected) : placeholder
+                }
+                className={styles.searchInput}
+                onKeyDown={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  setFilter(e.target.value);
+                }}
+              />
+              <BogIcon name="search" size={16} className={styles.icon} />
+            </>
+          ) : (
+            <>
+              {selected.length > 0 ? (Array.isArray(selected) ? selected.join(', ') : selected) : placeholder}
+              {isOpen ? (
+                <BogIcon name="caret-up" size={16} className={styles.icon} />
               ) : (
-                filteredOptions.map((option, index) => (
-                  <DropdownMenu.Item
-                    key={index}
-                    className={`${styles.bogDropdownItem} ${selected.includes(option) ? styles.bogDropdownItemSelected : ''}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleSelect(option);
-                    }}
-                  >
-                    {type === 'checkbox' && (
-                      <div className={styles.bogCheckboxContainer}>
-                        <BogCheckbox
-                          id={`checkbox-${index}`}
-                          checked={selected.includes(option)}
-                          onChange={() => handleSelect(option)}
-                        />
-                        <span className={styles.bogDropdownItemText}>{option}</span>
-                      </div>
-                    )}
-                    {type === 'normal' && (
-                      <div className={styles.bogDropdownItemContent}>
-                        <span className={styles.bogDropdownItemText}>{option}</span>
-                      </div>
-                    )}
-                  </DropdownMenu.Item>
-                ))
+                <BogIcon name="caret-down" size={16} className={styles.icon} />
               )}
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>
-      )}
+            </>
+          )}
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content
+          align="start"
+          sideOffset={4}
+          className={styles.dropdownContent}
+          style={{ width: triggerWidth || 'auto' }}
+        >
+          {type === 'radio' ? (
+            <BogRadioGroup
+              value={Array.isArray(selected) ? selected.join(', ') : selected}
+              onValueChange={(e) => handleSelect(e, e)}
+            >
+              {renderItems()}
+            </BogRadioGroup>
+          ) : (
+            <>{renderItems()}</>
+          )}
+        </DropdownMenu.Content>
+      </DropdownMenu.Root>
     </div>
   );
-};
-
-export default BogDropdown;
+}
