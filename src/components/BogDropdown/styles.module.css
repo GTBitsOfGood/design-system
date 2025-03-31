@@ -90,7 +90,8 @@
         cursor: pointer;
 
         &:hover {
-          outline: var(--color-brand-stroke-strong) auto 1px;
+          outline: none;
+          background-color: var(--color-brand-stroke-weak);
         }
       }
     }
