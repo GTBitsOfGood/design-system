@@ -50,20 +50,15 @@ export default function BogDropdown({
 
   const handleSelect = (e: Event | React.FormEvent<HTMLButtonElement> | CheckedState | string, value: string) => {
     let newSelected = selected;
-    console.log('selected', selected, 'value', value);
     if (type === 'checkbox') {
       const checked = e as CheckedState;
-      console.log('checkbox');
       if (Array.isArray(selected)) {
-        console.log('is array');
         if (checked === true) {
-          console.log('checked');
           if (!selected.includes(value)) {
             newSelected = [...selected, value];
           }
           setSelected(newSelected);
         } else if (checked === false) {
-          console.log('unchecked');
           newSelected = selected.filter((item) => item !== value);
           setSelected(newSelected);
         }

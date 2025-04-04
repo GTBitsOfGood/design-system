@@ -14,14 +14,15 @@
       box-shadow: 0 0 0 2px var(--color-brand-stroke-weak);
     }
     &:disabled {
-      color: var(--color-grey-off-state);
+      color: orange;
       cursor: not-allowed;
-      &::placeholder {
-        color: var(--color-grey-off-state);
-      }
+      /* &::placeholder {
+        color: orange;
+      } */
     }
-    &::placeholder {
-      color: var(--color-grey-stroke-strong);
-    }
+  }
+  .input::-webkit-input-placeholder {
+    /* Chrome, Safari, Edge */
+    color: orange;
   }
 }

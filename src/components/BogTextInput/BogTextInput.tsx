@@ -71,7 +71,7 @@ export function BogTextInput({
               type={type}
               required={required}
               disabled={disabled}
-              className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
+              className={`text-paragraph-2 placeholder:text-paragraph-2 ${styles.input} `}
               onChange={(e) => setValue(e.target.value)}
             />
           )}

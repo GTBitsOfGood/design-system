@@ -35,7 +35,7 @@ export const init = new Command()
         },
       ]);
       if (!existsSync(root)) {
-        console.error('The root directory does not exist.');
+        console.error('ERROR: The root directory does not exist.');
         return;
       }
 
@@ -46,7 +46,9 @@ export const init = new Command()
         initial: true,
       });
       if (!installDeps) {
-        console.error('Skipping dependencies. You will not be able to use the design system without additional setup.');
+        console.error(
+          'ERROR: Skipping dependencies. You will not be able to use the design system without additional setup.'
+        );
       } else {
         const { packageManager } = await prompts({
           type: 'select',
@@ -62,11 +64,11 @@ export const init = new Command()
         });
 
         if (packageManager) {
-          console.log('installing dependencies...');
+          console.log('Installing dependencies...');
           execSync(`cd ${root} && ${packageManager} -D ${DEV_DEPENDENCIES.join(' ')}`);
           execSync(`cd ${root} && ${packageManager} ${DEPENDENCIES.join(' ')}`);
         } else {
-          console.error('Package manager selection was cancelled. Dependencies not installed.');
+          console.error('ERROR: Package manager selection was cancelled. Dependencies not installed.');
         }
       }
 
@@ -104,11 +106,11 @@ export default config;
 
       if (!setupStyles) {
         console.error(
-          'Skipping the Bits of Good theme setup. Your project may not look like the Design System Website.'
+          'ERROR: Skipping the Bits of Good theme setup. Your project may not look like the Design System Website.'
         );
         if (setupTailwind) {
           console.error(
-            'You will need to finish the Tailwind setup manually. Create a css file with `@import "tailwindcss"` in it, and make sure you import it into your src/app/layout.tsx or src/pages/_app.tsx.'
+            'ERROR: You will need to finish the Tailwind setup manually. Create a css file with `@import "tailwindcss"` in it, and make sure you import it into your src/app/layout.tsx or src/pages/_app.tsx.'
           );
         }
       } else {
@@ -116,7 +118,7 @@ export default config;
           name: 'stylePath',
           type: 'text',
           message:
-            "Where should the global stylesheet containing the BoG theme live? (input the file name relative to your project's root directory)",
+            "Input the path relative to your project's root directory where the global stylesheet should be copied (e.g ./src/styles/)",
           initial: 'src/styles/globals.css',
         });
 
@@ -127,8 +129,8 @@ export default config;
 
         await mkdir(path.dirname(path.join(root, stylePath)), { recursive: true });
         await writeFile(path.join(root, stylePath), styles, 'utf8');
-        console.log('BOG theme and tailwindcss stylesheet created.');
-        console.log('make sure to import it into your src/app/layout.tsx or src/pages/_app.tsx');
+        console.log('Bits of Good theme and tailwindcss stylesheet created.');
+        console.log('Make sure to import it into your src/app/layout.tsx or src/pages/_app.tsx');
       }
 
       const { setupFonts } = await prompts({
@@ -140,13 +142,13 @@ export default config;
 
       if (!setupFonts) {
         console.error(
-          'Skipping the Bits of Good fonts setup. Your project may not look like the Design System Website.'
+          'ERROR: Skipping the Bits of Good fonts setup. Your project may not look like the Design System Website.'
         );
       } else {
         const { fontPath } = await prompts({
           name: 'fontPath',
           type: 'text',
-          message: 'Where is the public directory for your project relative to the root directory?',
+          message: 'Input your public directory for your project relative to the root directory.',
           initial: './public/',
         });
         await mkdir(path.join(root, fontPath, 'fonts'), { recursive: true });
@@ -157,18 +159,18 @@ export default config;
               `https://raw.githubusercontent.com/GTBitsOfGood/design-system/main/public/fonts/${font}`
             );
             if (!response.ok) {
-              throw new Error(`Failed to download font: ${font}, status: ${response.status}`);
+              throw new Error(`ERROR: Failed to download font: ${font}, status: ${response.status}`);
             }
             const fontData = await response.arrayBuffer();
             await writeFile(path.join(root, fontPath, 'fonts', font), Buffer.from(fontData), 'binary');
           })
         );
-        console.log('BOG fonts downloaded successfully.');
+        console.log('Bits of Good fonts downloaded successfully.');
       }
 
-      console.log('BoG design system init complete.');
+      console.log('Bits of Good design system init complete.');
     } catch (e: any) {
-      console.error('BoG design system init failed.');
+      console.error('ERROR: Bits of Good design system init failed.');
       console.error(e);
     }
   });
