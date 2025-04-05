@@ -11,18 +11,11 @@
     &:focus {
       outline: none;
       border-color: var(--color-brand-stroke-strong);
-      box-shadow: 0 0 0 2px var(--color-brand-stroke-weak);
     }
     &:disabled {
-      color: orange;
+      border-color: var(--color-grey-off-state);
       cursor: not-allowed;
-      /* &::placeholder {
-        color: orange;
-      } */
+      opacity: 0.85;
     }
-  }
-  .input::-webkit-input-placeholder {
-    /* Chrome, Safari, Edge */
-    color: orange;
   }
 }

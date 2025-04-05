@@ -74,6 +74,12 @@
       }
     }
 
+    .iconHolder {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+
     .dropdownContent {
       width: 100%;
       display: flex;

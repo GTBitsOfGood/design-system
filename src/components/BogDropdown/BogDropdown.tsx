@@ -75,6 +75,31 @@ export default function BogDropdown({
     }
   };
 
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (type === 'checkbox') {
+      setSelected([]);
+      if (onSelectionChange) {
+        onSelectionChange([]);
+      }
+    } else {
+      setSelected('');
+      if (onSelectionChange) {
+        onSelectionChange('');
+      }
+    }
+    if (type === 'search') {
+      setFilter('');
+    }
+  };
+
+  const hasValues = () => {
+    if (Array.isArray(selected)) {
+      return selected.length > 0;
+    }
+    return selected != '';
+  };
+
   const renderItems = (): React.ReactElement[] => {
     if (type === 'search') {
       return options
@@ -87,7 +112,12 @@ export default function BogDropdown({
     } else if (type === 'checkbox') {
       return options.map((option) => (
         <DropdownMenu.Item onSelect={(e) => e.preventDefault()} className={styles.dropdownItem} key={option}>
-          <BogCheckbox name={option} label={option} onCheckedChange={(e) => handleSelect(e, option)} />
+          <BogCheckbox
+            name={option}
+            label={option}
+            checked={Array.isArray(selected) && selected.includes(option)}
+            onCheckedChange={(e) => handleSelect(e, option)}
+          />
         </DropdownMenu.Item>
       ));
     } else if (type === 'radio') {
@@ -132,19 +162,34 @@ export default function BogDropdown({
                   setFilter(e.target.value);
                 }}
               />
-              <BogIcon name="search" size={16} className={styles.icon} />
+              <div className={styles.iconHolder}>
+                {hasValues() && (
+                  <span onClick={handleClear} role="button">
+                    <BogIcon name="x" size={14} className={styles.clearIcon} />
+                  </span>
+                )}
+                <BogIcon name="search" size={16} className={styles.icon} />
+              </div>
             </>
           ) : (
             <>
               {selected.length > 0 ? (Array.isArray(selected) ? selected.join(', ') : selected) : placeholder}
-              {isOpen ? (
-                <BogIcon name="caret-up" size={16} className={styles.icon} />
-              ) : (
-                <BogIcon name="caret-down" size={16} className={styles.icon} />
-              )}
+              <div className={styles.iconHolder}>
+                {hasValues() && (
+                  <span onClick={handleClear} role="button" aria-label="Clear selection">
+                    <BogIcon name="x" size={14} className={styles.clearIcon} />
+                  </span>
+                )}
+                {isOpen ? (
+                  <BogIcon name="caret-up" size={16} className={styles.icon} />
+                ) : (
+                  <BogIcon name="caret-down" size={16} className={styles.icon} />
+                )}
+              </div>
             </>
           )}
         </DropdownMenu.Trigger>
+
         <DropdownMenu.Content
           align="start"
           sideOffset={4}
