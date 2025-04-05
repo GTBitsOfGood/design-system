@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import fs, { existsSync } from 'fs';
+import fs, { existsSync, mkdirSync } from 'fs';
 import path from 'path';
 import prompts from 'prompts';
 
@@ -49,7 +49,7 @@ export const add = new Command()
       const { installPath } = await prompts({
         type: 'text',
         name: 'installPath',
-        initial: './',
+        initial: './src/components/',
         message: 'please enter the path where the components should be installed:',
         validate: (input) => (input.trim().length > 0 ? true : 'please enter a valid path'),
       });
@@ -60,8 +60,8 @@ export const add = new Command()
       }
 
       if (!existsSync(installPath)) {
-        console.error(`ERROR: invalid path ${installPath} does not exist.`);
-        return;
+        mkdirSync(installPath, { recursive: true });
+        console.error(`creating ${installPath} directory...`);
       }
 
       const validComponents: string[] = [];

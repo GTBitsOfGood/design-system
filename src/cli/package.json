@@ -1,7 +1,7 @@
 {
   "name": "design-system-cli",
   "bin": {
-    "cli-test": "./dist/index.js"
+    "bog-cli": "./dist/index.js"
   },
   "version": "1.0.0",
   "description": "",
@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@types/node": "^22.13.4",
     "@types/prompts": "^2.4.9",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "commander": "^13.1.0",
+    "ora": "^8.2.0",
     "prompts": "^2.4.2"
   }
 }
