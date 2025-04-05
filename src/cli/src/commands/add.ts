@@ -24,24 +24,24 @@ export const add = new Command()
       let selectComponents: string[] = [];
       if (options.all) {
         selectComponents = [...COMPONENTS];
-        console.log(`adding all components: ${selectComponents.join(', ')}`);
+        console.log(`Adding all components: ${selectComponents.join(', ')}`);
       } else {
         const { components } = await prompts({
           type: 'multiselect',
           name: 'components',
-          message: 'select the components you want to install:',
+          message: 'Select the components you want to copy from the design system:',
           choices: COMPONENTS.map((component) => ({
             title: component,
             value: component,
           })),
           validate: (components) =>
-            components.length > 0 ? true : 'please select at least one component from the list',
+            components.length > 0 ? true : 'Please select at least one component from the list',
         });
 
         selectComponents = components || [];
 
         if (selectComponents.length === 0) {
-          console.log('no components selected.');
+          console.log('No components selected.');
           return;
         }
       }
@@ -50,17 +50,18 @@ export const add = new Command()
         type: 'text',
         name: 'installPath',
         initial: './',
-        message: 'please enter the path where the components should be installed:',
-        validate: (input) => (input.trim().length > 0 ? true : 'please enter a valid path'),
+        message:
+          'Input the path relative to your current directory to copy the components to (e.g ./desktop/design-system/)',
+        validate: (input) => (input.trim().length > 0 ? true : 'Please enter a valid path'),
       });
 
       if (!installPath) {
-        console.log('no valid path inputted.');
+        console.log('No valid path inputted.');
         return;
       }
 
       if (!existsSync(installPath)) {
-        console.error(`ERROR: invalid path ${installPath} does not exist.`);
+        console.error(`ERROR: Invalid path, ${installPath} does not exist.`);
         return;
       }
 
@@ -76,7 +77,7 @@ export const add = new Command()
       });
 
       if (validComponents.length === 0) {
-        console.error('ERROR: no valid components have been selected.');
+        console.error('ERROR: No valid components have been selected.');
         return;
       }
 
@@ -105,13 +106,13 @@ export const add = new Command()
       }
 
       if (invalidComponents.length > 0) {
-        console.log(
-          `ERROR: the following components are invalid and were not installed: ${invalidComponents.join(', ')}`
+        console.error(
+          `ERROR: The following components are invalid and were not installed: ${invalidComponents.join(', ')}`
         );
       }
 
-      console.log(`successfully installed ${validComponents.length} component(s)!`);
+      console.log(`Successfully copied ${validComponents.length} component(s)!`);
     } catch (error: any) {
-      console.error(`Error: ${error.message || 'unknown error occurred'}`);
+      console.error(`ERROR: ${error.message || 'Unknown error occurred'}`);
     }
   });

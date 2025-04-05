@@ -77,8 +77,8 @@ export default function Home() {
         <div className="flex flex-col self-start gap-4 border-grey-stroke-strong border-solid border-2 rounded-sm p-4">
           <h3 className="text-heading-3">Switches:</h3>
           <p className="text-paragraph-1">
-            Our BogSwitch component serves as a template for any application that wants a toggle to represent binary
-            data. It accepts the below props:
+            Our Bits of Good Switch component serves as a template for any application that wants a toggle to represent
+            binary data. It accepts the below props:
           </p>
           <ul className="list-disc text-paragraph-1 ml-4">
             <li>style: Use CSS styles to style the switch to better match your theme</li>
@@ -109,8 +109,8 @@ export default function Home() {
         <div className="flex flex-col self-start gap-4 border-grey-stroke-strong border-solid border-2 rounded-sm p-4">
           <h3 className="text-heading-3">Checkboxes/Radio:</h3>
           <p className="text-paragraph-1">
-            Our BogCheckbox component serves as a template for any application that wants to have a checkbox to store
-            boolean data. It accepts the below props:
+            Our Bits of Good Checkbox component serves as a template for any application that wants to have a checkbox
+            to store boolean data. It accepts the below props:
           </p>
           <ul className="list-disc text-paragraph-1 ml-4">
             <li>
@@ -148,8 +148,8 @@ export default function Home() {
         <div className="flex flex-col self-start gap-4 border-grey-stroke-strong border-solid border-2 rounded-sm p-4">
           <h3 className="text-heading-3">Buttons:</h3>
           <p className="text-paragraph-1">
-            Our BogButton component serves as a template for any application that wants to have a clickable button. It
-            accepts the below props:
+            Our Bits of Good Button component serves as a template for any application that wants to have a clickable
+            button. It accepts the below props:
           </p>
           <ul className="list-disc text-paragraph-1 ml-4">
             <li>style: Use CSS styles to style the switch to better match your theme</li>
@@ -165,7 +165,7 @@ export default function Home() {
               icon: An option with two fields representing what icon you want to display in the button and where you
               want to display it.
               <ul className="list-disc ml-4">
-                <li>icon: The React node of the icon you want to display (supports BogIcon!)</li>
+                <li>icon: The React node of the icon you want to display (supports Bits of Good Icon!)</li>
                 <li>
                   position: Whether the icon is on the left or right side of the button (&lsquo;left&rsquo;,
                   &lsquo;right&rsquo;)
@@ -229,8 +229,8 @@ export default function Home() {
         <div className="flex flex-col self-start gap-4 border-grey-stroke-strong border-solid border-2 rounded-sm p-4">
           <h3 className="text-heading-3">Dropdowns:</h3>
           <p className="text-paragraph-1">
-            Our BogDropdown component serves as a way for our applications to support a dropdown menu. It accepts the
-            below props:
+            Our Bits of Good Dropdown component serves as a way for our applications to support a dropdown menu. It
+            accepts the below props:
           </p>
           <ul className="list-disc text-paragraph-1 ml-4">
             <li>
@@ -297,8 +297,8 @@ export default function Home() {
         <div className="flex flex-col self-start gap-4 border-grey-stroke-strong border-solid border-2 rounded-sm p-4">
           <h3 className="text-heading-3">Text Inputs:</h3>
           <p className="text-paragraph-1">
-            Our BogTextInput component serves as a way for any application to accept text inputs from users. This
-            component accepts the below props:
+            Our Bits of Good TextInput component serves as a way for any application to accept text inputs from users.
+            This component accepts the below props:
           </p>
           <ul className="list-disc text-paragraph-1 ml-4">
             <li>
@@ -342,8 +342,8 @@ export default function Home() {
         <div className="flex flex-col self-start gap-4 border-grey-stroke-strong border-solid border-2 rounded-sm p-4">
           <h3 className="text-heading-3">Forms:</h3>
           <p className="text-paragraph-1">
-            Our BogForm component serves as a way for any application to support a form. This component accepts the
-            below props:
+            Our Bits of Good Form component serves as a way for any application to support a form. This component
+            accepts the below props:
           </p>
           <ul className="list-disc text-paragraph-1 ml-4">
             <li>
@@ -383,8 +383,8 @@ export default function Home() {
         <div className="flex flex-col self-start gap-4 border-grey-stroke-strong border-solid border-2 rounded-sm p-4">
           <h3 className="text-heading-3">Icons:</h3>
           <p className="text-paragraph-1">
-            Our BogIcon component serves as a template for any application that wants to display an icon. It accepts the
-            below props:
+            Our Bits of Good Icon component serves as a template for any application that wants to display an icon. It
+            accepts the below props:
           </p>
           <ul className="list-disc text-paragraph-1 ml-4">
             <li>

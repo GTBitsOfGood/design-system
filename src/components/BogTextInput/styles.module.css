@@ -11,17 +11,11 @@
     &:focus {
       outline: none;
       border-color: var(--color-brand-stroke-strong);
-      box-shadow: 0 0 0 2px var(--color-brand-stroke-weak);
     }
     &:disabled {
-      color: var(--color-grey-off-state);
+      border-color: var(--color-grey-off-state);
       cursor: not-allowed;
-      &::placeholder {
-        color: var(--color-grey-off-state);
-      }
-    }
-    &::placeholder {
-      color: var(--color-grey-stroke-strong);
+      opacity: 0.85;
     }
   }
 }

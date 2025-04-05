@@ -74,6 +74,12 @@
       }
     }
 
+    .iconHolder {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+
     .dropdownContent {
       width: 100%;
       display: flex;
@@ -90,7 +96,8 @@
         cursor: pointer;
 
         &:hover {
-          outline: var(--color-brand-stroke-strong) auto 1px;
+          outline: none;
+          background-color: var(--color-brand-stroke-weak);
         }
       }
     }
