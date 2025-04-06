@@ -2,12 +2,12 @@ import * as React from 'react';
 import * as RadixSwitch from '@radix-ui/react-switch';
 import styles from './styles.module.css';
 
-export interface BogSwitchProps extends React.ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
+interface BogSwitchProps extends React.ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
   label?: string;
   size?: 'small' | 'medium' | 'large';
 }
 
-export const BogSwitch: React.FC<BogSwitchProps> = ({ label, size = 'medium', className, style, ...props }) => {
+const BogSwitch: React.FC<BogSwitchProps> = ({ label, size = 'medium', className, style, ...props }) => {
   const containerClass = `${styles['bog-switch-container']} ${className || ''}`.trim();
   const rootClass = `${styles['bog-switch']} ${
     size === 'small'
@@ -32,3 +32,5 @@ export const BogSwitch: React.FC<BogSwitchProps> = ({ label, size = 'medium', cl
     </div>
   );
 };
+
+export default BogSwitch;

@@ -2,13 +2,13 @@ import { RadioGroup } from 'radix-ui';
 import { useId } from 'react';
 import styles from './styles.module.css';
 
-export interface BogRadioItemProps extends React.ComponentProps<typeof RadioGroup.Item> {
+interface BogRadioItemProps extends React.ComponentProps<typeof RadioGroup.Item> {
   label: string;
   value: string;
   disabled?: boolean;
 }
 
-export function BogRadioItem({ label, value, disabled = false, className, style }: BogRadioItemProps) {
+export default function BogRadioItem({ label, value, disabled = false, className, style }: BogRadioItemProps) {
   const id = useId();
   return (
     <div style={style} className={`${styles.container} ${className}`} data-disabled={disabled}>

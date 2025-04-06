@@ -2,9 +2,9 @@ import { ComponentProps } from 'react';
 import { RadioGroup } from 'radix-ui';
 import styles from './styles.module.css';
 
-export interface BogRadioGroupProps extends ComponentProps<typeof RadioGroup.Root> {}
+interface BogRadioGroupProps extends ComponentProps<typeof RadioGroup.Root> {}
 
-export function BogRadioGroup({ children, ...props }: BogRadioGroupProps) {
+export default function BogRadioGroup({ children, ...props }: BogRadioGroupProps) {
   return (
     <RadioGroup.Root {...props} className={`${styles.root} ${props.className || ''}`}>
       {children}

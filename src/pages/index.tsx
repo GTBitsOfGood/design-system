@@ -1,13 +1,13 @@
-import { BogRadioGroup } from '@/components/BogRadioGroup/BogRadioGroup';
+import BogRadioGroup from '@/components/BogRadioGroup/BogRadioGroup';
 import BogIcon from '../components/BogIcon/BogIcon';
 import BogButton from '../components/BogButton/BogButton';
-import { BogRadioItem } from '@/components/BogRadioItem/BogRadioItem';
+import BogRadioItem from '@/components/BogRadioItem/BogRadioItem';
 import { useState } from 'react';
 import BogCheckbox from '@/components/BogCheckbox/BogCheckbox';
 import BogDropdown from '@/components/BogDropdown/BogDropdown';
-import { BogForm } from '@/components/BogForm/BogForm';
-import { BogTextInput } from '@/components/BogTextInput/BogTextInput';
-import { BogSwitch } from '@/components/BogSwitch/BogSwitch';
+import BogForm from '@/components/BogForm/BogForm';
+import BogTextInput from '@/components/BogTextInput/BogTextInput';
+import BogSwitch from '@/components/BogSwitch/BogSwitch';
 
 export default function Home() {
   const icons = [
