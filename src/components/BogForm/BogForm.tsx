@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import BogButton from '../BogButton/BogButton';
 import type { FormEventHandler } from 'react';
 
-export interface BogFormProps {
+interface BogFormProps {
   onSubmit: FormEventHandler<HTMLFormElement>;
   submitLabel?: string;
   style?: React.CSSProperties;
@@ -11,7 +11,7 @@ export interface BogFormProps {
   children: React.ReactNode;
 }
 
-export function BogForm({ onSubmit, submitLabel, style, className, children }: BogFormProps) {
+export default function BogForm({ onSubmit, submitLabel, style, className, children }: BogFormProps) {
   return (
     <Form.Root onSubmit={onSubmit} className={`${className} ${styles.root}`} style={style}>
       {children}

@@ -2,7 +2,7 @@ import { Form } from 'radix-ui';
 import styles from './styles.module.css';
 import { useState } from 'react';
 
-export interface BogTextInputProps {
+interface BogTextInputProps {
   multiline?: boolean;
   type?: 'text' | 'email' | 'password' | 'tel' | 'search';
   name: string;
@@ -29,7 +29,7 @@ function CustomPlaceholder({ placeholder, value }: CustomPlaceholderProps) {
   );
 }
 
-export function BogTextInput({
+export default function BogTextInput({
   type = 'text',
   name,
   label,
@@ -71,7 +71,7 @@ export function BogTextInput({
               type={type}
               required={required}
               disabled={disabled}
-              className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
+              className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2 `}
               onChange={(e) => setValue(e.target.value)}
             />
           )}

@@ -3,8 +3,8 @@ import { DropdownMenu } from 'radix-ui';
 import styles from './styles.module.css';
 import BogIcon from '../BogIcon/BogIcon';
 import BogCheckbox from '../BogCheckbox/BogCheckbox';
-import { BogRadioItem } from '../BogRadioItem/BogRadioItem';
-import { BogRadioGroup } from '../BogRadioGroup/BogRadioGroup';
+import BogRadioItem from '../BogRadioItem/BogRadioItem';
+import BogRadioGroup from '../BogRadioGroup/BogRadioGroup';
 import { CheckedState } from '@radix-ui/react-checkbox';
 
 interface BogDropdownProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -50,20 +50,15 @@ export default function BogDropdown({
 
   const handleSelect = (e: Event | React.FormEvent<HTMLButtonElement> | CheckedState | string, value: string) => {
     let newSelected = selected;
-    console.log('selected', selected, 'value', value);
     if (type === 'checkbox') {
       const checked = e as CheckedState;
-      console.log('checkbox');
       if (Array.isArray(selected)) {
-        console.log('is array');
         if (checked === true) {
-          console.log('checked');
           if (!selected.includes(value)) {
             newSelected = [...selected, value];
           }
           setSelected(newSelected);
         } else if (checked === false) {
-          console.log('unchecked');
           newSelected = selected.filter((item) => item !== value);
           setSelected(newSelected);
         }
@@ -80,6 +75,31 @@ export default function BogDropdown({
     }
   };
 
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (type === 'checkbox') {
+      setSelected([]);
+      if (onSelectionChange) {
+        onSelectionChange([]);
+      }
+    } else {
+      setSelected('');
+      if (onSelectionChange) {
+        onSelectionChange('');
+      }
+    }
+    if (type === 'search') {
+      setFilter('');
+    }
+  };
+
+  const hasValues = () => {
+    if (Array.isArray(selected)) {
+      return selected.length > 0;
+    }
+    return selected != '';
+  };
+
   const renderItems = (): React.ReactElement[] => {
     if (type === 'search') {
       return options
@@ -92,7 +112,12 @@ export default function BogDropdown({
     } else if (type === 'checkbox') {
       return options.map((option) => (
         <DropdownMenu.Item onSelect={(e) => e.preventDefault()} className={styles.dropdownItem} key={option}>
-          <BogCheckbox name={option} label={option} onCheckedChange={(e) => handleSelect(e, option)} />
+          <BogCheckbox
+            name={option}
+            label={option}
+            checked={Array.isArray(selected) && selected.includes(option)}
+            onCheckedChange={(e) => handleSelect(e, option)}
+          />
         </DropdownMenu.Item>
       ));
     } else if (type === 'radio') {
@@ -137,19 +162,34 @@ export default function BogDropdown({
                   setFilter(e.target.value);
                 }}
               />
-              <BogIcon name="search" size={16} className={styles.icon} />
+              <div className={styles.iconHolder}>
+                {hasValues() && (
+                  <span onClick={handleClear} role="button">
+                    <BogIcon name="x" size={14} className={styles.clearIcon} />
+                  </span>
+                )}
+                <BogIcon name="search" size={16} className={styles.icon} />
+              </div>
             </>
           ) : (
             <>
               {selected.length > 0 ? (Array.isArray(selected) ? selected.join(', ') : selected) : placeholder}
-              {isOpen ? (
-                <BogIcon name="caret-up" size={16} className={styles.icon} />
-              ) : (
-                <BogIcon name="caret-down" size={16} className={styles.icon} />
-              )}
+              <div className={styles.iconHolder}>
+                {hasValues() && (
+                  <span onClick={handleClear} role="button" aria-label="Clear selection">
+                    <BogIcon name="x" size={14} className={styles.clearIcon} />
+                  </span>
+                )}
+                {isOpen ? (
+                  <BogIcon name="caret-up" size={16} className={styles.icon} />
+                ) : (
+                  <BogIcon name="caret-down" size={16} className={styles.icon} />
+                )}
+              </div>
             </>
           )}
         </DropdownMenu.Trigger>
+
         <DropdownMenu.Content
           align="start"
           sideOffset={4}

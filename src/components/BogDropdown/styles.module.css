@@ -74,6 +74,12 @@
       }
     }
 
+    .iconHolder {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+
     .dropdownContent {
       width: 100%;
       display: flex;
@@ -82,6 +88,7 @@
       border-radius: 0.25rem;
       border: solid 1px var(--color-grey-stroke-weak);
       padding: 0.25rem;
+      z-index: 1;
 
       .dropdownItem {
         display: flex;
@@ -90,7 +97,8 @@
         cursor: pointer;
 
         &:hover {
-          outline: var(--color-brand-stroke-strong) auto 1px;
+          outline: none;
+          background-color: var(--color-brand-fill);
         }
       }
     }
