@@ -1,9 +1,10 @@
 import { Command } from 'commander';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { mkdir, writeFile } from 'fs/promises';
 import prompts from 'prompts';
 import { execSync } from 'child_process';
 import path from 'path';
+import ora from 'ora';
 
 const DEV_DEPENDENCIES = ['tailwindcss', '@tailwindcss/postcss'];
 const DEPENDENCIES = [
@@ -64,9 +65,11 @@ export const init = new Command()
         });
 
         if (packageManager) {
-          console.log('Installing dependencies...');
+          const spinner = ora('Installing dependencies...').start();
           execSync(`cd ${root} && ${packageManager} -D ${DEV_DEPENDENCIES.join(' ')}`);
+          spinner.text = 'installing dependencies...';
           execSync(`cd ${root} && ${packageManager} ${DEPENDENCIES.join(' ')}`);
+          spinner.succeed('dependencies installed!');
         } else {
           console.error('ERROR: Package manager selection was cancelled. Dependencies not installed.');
         }
@@ -75,12 +78,12 @@ export const init = new Command()
       const { setupTailwind } = await prompts({
         name: 'setupTailwind',
         type: 'confirm',
-        message: 'Do you want to set up Tailwind v4?',
+        message: 'Do you want to set up Tailwind v4 for Next.js?',
         initial: true,
       });
 
       if (setupTailwind) {
-        console.log('Setting up Tailwind v4 for Next.js...');
+        const spinner = ora('setting up Tailwind v4 for Next.js...').start();
         await writeFile(
           path.join(root, 'postcss.config.mjs'),
           `
@@ -95,12 +98,13 @@ export default config;
 `.trim(),
           'utf8'
         );
+        spinner.succeed('Tailwind v4 setup complete!');
       }
 
       const { setupStyles } = await prompts({
         name: 'setupStyles',
         type: 'confirm',
-        message: 'Do you want to set up the Bits of Good theme?',
+        message: 'Do you want to set up the Bits of Good Sunset theme?',
         initial: true,
       });
 
@@ -108,7 +112,7 @@ export default config;
         console.error(
           'ERROR: Skipping the Bits of Good theme setup. Your project may not look like the Design System Website.'
         );
-        if (setupTailwind) {
+        if (!setupTailwind) {
           console.error(
             'ERROR: You will need to finish the Tailwind setup manually. Create a css file with `@import "tailwindcss"` in it, and make sure you import it into your src/app/layout.tsx or src/pages/_app.tsx.'
           );
@@ -118,7 +122,7 @@ export default config;
           name: 'stylePath',
           type: 'text',
           message:
-            "Input the path relative to your project's root directory where the global stylesheet should be copied (e.g ./src/styles/)",
+            "Input the path relative to your project's root directory where the global stylesheet should be copied (e.g ./src/styles/globals.css)",
           initial: 'src/styles/globals.css',
         });
 
@@ -128,9 +132,61 @@ export default config;
         const styles = await response.text();
 
         await mkdir(path.dirname(path.join(root, stylePath)), { recursive: true });
+        if (existsSync(path.join(root, stylePath))) {
+          const { overwrite } = await prompts({
+            name: 'overwrite',
+            type: 'confirm',
+            message: `The file ${stylePath} already exists. Do you want to overwrite it?`,
+            initial: true,
+          });
+
+          if (!overwrite) {
+            // we failed to install the stylesheet which is an unrecoverable error
+            console.error('BoG setup failed.');
+            return;
+          }
+        }
+
         await writeFile(path.join(root, stylePath), styles, 'utf8');
         console.log('Bits of Good theme and tailwindcss stylesheet created.');
         console.log('Make sure to import it into your src/app/layout.tsx or src/pages/_app.tsx');
+
+        // if we're in a next.js app router project
+        if (existsSync(path.join(root, 'src', 'app', 'layout.tsx'))) {
+          const contents = readFileSync(path.join(root, 'src', 'app', 'layout.tsx'), 'utf8');
+          const relativePath = path.relative(path.join(root, 'src', 'app'), path.join(root, stylePath));
+
+          // (somewhat naive) check if the stylesheet is already imported into the layout file
+          if (contents.includes(relativePath)) {
+            console.log(
+              'It seems like the stylesheet you chose is already imported into your layout file correctly. Tailwind setup complete!'
+            );
+          } else {
+            const { updateLayout } = await prompts({
+              name: 'updateLayout',
+              type: 'confirm',
+              message: `It seems like the stylesheet you chose is not already imported into your layout file. Would you like to update it?`,
+              initial: true,
+            });
+
+            if (!updateLayout) {
+              console.log(
+                'VERY IMPORTANT: make sure to import your css file into your layout file so the theme is applied correctly. Follow the instructions on the tailwind documentation: `https://tailwindcss.com/docs/installation/using-postcss`'
+              );
+            } else {
+              // add the stylesheet import to the top of the layout file
+              writeFile(path.join(root, 'src', 'app', 'layout.tsx'), `import "${relativePath}";\n${contents}`, 'utf8');
+            }
+          }
+        } else {
+          // not next.js app router project, so the user has to manually import the stylesheet
+          console.log('non-next.js app router project detected.');
+          console.log(
+            // make "VERY IMPORTANT" red using ANSI escape codes
+            '\x1b[31mVERY IMPORTANT\x1b[0m: make sure to import your css file into your code so the theme is applied correctly.\n' +
+              'Follow the instructions on the tailwind documentation: `https://tailwindcss.com/docs/installation/using-postcss`'
+          );
+        }
       }
 
       const { setupFonts } = await prompts({

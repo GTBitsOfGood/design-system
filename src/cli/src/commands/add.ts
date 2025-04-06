@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import fs, { existsSync } from 'fs';
+import fs, { existsSync, mkdirSync } from 'fs';
 import path from 'path';
 import prompts from 'prompts';
 
@@ -49,7 +49,7 @@ export const add = new Command()
       const { installPath } = await prompts({
         type: 'text',
         name: 'installPath',
-        initial: './',
+        initial: './src/components/',
         message:
           'Input the path relative to your current directory to copy the components to (e.g ./desktop/design-system/)',
         validate: (input) => (input.trim().length > 0 ? true : 'Please enter a valid path'),
@@ -61,8 +61,8 @@ export const add = new Command()
       }
 
       if (!existsSync(installPath)) {
-        console.error(`ERROR: Invalid path, ${installPath} does not exist.`);
-        return;
+        mkdirSync(installPath, { recursive: true });
+        console.error(`creating ${installPath} directory...`);
       }
 
       const validComponents: string[] = [];
