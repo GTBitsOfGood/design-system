@@ -1,4 +1,4 @@
-import { Form } from 'radix-ui';
+import { TextField, TextArea } from 'radix-ui';
 import styles from './styles.module.css';
 import { useState } from 'react';
 
@@ -43,40 +43,37 @@ export default function BogTextInput({
   const [value, setValue] = useState<string>('');
 
   return (
-    <Form.Field name={name} className={className} style={style}>
-      <div className="flex flex-row gap-x-2 text-paragraph-2 py-1">
-        <Form.Label>{label}</Form.Label>
-        <Form.Message match="valueMissing" className="text-status-red-text">
-          Please enter a value for {label}
-        </Form.Message>
-        <Form.Message match="typeMismatch" className="text-status-red-text">
-          Please provide a valid {label}
-        </Form.Message>
-      </div>
+    <div className={className} style={style}>
+      {label && (
+        <div className="flex flex-row gap-x-2 text-paragraph-2 py-1">
+          <label htmlFor={name}>{label}</label>
+          {/* Error messages can be handled via custom logic or via the Form wrapper in BogForm */}
+        </div>
+      )}
       <div className="relative">
         {placeholder !== undefined && <CustomPlaceholder placeholder={placeholder} value={value} />}
-        <Form.Control asChild>
-          {multiline ? (
-            <textarea
-              name={name}
-              required={required}
-              disabled={disabled}
-              rows={4}
-              className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
-              onChange={(e) => setValue(e.target.value)}
-            />
-          ) : (
-            <input
-              name={name}
-              type={type}
-              required={required}
-              disabled={disabled}
-              className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2 `}
-              onChange={(e) => setValue(e.target.value)}
-            />
-          )}
-        </Form.Control>
+        {multiline ? (
+          <TextArea
+            id={name}
+            name={name}
+            required={required}
+            disabled={disabled}
+            rows={4}
+            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        ) : (
+          <TextField
+            id={name}
+            name={name}
+            type={type}
+            required={required}
+            disabled={disabled}
+            className={`${styles.input} text-paragraph-2 placeholder:text-paragraph-2`}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        )}
       </div>
-    </Form.Field>
+    </div>
   );
 }
