@@ -22,7 +22,7 @@ export default function BogDropdown({
   options,
   name,
   label,
-  placeholder,
+  placeholder = 'Placeholder',
   disabled = false,
   onSelectionChange,
   style,
