@@ -8,11 +8,10 @@ import ora from 'ora';
 
 const DEV_DEPENDENCIES = ['tailwindcss', '@tailwindcss/postcss'];
 const DEPENDENCIES = [
-  '@phosphor-icons/react',
   '@radix-ui/react-checkbox',
   '@radix-ui/react-icons',
   '@radix-ui/themes',
-  'phosphor-react',
+  '@phosphor-icons/react',
   'radix-ui',
 ];
 const FONTS = [

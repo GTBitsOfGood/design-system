@@ -2,16 +2,21 @@ import { Form } from 'radix-ui';
 import styles from './styles.module.css';
 import { useState } from 'react';
 
-interface BogTextInputProps {
+interface BogTextInputProps extends React.ComponentProps<typeof Form.Field> {
+  /** Whether or not the text input has multiple lines. */
   multiline?: boolean;
+  /** The type of text the input stores. */
   type?: 'text' | 'email' | 'password' | 'tel' | 'search';
+  /** The name of the data this text input represents for forms. */
   name: string;
+  /** The label text next to the input. */
   label?: string;
+  /** The placeholder text in the text input when it is empty. */
   placeholder?: React.ReactElement | string;
+  /** Whether or not the text input is required for form submission. */
   required?: boolean;
+  /** Whether or not the text input is disabled. */
   disabled?: boolean;
-  style?: React.CSSProperties;
-  className?: string;
 }
 
 interface CustomPlaceholderProps {

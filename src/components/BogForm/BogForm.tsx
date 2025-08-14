@@ -2,12 +2,14 @@ import { Form } from 'radix-ui';
 import styles from './styles.module.css';
 import BogButton from '../BogButton/BogButton';
 import type { FormEventHandler } from 'react';
+import React from 'react';
 
-interface BogFormProps {
+interface BogFormProps extends React.ComponentProps<typeof Form.Root> {
+  /** Function that gets called when the submit button is clicked. */
   onSubmit: FormEventHandler<HTMLFormElement>;
+  /** Text within the submit button. */
   submitLabel?: string;
-  style?: React.CSSProperties;
-  className?: string;
+  /** The content within the form. Place your form inputs in here. */
   children: React.ReactNode;
 }
 

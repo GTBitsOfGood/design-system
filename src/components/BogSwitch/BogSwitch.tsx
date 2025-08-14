@@ -3,7 +3,9 @@ import * as RadixSwitch from '@radix-ui/react-switch';
 import styles from './styles.module.css';
 
 interface BogSwitchProps extends React.ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
+  /** The label text next to the switch. */
   label?: string;
+  /** The size of the switch. */
   size?: 'small' | 'medium' | 'large';
 }
 

@@ -8,12 +8,25 @@ import BogRadioGroup from '../BogRadioGroup/BogRadioGroup';
 import { CheckedState } from '@radix-ui/react-checkbox';
 
 interface BogDropdownProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The type of dropdown. Values are "normal", "checkbox", "radio", or "search".
+   * Normal dropdowns allow for single selection from a list of options.
+   * Checkbox dropdowns allow for multiple selections from a list of options.
+   * Radio dropdowns allow for single selection from a list of options, but only one item can be selected at a time.
+   * Search dropdowns allow for filtering options based on user input.
+   */
   type?: 'normal' | 'checkbox' | 'radio' | 'search';
+  /** The options to choose from in the dropdown. */
   options: string[];
+  /** The name of the data this dropdown represents for forms. */
   name: string;
+  /** Label text to be placed beside the dropdown. */
   label?: string;
+  /** The placeholder text to be displayed when the dropdown is empty. */
   placeholder?: string;
+  /** Whether the dropdown is disabled or not. */
   disabled?: boolean;
+  /** Function that is called when the selection is changed. */
   onSelectionChange?: (selection: string | string[]) => void;
 }
 
