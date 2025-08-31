@@ -1,8 +1,12 @@
+# Netlify configuration for Storybook deployment
+
 [build]
   command = "npm run build"
   publish = "storybook-static"
 
-# Disable Netlify's Next.js plugin to prevent false errors
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-  enabled = false
+[build.environment]
+  NODE_VERSION = "22"
+
+# Prevent Netlify from auto-detecting and running the Next.js plugin
+[context.production.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
