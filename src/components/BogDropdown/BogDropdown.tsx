@@ -28,9 +28,9 @@ interface BogDropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   disabled?: boolean;
   /** Function that is called when the selection is changed. */
   onSelectionChange?: (selection: string | string[]) => void;
-  /** Additional class names to apply styles to the button. These can be tailwind classes or custom CSS classes. */
+  /** Additional class names to apply styles to the dropdown. These can be tailwind classes or custom CSS classes. */
   className?: string;
-  /** Additional CSS styles to apply to the button. */
+  /** Additional CSS styles to apply to the dropdown. */
   style?: React.CSSProperties;
 }
 

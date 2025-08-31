@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { breakpoints } from '../breakpoints/breakpoints';
 import { useWindowSize } from 'react-use';
 
@@ -14,13 +13,5 @@ function getBreakpoint(width: number) {
 
 export function useResponsive() {
   const { width } = useWindowSize();
-  const [breakpoint, setBreakpoint] = useState(() => getBreakpoint(width));
-
-  useEffect(() => {
-    const handleResize = () => setBreakpoint(getBreakpoint(width));
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return breakpoint;
+  return getBreakpoint(width);
 }

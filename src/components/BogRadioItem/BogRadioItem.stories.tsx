@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import BogRadioItem from '../BogRadioItem/BogRadioItem';
+import BogRadioItem from './BogRadioItem';
 import BogRadioGroup from '../BogRadioGroup/BogRadioGroup';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export

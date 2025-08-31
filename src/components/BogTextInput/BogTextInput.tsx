@@ -1,8 +1,7 @@
-import { Form } from 'radix-ui';
 import styles from './styles.module.css';
 import { useState } from 'react';
 
-interface BogTextInputProps extends React.ComponentProps<typeof Form.Field> {
+interface BogTextInputProps {
   /** Whether or not the text input has multiple lines. */
   multiline?: boolean;
   /** The type of text the input stores. */
