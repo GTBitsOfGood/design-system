@@ -7,5 +7,29 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
+  async viteFinal(config, { configType }) {
+    // Add Radix UI exclusions
+    config.optimizeDeps = config.optimizeDeps || {};
+    config.optimizeDeps.exclude = [
+      ...(config.optimizeDeps.exclude || []),
+      '@radix-ui/react-checkbox',
+      '@radix-ui/react-icons',
+      '@radix-ui/react-switch',
+      '@radix-ui/themes',
+    ];
+
+    config.build = config.build || {};
+    config.build.rollupOptions = config.build.rollupOptions || {};
+    config.build.rollupOptions.external = [
+      ...(Array.isArray(config.build.rollupOptions.external) ? config.build.rollupOptions.external : []),
+      '@radix-ui/react-checkbox',
+      '@radix-ui/react-icons',
+      '@radix-ui/react-switch',
+      '@radix-ui/themes',
+    ];
+
+    return config;
+  },
 };
+
 export default config;
