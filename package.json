@@ -10,9 +10,7 @@
     "lint": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"./**/*.{js,jsx,ts,tsx}\" --fix",
     "format": "prettier \"./**/*.{js,jsx,ts,tsx}\" --write",
-    "format:check": "prettier \"./**/*.{js,jsx,ts,tsx}\" -l",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "format:check": "prettier \"./**/*.{js,jsx,ts,tsx}\" -l"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
