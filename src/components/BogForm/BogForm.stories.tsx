@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import BogForm from './BogForm';
-import React from 'react';
 import BogCheckbox from '../BogCheckbox/BogCheckbox';
 import BogRadioGroup from '../BogRadioGroup/BogRadioGroup';
 import BogRadioItem from '../BogRadioItem/BogRadioItem';

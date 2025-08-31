@@ -1,5 +1,5 @@
 import styles from './styles.module.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface BogTextInputProps {
   /** Whether or not the text input has multiple lines. */

@@ -1,5 +1,5 @@
 import { RadioGroup } from 'radix-ui';
-import { useId } from 'react';
+import React, { useId } from 'react';
 import styles from './styles.module.css';
 
 interface BogRadioItemProps extends React.ComponentProps<typeof RadioGroup.Item> {

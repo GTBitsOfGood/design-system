@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import React, { ComponentProps } from 'react';
 import { RadioGroup } from 'radix-ui';
 import styles from './styles.module.css';
 

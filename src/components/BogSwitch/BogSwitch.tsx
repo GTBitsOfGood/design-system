@@ -2,6 +2,7 @@ import * as RadixSwitch from '@radix-ui/react-switch';
 import styles from './styles.module.css';
 import { useResponsive } from '@/utils/hooks/useResponsive';
 import { getSizeFromBreakpoint } from '@/utils/breakpoints/breakpoints';
+import React from 'react';
 
 interface BogSwitchProps extends React.ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
   /** The label text next to the switch. */

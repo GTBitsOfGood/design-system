@@ -1,7 +1,7 @@
-import { ButtonHTMLAttributes, ReactNode, CSSProperties } from 'react';
+import React, { ButtonHTMLAttributes, ReactNode, CSSProperties } from 'react';
 import styles from './styles.module.css';
-import { useResponsive } from '@/utils/hooks/useResponsive';
-import { getSizeFromBreakpoint } from '@/utils/breakpoints/breakpoints';
+import { useResponsive } from '../../utils/hooks/useResponsive';
+import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
 
 interface BogButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** The type of the button. Values are "primary", "secondary", or "tertiary" */
