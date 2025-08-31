@@ -17,9 +17,9 @@ interface BogTextInputProps extends React.ComponentProps<typeof Form.Field> {
   required?: boolean;
   /** Whether or not the text input is disabled. */
   disabled?: boolean;
-  /** Additional class names to apply styles to the button. These can be tailwind classes or custom CSS classes. */
+  /** Additional class names to apply styles to the text input. These can be tailwind classes or custom CSS classes. */
   className?: string;
-  /** Additional CSS styles to apply to the button. */
+  /** Additional CSS styles to apply to the text input. */
   style?: React.CSSProperties;
 }
 

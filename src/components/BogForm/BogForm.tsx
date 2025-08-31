@@ -11,9 +11,9 @@ interface BogFormProps extends React.ComponentProps<typeof Form.Root> {
   submitLabel?: string;
   /** The content within the form. Place your form inputs in here. */
   children: React.ReactNode;
-  /** Additional class names to apply styles to the button. These can be tailwind classes or custom CSS classes. */
+  /** Additional class names to apply styles to the form. These can be tailwind classes or custom CSS classes. */
   className?: string;
-  /** Additional CSS styles to apply to the button. */
+  /** Additional CSS styles to apply to the form. */
   style?: React.CSSProperties;
 }
 

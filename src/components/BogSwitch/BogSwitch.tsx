@@ -8,9 +8,9 @@ interface BogSwitchProps extends React.ComponentPropsWithoutRef<typeof RadixSwit
   label?: string;
   /** The size of the switch. */
   size?: 'small' | 'medium' | 'large' | 'responsive';
-  /** Additional class names to apply styles to the button. These can be tailwind classes or custom CSS classes. */
+  /** Additional class names to apply styles to the switch. These can be tailwind classes or custom CSS classes. */
   className?: string;
-  /** Additional CSS styles to apply to the button. */
+  /** Additional CSS styles to apply to the switch. */
   style?: React.CSSProperties;
 }
 

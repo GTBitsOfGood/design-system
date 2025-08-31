@@ -18,7 +18,7 @@ const meta = {
     children: {
       control: false,
       description:
-        'The content that appears inside the button. This cannot be dynamically edited in this page, but you can place whatever React components ' +
+        'The content that appears inside the radio group. This cannot be dynamically edited in this page, but you can place whatever React components ' +
         "you'd like inside the Radio Group (Radio item components are intended).",
     },
   },
