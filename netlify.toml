@@ -1,3 +1,8 @@
 [build]
   command = "npm run build"
   publish = "storybook-static"
+
+# Disable Netlify's Next.js plugin to prevent false errors
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+  enabled = false
