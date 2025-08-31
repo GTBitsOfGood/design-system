@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { fn } from 'storybook/test';
 
 import BogForm from './BogForm';
@@ -17,6 +17,14 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
+  argTypes: {
+    children: {
+      control: false,
+      description:
+        'The content of the form. This will be a React node. ' +
+        'This cannot be dynamically edited in this page, but the Form is simply a container for any of the Form input components we provide.',
+    },
+  },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
 } satisfies Meta<typeof BogForm>;
 
@@ -27,7 +35,10 @@ type Story = StoryObj<typeof meta>;
 export const Form: Story = {
   args: {
     children: generateFormElements(),
-    onSubmit: fn(),
+    onSubmit: fn((e) => {
+      e.preventDefault();
+      alert('Form submitted! with data: ' + JSON.stringify(Object.fromEntries(new FormData(e.target))));
+    }),
   },
 };
 

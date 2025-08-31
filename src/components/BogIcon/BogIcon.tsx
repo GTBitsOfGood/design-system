@@ -62,6 +62,10 @@ interface BogIconProps extends React.ComponentProps<typeof PhosphorIcons.XIcon> 
   mirrored?: boolean;
   /** The alt text of the icon. */
   alt?: string;
+  /** Additional class names to apply styles to the button. These can be tailwind classes or custom CSS classes. */
+  className?: string;
+  /** Additional CSS styles to apply to the button. */
+  style?: React.CSSProperties;
 }
 
 const weightFillIcons = new Set([
