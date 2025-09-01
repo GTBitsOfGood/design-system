@@ -42,7 +42,8 @@ export default function BogButton({
   ...props
 }: BogButtonProps) {
   const breakpoint = useResponsive();
-  const responsiveSize = size === 'responsive' ? getSizeFromBreakpoint(breakpoint) : size;
+  const responsiveSize =
+    size === 'responsive' ? getSizeFromBreakpoint(breakpoint) : size;
 
   return (
     <button
