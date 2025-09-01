@@ -2,7 +2,7 @@
   .bog-switch-container {
     display: inline-flex;
     align-items: center;
-    gap: calc(var(--spacing) * 2);
+    gap: 1.2rem;
     font-family: var(--font-paragraph);
     color: var(--color-grey-text-strong);
 
@@ -19,7 +19,8 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    border-radius: 9999px;
+    border-radius: 10rem;
+    border: none;
     cursor: pointer;
 
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, --tw-gradient-from,
@@ -39,9 +40,8 @@
   .bog-switch-thumb {
     display: block;
     background-color: white;
-    border-radius: 9999px;
+    border-radius: 100%;
     box-shadow: var(--shadow-sm);
-
     transition-property: transform, translate, scale, rotate;
     transition-timing-function: var(--ease-in-out);
     transition-duration: 200ms;
@@ -64,8 +64,9 @@
   }
 
   .bog-switch-small {
-    width: calc(var(--spacing) * 8);
-    height: calc(var(--spacing) * 4);
+    width: 3.3rem;
+    height: 1.8rem;
+    padding: 0 0.3rem;
 
     & ~ .bog-switch-label {
       font-size: var(--text-mobile-small);
@@ -78,9 +79,8 @@
   }
 
   .bog-switch-thumb-small {
-    width: calc(var(--spacing) * 3);
-    height: calc(var(--spacing) * 3);
-    margin-left: calc(var(--spacing) * 1);
+    width: 1.35rem;
+    height: 1.35rem;
   }
 
   .bog-switch-small[data-state='checked'] .bog-switch-thumb-small {
@@ -88,8 +88,9 @@
   }
 
   .bog-switch-medium {
-    width: calc(var(--spacing) * 10);
-    height: calc(var(--spacing) * 6);
+    width: 4.4rem;
+    height: 2.4rem;
+    padding: 0 0.35rem;
 
     & ~ .bog-switch-label {
       font-size: var(--text-mobile-paragraph-2);
@@ -102,19 +103,18 @@
   }
 
   .bog-switch-thumb-medium {
-    width: calc(var(--spacing) * 4);
-    height: calc(var(--spacing) * 4);
-    margin-left: calc(var(--spacing) * 1);
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   .bog-switch-medium[data-state='checked'] .bog-switch-thumb-medium {
     translate: 100%;
-    margin-right: calc(var(--spacing) * 1);
   }
 
   .bog-switch-large {
-    width: calc(var(--spacing) * 12);
-    height: calc(var(--spacing) * 7);
+    width: 5rem;
+    height: 2.7rem;
+    padding: 0 0.45rem;
 
     & ~ .bog-switch-label {
       font-size: var(--text-mobile-paragraph-1);
@@ -127,13 +127,11 @@
   }
 
   .bog-switch-thumb-large {
-    width: calc(var(--spacing) * 5);
-    height: calc(var(--spacing) * 5);
-    margin-left: calc(var(--spacing) * 1);
+    width: 2.05rem;
+    height: 2.05rem;
   }
 
   .bog-switch-large[data-state='checked'] .bog-switch-thumb-large {
     translate: 100%;
-    margin-right: calc(var(--spacing) * 1);
   }
 }

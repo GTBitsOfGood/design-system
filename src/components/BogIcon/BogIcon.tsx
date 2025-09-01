@@ -2,15 +2,69 @@ import React, { ElementType } from 'react';
 import * as PhosphorIcons from '@phosphor-icons/react';
 import './styles.module.css';
 
+export type IconName =
+  | 'arrow-fat-up'
+  | 'arrow-fat-down'
+  | 'arrow-fat-left'
+  | 'arrow-fat-right'
+  | 'chevron-up'
+  | 'chevron-down'
+  | 'chevron-left'
+  | 'chevron-right'
+  | 'caret-up'
+  | 'caret-down'
+  | 'caret-left'
+  | 'caret-right'
+  | 'arrow-up'
+  | 'arrow-down'
+  | 'arrow-left'
+  | 'arrow-right'
+  | 'check'
+  | 'map-pin'
+  | 'chats'
+  | 'hand-heart'
+  | 'calendar'
+  | 'users'
+  | 'download'
+  | 'pushpin'
+  | 'close'
+  | 'search'
+  | 'trash'
+  | 'share'
+  | 'copy'
+  | 'gear'
+  | 'info'
+  | 'pause'
+  | 'play'
+  | 'user'
+  | 'folder'
+  | 'bell'
+  | 'plus'
+  | 'x'
+  | 'error'
+  | 'warning'
+  | 'success';
+
 // Include all props from Phosphor Icons
-interface BogIconProps {
-  name: string;
+interface BogIconProps extends React.ComponentProps<typeof PhosphorIcons.XIcon> {
+  /** The unique name that identifies the icon. */
+  name: IconName;
+  /** The size of the icon, can be a number of pixels or a string with CSS units. */
   size?: number | string;
+  /** The color of the icon. */
   color?: string;
+  /**
+   * The weight of the icon. Options are 'thin', 'light',
+   * 'regular', 'bold', 'fill', or 'duotone'.
+   */
   weight?: 'thin' | 'light' | 'regular' | 'bold' | 'fill' | 'duotone';
+  /** Whether the icon is flipped horizontally or not. */
   mirrored?: boolean;
+  /** The alt text of the icon. */
   alt?: string;
+  /** Additional class names to apply styles to the icon. These can be tailwind classes or custom CSS classes. */
   className?: string;
+  /** Additional CSS styles to apply to the icon. */
   style?: React.CSSProperties;
 }
 

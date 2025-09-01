@@ -1,21 +1,39 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes, ReactNode, CSSProperties } from 'react';
 import styles from './styles.module.css';
+import { useResponsive } from '../../utils/hooks/useResponsive';
+import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
 
-interface BogButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface BogButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /** The type of the button. Values are "primary", "secondary", or "tertiary" */
   variant?: 'primary' | 'secondary' | 'tertiary';
-  size?: 'small' | 'medium' | 'large';
+  /** The size of the button. Values are "small", "medium", "large", or "responsive" which
+   * makes the button automatically resize with the screen. */
+  size?: 'small' | 'medium' | 'large' | 'responsive';
+  /**
+   * The icon to display in the button.
+   * This is an object containing the React node of the icon
+   * to display and whether to place it on the left or right side
+   * of the button.
+   * */
   icon?: {
-    icon: React.ReactNode;
+    icon: ReactNode;
     position: 'left' | 'right';
   };
+  /** The name of the data this button represents for forms. */
   name?: string;
+  /** The value of the data this button represents for forms. */
   value?: string;
-  children: React.ReactNode;
+  /** The content that appears inside the button. */
+  children: ReactNode;
+  /** Additional class names to apply styles to the button. These can be tailwind classes or custom CSS classes. */
+  className?: string;
+  /** Additional CSS styles to apply to the button. */
+  style?: CSSProperties;
 }
 
 export default function BogButton({
   variant = 'primary',
-  size = 'medium',
+  size = 'responsive',
   icon,
   name,
   value,
@@ -23,9 +41,13 @@ export default function BogButton({
   className,
   ...props
 }: BogButtonProps) {
+  const breakpoint = useResponsive();
+  const responsiveSize =
+    size === 'responsive' ? getSizeFromBreakpoint(breakpoint) : size;
+
   return (
     <button
-      className={`${styles.button} ${styles[variant]} ${styles[size]} ${className}`}
+      className={`${styles.button} ${styles[variant]} ${styles[responsiveSize]} ${className}`}
       name={name}
       value={value}
       {...props}

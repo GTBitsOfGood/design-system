@@ -2,6 +2,7 @@
   .button {
     cursor: pointer;
     border-radius: 0.25rem;
+    border: none;
     font-family: var(--font-paragraph);
     height: fit-content;
     display: inline-block;
@@ -43,7 +44,6 @@
       &:disabled {
         cursor: not-allowed;
         background-color: var(--color-grey-fill-weaker);
-        color: white;
       }
 
       &:not(:disabled):hover {
