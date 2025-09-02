@@ -1,27 +1,45 @@
-import * as React from 'react';
 import * as RadixSwitch from '@radix-ui/react-switch';
 import styles from './styles.module.css';
+import { useResponsive } from '../../utils/hooks/useResponsive';
+import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
+import React from 'react';
 
-interface BogSwitchProps extends React.ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
+interface BogSwitchProps
+  extends React.ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
   /** The label text next to the switch. */
   label?: string;
   /** The size of the switch. */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'responsive';
+  /** Additional class names to apply styles to the switch. These can be tailwind classes or custom CSS classes. */
+  className?: string;
+  /** Additional CSS styles to apply to the switch. */
+  style?: React.CSSProperties;
 }
 
-const BogSwitch: React.FC<BogSwitchProps> = ({ label, size = 'medium', className, style, ...props }) => {
-  const containerClass = `${styles['bog-switch-container']} ${className || ''}`.trim();
+const BogSwitch: React.FC<BogSwitchProps> = ({
+  label,
+  size = 'responsive',
+  className,
+  style,
+  ...props
+}) => {
+  const breakpoint = useResponsive();
+  const responsiveSize =
+    size === 'responsive' ? getSizeFromBreakpoint(breakpoint) : size;
+
+  const containerClass =
+    `${styles['bog-switch-container']} ${className || ''}`.trim();
   const rootClass = `${styles['bog-switch']} ${
-    size === 'small'
+    responsiveSize === 'small'
       ? styles['bog-switch-small']
-      : size === 'medium'
+      : responsiveSize === 'medium'
         ? styles['bog-switch-medium']
         : styles['bog-switch-large']
   }`.trim();
   const thumbClass = `${styles['bog-switch-thumb']} ${
-    size === 'small'
+    responsiveSize === 'small'
       ? styles['bog-switch-thumb-small']
-      : size === 'medium'
+      : responsiveSize === 'medium'
         ? styles['bog-switch-thumb-medium']
         : styles['bog-switch-thumb-large']
   }`.trim();

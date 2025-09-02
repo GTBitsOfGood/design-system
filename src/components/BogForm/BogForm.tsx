@@ -11,11 +11,25 @@ interface BogFormProps extends React.ComponentProps<typeof Form.Root> {
   submitLabel?: string;
   /** The content within the form. Place your form inputs in here. */
   children: React.ReactNode;
+  /** Additional class names to apply styles to the form. These can be tailwind classes or custom CSS classes. */
+  className?: string;
+  /** Additional CSS styles to apply to the form. */
+  style?: React.CSSProperties;
 }
 
-export default function BogForm({ onSubmit, submitLabel, style, className, children }: BogFormProps) {
+export default function BogForm({
+  onSubmit,
+  submitLabel,
+  style,
+  className,
+  children,
+}: BogFormProps) {
   return (
-    <Form.Root onSubmit={onSubmit} className={`${className} ${styles.root}`} style={style}>
+    <Form.Root
+      onSubmit={onSubmit}
+      className={`${className} ${styles.root}`}
+      style={style}
+    >
       {children}
       <Form.Submit asChild>
         <BogButton type="submit">{submitLabel || 'Submit'}</BogButton>

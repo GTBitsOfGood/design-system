@@ -14,6 +14,10 @@ interface BogCheckboxProps extends React.ComponentProps<typeof Checkbox.Root> {
   required?: boolean;
   /** The name of the data this checkbox represents for forms. */
   name: string;
+  /** Additional class names to apply styles to the checkbox. These can be tailwind classes or custom CSS classes. */
+  className?: string;
+  /** Additional CSS styles to apply to the checkbox. */
+  style?: React.CSSProperties;
 }
 
 const BogCheckbox = ({

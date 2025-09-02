@@ -1,4 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import BogDropdown from './BogDropdown';
@@ -10,11 +11,16 @@ const meta = {
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
+    docs: {
+      story: {
+        height: '20rem',
+      },
+    },
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onClick: fn() },
+  // Use `fn` to spy on the onSelectionChange arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+  args: { onSelectionChange: fn() },
 } satisfies Meta<typeof BogDropdown>;
 
 export default meta;
@@ -26,5 +32,6 @@ export const Dropdown: Story = {
     options: ['Option 1', 'Option 2', 'Option 3'],
     name: 'dropdown',
     style: { width: '25vw' },
+    type: 'checkbox',
   },
 };

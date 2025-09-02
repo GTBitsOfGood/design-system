@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import BogButton from './BogButton';
 import BogIcon from '../BogIcon/BogIcon';
-import { ReactNode } from 'react';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -21,6 +21,20 @@ const meta = {
     onClick: {
       description: 'The function that gets executed when clicking the button.',
     },
+    icon: {
+      control: false,
+      description:
+        'The icon to display in the button. This is an object containing the React node of the icon to display ' +
+        'and the position of the icon (left or right). ' +
+        'This cannot be dynamically edited in this page, but use the Icon story to see how the icon component works, ' +
+        'and then pass the icon component as a prop to this button.',
+    },
+    children: {
+      control: false,
+      description:
+        'The content that appears inside the button. This cannot be dynamically edited in this page, but you can place whatever React components ' +
+        'or text you want inside the button.',
+    },
   },
 } satisfies Meta<typeof BogButton>;
 
@@ -31,19 +45,25 @@ type Story = StoryObj<typeof meta>;
 export const NoIconButton: Story = {
   args: {
     children: 'Button',
+
+    onClick: fn((e) => {
+      console.log('Button clicked!', e);
+    }),
+
+    size: 'responsive',
+    variant: 'primary',
   },
 };
 
 export const IconButton: Story = {
   args: {
     icon: {
+      icon: <BogIcon name="plus" size={16} />,
       position: 'left',
-      icon: createIconComponent(),
     },
     children: 'Icon Button',
+    onClick: fn((e) => {
+      console.log('Button clicked!', e);
+    }),
   },
 };
-
-function createIconComponent(): ReactNode {
-  return <BogIcon name="plus" size={16} />;
-}

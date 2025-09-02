@@ -46,7 +46,8 @@ export type IconName =
   | 'success';
 
 // Include all props from Phosphor Icons
-interface BogIconProps extends React.ComponentProps<typeof PhosphorIcons.XIcon> {
+interface BogIconProps
+  extends React.ComponentProps<typeof PhosphorIcons.XIcon> {
   /** The unique name that identifies the icon. */
   name: IconName;
   /** The size of the icon, can be a number of pixels or a string with CSS units. */
@@ -62,6 +63,10 @@ interface BogIconProps extends React.ComponentProps<typeof PhosphorIcons.XIcon> 
   mirrored?: boolean;
   /** The alt text of the icon. */
   alt?: string;
+  /** Additional class names to apply styles to the icon. These can be tailwind classes or custom CSS classes. */
+  className?: string;
+  /** Additional CSS styles to apply to the icon. */
+  style?: React.CSSProperties;
 }
 
 const weightFillIcons = new Set([
@@ -141,11 +146,15 @@ const BogIcon: React.FC<BogIconProps> = ({
     iconName = 'Caret' + name.charAt(8).toUpperCase() + name.slice(9);
   } else if (iconName === undefined) {
     iconName = name.charAt(0).toUpperCase() + name.slice(1);
-    iconName = iconName.replace(/-(.)/g, (_, nextChar) => nextChar.toUpperCase());
+    iconName = iconName.replace(/-(.)/g, (_, nextChar) =>
+      nextChar.toUpperCase(),
+    );
   }
 
   // Get the icon component from PhosphorIcons
-  const IconComponent = (PhosphorIcons[iconName as keyof typeof PhosphorIcons] as ElementType) || null;
+  const IconComponent =
+    (PhosphorIcons[iconName as keyof typeof PhosphorIcons] as ElementType) ||
+    null;
 
   if (!IconComponent) {
     console.warn(`BogIcon: Unknown icon name "${name}"`);
