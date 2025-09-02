@@ -68,5 +68,6 @@ export default defineConfig([
     '**/.config/',
     '**/LICENSE',
     '**/.storybook/',
+    '**/*.stories.tsx',
   ]),
 ]);

@@ -4,7 +4,9 @@ export const breakpoints = {
   desktop: 1024,
 };
 
-export const getSizeFromBreakpoint = (breakpoint: string): 'small' | 'medium' | 'large' => {
+export const getSizeFromBreakpoint = (
+  breakpoint: string,
+): 'small' | 'medium' | 'large' => {
   if (breakpoint === 'mobile') return 'small';
   if (breakpoint === 'tablet') return 'medium';
   return 'large';

@@ -11,9 +11,15 @@ interface BogRadioGroupProps extends ComponentProps<typeof RadioGroup.Root> {
   style?: React.CSSProperties;
 }
 
-export default function BogRadioGroup({ children, ...props }: BogRadioGroupProps) {
+export default function BogRadioGroup({
+  children,
+  ...props
+}: BogRadioGroupProps) {
   return (
-    <RadioGroup.Root {...props} className={`${styles.root} ${props.className || ''}`}>
+    <RadioGroup.Root
+      {...props}
+      className={`${styles.root} ${props.className || ''}`}
+    >
       {children}
     </RadioGroup.Root>
   );

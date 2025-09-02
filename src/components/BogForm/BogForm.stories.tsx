@@ -37,7 +37,10 @@ export const Form: Story = {
     children: generateFormElements(),
     onSubmit: fn((e) => {
       e.preventDefault();
-      alert('Form submitted! with data: ' + JSON.stringify(Object.fromEntries(new FormData(e.target))));
+      alert(
+        'Form submitted! with data: ' +
+          JSON.stringify(Object.fromEntries(new FormData(e.target))),
+      );
     }),
   },
 };

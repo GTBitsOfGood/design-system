@@ -46,7 +46,9 @@ export default function BogDropdown({
   className,
 }: BogDropdownProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string | string[]>(type === 'checkbox' ? [] : '');
+  const [selected, setSelected] = useState<string | string[]>(
+    type === 'checkbox' ? [] : '',
+  );
   const triggerRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [triggerWidth, setTriggerWidth] = useState<number | null>(null);
@@ -65,7 +67,10 @@ export default function BogDropdown({
     }
   };
 
-  const handleSelect = (e: Event | React.FormEvent<HTMLButtonElement> | CheckedState | string, value: string) => {
+  const handleSelect = (
+    e: Event | React.FormEvent<HTMLButtonElement> | CheckedState | string,
+    value: string,
+  ) => {
     let newSelected = selected;
     if (type === 'checkbox') {
       const checked = e as CheckedState;
@@ -122,13 +127,21 @@ export default function BogDropdown({
       return options
         .filter((option) => option.includes(filter))
         .map((option) => (
-          <DropdownMenu.Item onSelect={(e) => handleSelect(e, option)} className={styles.dropdownItem} key={option}>
+          <DropdownMenu.Item
+            onSelect={(e) => handleSelect(e, option)}
+            className={styles.dropdownItem}
+            key={option}
+          >
             {option}
           </DropdownMenu.Item>
         ));
     } else if (type === 'checkbox') {
       return options.map((option) => (
-        <DropdownMenu.Item onSelect={(e) => e.preventDefault()} className={styles.dropdownItem} key={option}>
+        <DropdownMenu.Item
+          onSelect={(e) => e.preventDefault()}
+          className={styles.dropdownItem}
+          key={option}
+        >
           <BogCheckbox
             name={option}
             label={option}
@@ -139,13 +152,26 @@ export default function BogDropdown({
       ));
     } else if (type === 'radio') {
       return options.map((option) => (
-        <DropdownMenu.Item onSelect={(e) => e.preventDefault()} className={styles.dropdownItem} key={option}>
-          <BogRadioItem key={option} value={option} label={option} checked={selected === option} />
+        <DropdownMenu.Item
+          onSelect={(e) => e.preventDefault()}
+          className={styles.dropdownItem}
+          key={option}
+        >
+          <BogRadioItem
+            key={option}
+            value={option}
+            label={option}
+            checked={selected === option}
+          />
         </DropdownMenu.Item>
       ));
     } else {
       return options.map((option) => (
-        <DropdownMenu.Item onSelect={(e) => handleSelect(e, option)} className={styles.dropdownItem} key={option}>
+        <DropdownMenu.Item
+          onSelect={(e) => handleSelect(e, option)}
+          className={styles.dropdownItem}
+          key={option}
+        >
           {option}
         </DropdownMenu.Item>
       ));
@@ -171,7 +197,11 @@ export default function BogDropdown({
                 value={filter}
                 name={name}
                 placeholder={
-                  selected.length > 0 ? (Array.isArray(selected) ? selected.join(', ') : selected) : placeholder
+                  selected.length > 0
+                    ? Array.isArray(selected)
+                      ? selected.join(', ')
+                      : selected
+                    : placeholder
                 }
                 className={styles.searchInput}
                 onKeyDown={(e) => e.stopPropagation()}
@@ -190,17 +220,29 @@ export default function BogDropdown({
             </>
           ) : (
             <>
-              {selected.length > 0 ? (Array.isArray(selected) ? selected.join(', ') : selected) : placeholder}
+              {selected.length > 0
+                ? Array.isArray(selected)
+                  ? selected.join(', ')
+                  : selected
+                : placeholder}
               <div className={styles.iconHolder}>
                 {hasValues() && (
-                  <span onClick={handleClear} role="button" aria-label="Clear selection">
+                  <span
+                    onClick={handleClear}
+                    role="button"
+                    aria-label="Clear selection"
+                  >
                     <BogIcon name="x" size={14} className={styles.clearIcon} />
                   </span>
                 )}
                 {isOpen ? (
                   <BogIcon name="caret-up" size={16} className={styles.icon} />
                 ) : (
-                  <BogIcon name="caret-down" size={16} className={styles.icon} />
+                  <BogIcon
+                    name="caret-down"
+                    size={16}
+                    className={styles.icon}
+                  />
                 )}
               </div>
             </>

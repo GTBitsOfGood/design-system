@@ -36,7 +36,10 @@ export default function BogTextInput({
   const [value, setValue] = useState<string>('');
 
   return (
-    <div className={`${styles.container} ${className} text-paragraph-2`} style={style}>
+    <div
+      className={`${styles.container} ${className} text-paragraph-2`}
+      style={style}
+    >
       {label}
       {multiline ? (
         <textarea

@@ -4,7 +4,8 @@ import { useResponsive } from '../../utils/hooks/useResponsive';
 import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
 import React from 'react';
 
-interface BogSwitchProps extends React.ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
+interface BogSwitchProps
+  extends React.ComponentPropsWithoutRef<typeof RadixSwitch.Root> {
   /** The label text next to the switch. */
   label?: string;
   /** The size of the switch. */
@@ -15,11 +16,19 @@ interface BogSwitchProps extends React.ComponentPropsWithoutRef<typeof RadixSwit
   style?: React.CSSProperties;
 }
 
-const BogSwitch: React.FC<BogSwitchProps> = ({ label, size = 'responsive', className, style, ...props }) => {
+const BogSwitch: React.FC<BogSwitchProps> = ({
+  label,
+  size = 'responsive',
+  className,
+  style,
+  ...props
+}) => {
   const breakpoint = useResponsive();
-  const responsiveSize = size === 'responsive' ? getSizeFromBreakpoint(breakpoint) : size;
+  const responsiveSize =
+    size === 'responsive' ? getSizeFromBreakpoint(breakpoint) : size;
 
-  const containerClass = `${styles['bog-switch-container']} ${className || ''}`.trim();
+  const containerClass =
+    `${styles['bog-switch-container']} ${className || ''}`.trim();
   const rootClass = `${styles['bog-switch']} ${
     responsiveSize === 'small'
       ? styles['bog-switch-small']
