@@ -1,28 +1,25 @@
-// src/components/BogBanner/BogBanner.tsx
 import React from 'react';
 import { Callout } from '@radix-ui/themes';
 import clsx from 'clsx';
 import styles from './styles.module.css';
-import '@fontsource/open-sans/400.css';
-import '@fontsource/open-sans/600.css';
 import BogIcon from '../BogIcon/BogIcon';
-export type BogBannerKind =
+export type BannerKind =
   | 'success'
   | 'error'
   | 'warning'
   | 'message'
   | 'brand-message';
-export type BogBannerTone = 'filled' | 'outlined';
-
+export type BannerTone = 'filled' | 'outlined';
+export type BogBannerKind = BannerKind;
+export type BogBannerTone = BannerTone;
 type IconName = 'info' | 'success' | 'warning' | 'error';
-
-export interface BogBannerProps
+export interface BannerProps
   extends Omit<
     React.ComponentProps<typeof Callout.Root>,
     'size' | 'variant' | 'color' | 'content'
   > {
-  type: BogBannerKind;
-  tone?: BogBannerTone;
+  type: BannerKind;
+  tone?: BannerTone;
   icon?: React.ReactElement;
   iconName?: IconName;
   content: React.ReactElement;
@@ -30,9 +27,11 @@ export interface BogBannerProps
   lineHeight?: number | string;
   className?: string;
   style?: React.CSSProperties;
+  role?: React.AriaRole;
+  highContrast?: boolean;
 }
 
-const TYPE_CLASS: Record<BogBannerKind, string> = {
+const TYPE_CLASS: Record<BannerKind, string> = {
   success: styles.success,
   error: styles.error,
   warning: styles.warning,
@@ -45,7 +44,7 @@ function resolveSize(val: number | string | undefined, fallback = '16px') {
   return typeof val === 'number' ? `${val}px` : val;
 }
 
-function defaultIconFor(type: BogBannerKind): IconName {
+function defaultIconFor(type: BannerKind): IconName {
   switch (type) {
     case 'success':
       return 'success';
@@ -60,7 +59,7 @@ function defaultIconFor(type: BogBannerKind): IconName {
   }
 }
 
-export default function BogBanner({
+export default function Banner({
   type,
   tone = 'filled',
   icon,
@@ -73,7 +72,7 @@ export default function BogBanner({
   role,
   highContrast,
   ...rest
-}: BogBannerProps) {
+}: BannerProps) {
   const rootClass = clsx(
     styles.root,
     TYPE_CLASS[type],
@@ -127,3 +126,5 @@ export default function BogBanner({
     </Callout.Root>
   );
 }
+
+(Banner as any).displayName = 'Banner';

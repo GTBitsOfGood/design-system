@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
 /* src/components/BogBanner/styles.module.css */
 .root {
   position: relative;
@@ -26,9 +28,7 @@
   z-index: 0;
 }
 
-.outlined::before {
-  content: none;
-}
+.outlined::before { content: none; }
 
 .inner {
   position: relative;
@@ -44,8 +44,16 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: calc(var(--bb-font-size, 16px) * 1.25);
+  font-size: calc(var(--bb-font-size, 16px) * var(--icon-mult, 1.25));
   line-height: 1;
+}
+@media (min-width: 762px) {
+  .icon {
+    font-size: calc(
+      var(--bb-font-size, 16px)
+      * var(--icon-mult-lg, var(--icon-mult, 1.25))
+    );
+  }
 }
 
 .icon :global(svg) {
@@ -79,6 +87,9 @@
   --bor-filled: #C73A3A;
   --fg-outlined: #C73A3A;
   --bor-outlined: #C73A3A;
+
+  --icon-mult: 1.30;
+  --icon-mult-lg: 1.35;
 }
 .success {
   --rail: #0A7B40;
@@ -87,6 +98,9 @@
   --bor-filled: #0A7B40;
   --fg-outlined: #0A7B40;
   --bor-outlined: #0A7B40;
+
+  --icon-mult: 1.25;
+  --icon-mult-lg: 1.30;
 }
 .warning {
   --rail: #8F6C1A;
@@ -95,6 +109,9 @@
   --bor-filled: #8F6C1A;
   --fg-outlined: #8F6C1A;
   --bor-outlined: #8F6C1A;
+
+  --icon-mult: 1.30;
+  --icon-mult-lg: 1.35;
 }
 .message {
   --rail: #325CE8;
@@ -103,6 +120,9 @@
   --bor-filled: #325CE8;
   --fg-outlined: #325CE8;
   --bor-outlined: #325CE8;
+
+  --icon-mult: 1.20;
+  --icon-mult-lg: 1.25;
 }
 .brandMessage {
   --rail: #FC5B43;
@@ -111,4 +131,7 @@
   --bor-filled: #FC5B43;
   --fg-outlined: #FC5B43;
   --bor-outlined: #FC5B43;
+
+  --icon-mult: 1.25;
+  --icon-mult-lg: 1.30;
 }

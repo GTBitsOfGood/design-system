@@ -1,4 +1,3 @@
-// src/components/BogBanner/BogBanner.stories.tsx
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Banner from './BogBanner';
@@ -52,7 +51,7 @@ export const Playground: Story = {
     type: 'message',
     tone: 'filled',
     iconName: 'info',
-    content: <span>Short message to attract user’s attention.</span>,
+    content: <span>This is the description.</span>,
     fontSize: 16,
   },
   render: (args) => (
