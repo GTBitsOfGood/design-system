@@ -1,0 +1,100 @@
+
+@layer base {
+    .container {
+        min-height: auto !important;
+        border-radius: 8px !important;
+        overflow: hidden;          
+        
+    }
+    .container .radix-themes:where([data-is-root-theme='true']) {
+        min-height: auto !important; 
+    }
+
+    .cellBase {
+    border-bottom: 1px solid var(--color-grey-stroke-weak) !important;
+    box-shadow: none !important;
+    font-size: var(--text-desktop-small);
+
+  }
+
+
+   .columnHeaderCell {
+    background-color: var(--color-grey-fill-weaker) !important;
+    position: relative;
+    padding: 0 12px;
+    font-weight: 600;
+    vertical-align: middle;
+    font-size: var(--text-desktop-small);
+
+  }
+
+
+  .columnHeaderCell:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 30%;
+    bottom: 30%;
+    right: 0;
+    width: 1px;
+    background: var(--color-grey-fill-weak) !important; 
+    pointer-events: none;
+  }
+  .rowHeaderCell {
+    font-weight: 600;
+  }
+
+  .size1 {
+    min-height: 3rem !important;
+    min-width: 10rem !important;
+  }
+
+  .size2 {
+    min-height: 3.5rem !important;
+    min-width: 12rem !important;
+  }
+
+  .size3 {
+    min-height: 4rem !important;
+    min-width: 15.53125rem !important;
+  }
+
+@media (max-width: 767px) {
+  .columnHeaderCell,
+  .rowHeaderCell,
+  .cell {
+    min-height: 3rem !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .columnHeaderCell,
+  .rowHeaderCell,
+  .cell {
+    min-height: 3.5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .columnHeaderCell,
+  .rowHeaderCell,
+  .cell {
+    min-height: 4rem !important;
+  }
+}
+
+  
+     
+    
+  :global(.radix-themes .radix-themes-table-root) {
+    border-radius: 8px
+  }
+
+
+  :global(.radix-themes[data-is-root-theme='true']) {
+    min-height: auto !important;
+  }
+
+
+}
+
+
