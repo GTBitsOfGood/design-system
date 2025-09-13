@@ -58,29 +58,6 @@
     min-width: 15.53125rem !important;
   }
 
-@media (max-width: 767px) {
-  .columnHeaderCell,
-  .rowHeaderCell,
-  .cell {
-    min-height: 3rem !important;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .columnHeaderCell,
-  .rowHeaderCell,
-  .cell {
-    min-height: 3.5rem !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  .columnHeaderCell,
-  .rowHeaderCell,
-  .cell {
-    min-height: 4rem !important;
-  }
-}
 
   
      
