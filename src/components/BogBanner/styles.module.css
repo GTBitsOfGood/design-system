@@ -1,0 +1,114 @@
+/* src/components/BogBanner/styles.module.css */
+.root {
+  position: relative;
+  border-radius: 4px;
+  padding: 8px;
+  border-width: 1px;
+  border-style: solid;
+  font-family: "Open Sans", sans-serif;
+  font-size: var(--bb-font-size, 16px);
+  line-height: var(--bb-line-height, 1.3);
+  width: 100%;
+}
+
+@media (min-width: 762px) {
+  .root { padding: 8px; }
+}
+
+.root::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+  background: var(--rail, #FC5B43);
+  z-index: 0;
+}
+
+.outlined::before {
+  content: none;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  z-index: 1;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: calc(var(--bb-font-size, 16px) * 1.25);
+  line-height: 1;
+}
+
+.icon :global(svg) {
+  width: 1em;
+  height: 1em;
+}
+
+.text {
+  font-size: var(--bb-font-size, 16px);
+  line-height: var(--bb-line-height, 1.3);
+}
+
+.filled {
+  background: var(--bg-filled, #FC5B43);
+  color: var(--fg, #ffffff);
+  border-color: var(--bor-filled, #FC5B43);
+}
+.filled .icon { color: var(--fg, #ffffff); }
+
+.outlined {
+  background: #ffffff;
+  color: var(--fg-outlined, #C73A3A);
+  border-color: var(--bor-outlined, #C73A3A);
+}
+.outlined .icon { color: currentColor; }
+
+.error {
+  --rail: #C73A3A;
+  --fg: #ffffff;
+  --bg-filled: #C73A3A;
+  --bor-filled: #C73A3A;
+  --fg-outlined: #C73A3A;
+  --bor-outlined: #C73A3A;
+}
+.success {
+  --rail: #0A7B40;
+  --fg: #ffffff;
+  --bg-filled: #0A7B40;
+  --bor-filled: #0A7B40;
+  --fg-outlined: #0A7B40;
+  --bor-outlined: #0A7B40;
+}
+.warning {
+  --rail: #8F6C1A;
+  --fg: #ffffff;
+  --bg-filled: #8F6C1A;
+  --bor-filled: #8F6C1A;
+  --fg-outlined: #8F6C1A;
+  --bor-outlined: #8F6C1A;
+}
+.message {
+  --rail: #325CE8;
+  --fg: #ffffff;
+  --bg-filled: #325CE8;
+  --bor-filled: #325CE8;
+  --fg-outlined: #325CE8;
+  --bor-outlined: #325CE8;
+}
+.brandMessage {
+  --rail: #FC5B43;
+  --fg: #ffffff;
+  --bg-filled: #FC5B43;
+  --bor-filled: #FC5B43;
+  --fg-outlined: #FC5B43;
+  --bor-outlined: #FC5B43;
+}
