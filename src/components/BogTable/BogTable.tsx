@@ -1,12 +1,14 @@
 import { Table, Theme } from '@radix-ui/themes';
-import React, { ReactElement, useMemo } from 'react';
+import React, { ReactElement } from 'react';
 import styles from './styles.module.css';
 import { useResponsive } from '../../utils/hooks/useResponsive';
 import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
 import '@radix-ui/themes/styles.css';
 
 export type ColumnHeaderCellContent = {
+  /** Props forwarded to Radix Table.Cell / Table.RowHeaderCell */
   styleProps?: React.ComponentProps<typeof Table.ColumnHeaderCell>;
+  /** Cell text/content */
   content: string;
 };
 
@@ -30,19 +32,17 @@ interface BogTableProps
   columnHeaders: ColumnHeaderCellContent[];
   /** Data rows (rendered in tbody) */
   rows: TableRow[];
-  /** Visual size; responsive maps breakpoints -> mobile|tablet|desktop */
-  size?: 'mobile' | 'tablet' | 'desktop' | 'responsive';
+  /** Visual size; responsive maps breakpoints -> small|medium|large */
+  size?: 'small' | 'medium' | 'large' | 'responsive';
   /** Tailwind / custom class names */
   className?: string;
   /** Inline styles */
   style?: React.CSSProperties;
 }
 
-function mapSizeToRadix(
-  size: 'mobile' | 'tablet' | 'desktop',
-): '1' | '2' | '3' {
-  if (size === 'mobile') return '1';
-  if (size === 'tablet') return '2';
+function mapSizeToRadix(size: 'small' | 'medium' | 'large'): '1' | '2' | '3' {
+  if (size === 'small') return '1';
+  if (size === 'medium') return '2';
   return '3';
 }
 
