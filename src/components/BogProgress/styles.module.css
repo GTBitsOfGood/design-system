@@ -1,0 +1,49 @@
+@layer base {
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0.5rem;
+        width: 30vw;
+        max-width: 100%;
+        font-family: var(--font-paragraph);
+        font-size: var(--text-mobile-small);
+        @media (width >= 1024px) {
+            font-size: var(--text-desktop-small);
+        }
+
+        .root {
+            background-color: #22070B0D;
+            border-radius: 9999px;
+            display: flex;
+            flex-grow: 1;
+            height: 10px;
+
+            &.small {
+                height: 6px;
+            }
+
+            &.medium {
+                height: 8px;
+            }
+
+            &.large {
+                height: 12px;
+            }
+
+            .indicator {
+                background-color: #0A7B40;
+                height: 100%;
+                border-radius: 9999px;
+                transition: width 0.2s ease;
+            }
+        }
+
+        .label {
+            display: flex;
+            width: 3rem;
+        }
+    
+    }
+}
