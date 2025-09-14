@@ -21,15 +21,15 @@
             height: 10px;
 
             &.small {
-                height: 6px;
+                height: 0.6rem;
             }
 
             &.medium {
-                height: 8px;
+                height: 0.8rem;
             }
 
             &.large {
-                height: 12px;
+                height: 1.2rem;
             }
 
             .indicator {

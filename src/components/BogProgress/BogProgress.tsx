@@ -1,4 +1,4 @@
-import React, { ElementType } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import { Progress } from 'radix-ui';
 import { useResponsive } from '../../utils/hooks/useResponsive';
@@ -43,7 +43,7 @@ export default function BogProgress({
     error: 'var(--color-status-red-text)',
     info: 'var(--color-status-blue-text)',
     warning: 'var(--color-status-amber-text)',
-    brand: 'var(--color-status-brand-text)',
+    brand: 'var(--color-brand-text)',
   };
   let colorCode = color;
   // Get hex code from globals.css if it matches one of the color themes
@@ -64,6 +64,7 @@ export default function BogProgress({
       <Progress.Root
         className={`${styles.root} ${styles[responsiveSize]}`}
         value={value}
+        {...props}
       >
         <Progress.Indicator
           className={styles.indicator}
