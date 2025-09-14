@@ -1,37 +1,37 @@
+// src/components/BogBanner/BogBanner.tsx
 import React from 'react';
 import { Callout } from '@radix-ui/themes';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 import BogIcon from '../BogIcon/BogIcon';
-export type BannerKind =
+
+export type BannerType =
   | 'success'
   | 'error'
   | 'warning'
   | 'message'
   | 'brand-message';
 export type BannerTone = 'filled' | 'outlined';
-export type BogBannerKind = BannerKind;
+export type BogBannerType = BannerType;
 export type BogBannerTone = BannerTone;
-type IconName = 'info' | 'success' | 'warning' | 'error';
-export interface BannerProps
+type BogIconLikeProps = React.ComponentProps<typeof BogIcon>;
+
+export interface BogBannerProps
   extends Omit<
     React.ComponentProps<typeof Callout.Root>,
-    'size' | 'variant' | 'color' | 'content'
+    'variant' | 'content'
   > {
-  type: BannerKind;
+  type: BannerType;
   tone?: BannerTone;
-  icon?: React.ReactElement;
-  iconName?: IconName;
+  iconProps?: BogIconLikeProps;
   content: React.ReactElement;
-  fontSize?: number | string;
-  lineHeight?: number | string;
   className?: string;
   style?: React.CSSProperties;
   role?: React.AriaRole;
   highContrast?: boolean;
 }
 
-const TYPE_CLASS: Record<BannerKind, string> = {
+const TYPE_CLASS: Record<BannerType, string> = {
   success: styles.success,
   error: styles.error,
   warning: styles.warning,
@@ -39,12 +39,7 @@ const TYPE_CLASS: Record<BannerKind, string> = {
   'brand-message': styles.brandMessage,
 };
 
-function resolveSize(val: number | string | undefined, fallback = '16px') {
-  if (val == null) return fallback;
-  return typeof val === 'number' ? `${val}px` : val;
-}
-
-function defaultIconFor(type: BannerKind): IconName {
+function defaultIconFor(type: BannerType): BogIconLikeProps['name'] {
   switch (type) {
     case 'success':
       return 'success';
@@ -52,27 +47,22 @@ function defaultIconFor(type: BannerKind): IconName {
       return 'error';
     case 'warning':
       return 'warning';
-    case 'message':
-    case 'brand-message':
     default:
       return 'info';
   }
 }
 
-export default function Banner({
+export default function BogBanner({
   type,
   tone = 'filled',
-  icon,
-  iconName,
+  iconProps,
   content,
-  fontSize = 16,
-  lineHeight,
   className,
   style,
   role,
   highContrast,
   ...rest
-}: BannerProps) {
+}: BogBannerProps) {
   const rootClass = clsx(
     styles.root,
     TYPE_CLASS[type],
@@ -83,21 +73,17 @@ export default function Banner({
   const computedRole: React.AriaRole | undefined =
     role ?? (type === 'error' || type === 'warning' ? 'alert' : undefined);
 
-  const mergedStyle: React.CSSProperties & Record<string, any> = {
-    ...style,
-    ['--bb-font-size']: resolveSize(fontSize, '16px'),
-    ...(lineHeight != null && {
-      ['--bb-line-height']:
-        typeof lineHeight === 'number' ? String(lineHeight) : lineHeight,
-    }),
-  };
+  const baseName = iconProps?.name ?? defaultIconFor(type);
+  const forcedWeight =
+    iconProps?.weight ?? (tone === 'filled' ? 'fill' : 'regular');
 
-  const iconNode = icon ?? (
+  const iconNode = (
     <BogIcon
-      name={iconName ?? defaultIconFor(type)}
-      size="1em"
-      weight="fill"
-      color="currentColor"
+      {...iconProps}
+      name={baseName}
+      weight={forcedWeight}
+      size={iconProps?.size ?? '1em'}
+      color={iconProps?.color ?? 'currentColor'}
     />
   );
 
@@ -107,24 +93,15 @@ export default function Banner({
       highContrast={highContrast}
       role={computedRole}
       className={rootClass}
-      style={mergedStyle}
+      style={style}
       {...rest}
     >
       <div className={styles.inner}>
         <Callout.Icon className={styles.icon}>{iconNode}</Callout.Icon>
-        <Callout.Text
-          className={styles.text}
-          style={{
-            fontFamily:
-              "Open Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif",
-            fontWeight: 400,
-          }}
-        >
-          {content}
-        </Callout.Text>
+        <Callout.Text>{content}</Callout.Text>
       </div>
     </Callout.Root>
   );
 }
 
-(Banner as any).displayName = 'Banner';
+(BogBanner as any).displayName = 'BogBanner';

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Banner from './BogBanner';
+import BogBanner from './BogBanner';
 
 const WRAPPER_STYLE: React.CSSProperties = {
   display: 'flex',
@@ -13,10 +13,10 @@ const WRAPPER_STYLE: React.CSSProperties = {
   borderBottom: '1px solid #e5e7eb',
 };
 
-const meta = {
+const meta: Meta<typeof BogBanner> = {
   title: 'Banner',
   id: 'bogbanner',
-  component: Banner,
+  component: BogBanner,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
   argTypes: {
@@ -30,18 +30,16 @@ const meta = {
       options: ['filled', 'outlined'],
       description: 'Visual style',
     },
-    iconName: {
-      control: 'select',
-      options: ['info', 'success', 'warning', 'error'],
-      description: 'BogIcon name',
+    iconProps: {
+      control: 'object',
+      description: 'Props forwarded to BogIcon (e.g., { name: "info" })',
     },
     highContrast: { control: 'boolean' },
     role: { control: 'text' },
     className: { control: 'text' },
     style: { control: 'object' },
-    fontSize: { control: 'number' },
   },
-} satisfies Meta<typeof Banner>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -50,13 +48,12 @@ export const Playground: Story = {
   args: {
     type: 'message',
     tone: 'filled',
-    iconName: 'info',
+    iconProps: { name: 'info' },
     content: <span>This is the description.</span>,
-    fontSize: 16,
   },
   render: (args) => (
     <div style={WRAPPER_STYLE}>
-      <Banner {...args} />
+      <BogBanner {...args} />
     </div>
   ),
 };
@@ -66,73 +63,72 @@ export const AllMainComponents: Story = {
   args: {
     type: 'message',
     tone: 'filled',
-    iconName: 'info',
+    iconProps: { name: 'info' },
     content: <span />,
-    fontSize: 16,
   },
   render: () => (
     <div style={WRAPPER_STYLE}>
       {/* filled */}
-      <Banner
+      <BogBanner
         type="error"
         tone="filled"
-        iconName="error"
+        iconProps={{ name: 'error' }}
         content={<span>This is the description.</span>}
       />
-      <Banner
+      <BogBanner
         type="success"
         tone="filled"
-        iconName="success"
+        iconProps={{ name: 'success' }}
         content={<span>This is the description.</span>}
       />
-      <Banner
+      <BogBanner
         type="warning"
         tone="filled"
-        iconName="warning"
+        iconProps={{ name: 'warning' }}
         content={<span>This is the description.</span>}
       />
-      <Banner
+      <BogBanner
         type="message"
         tone="filled"
-        iconName="info"
+        iconProps={{ name: 'info' }}
         content={<span>This is the description.</span>}
       />
-      <Banner
+      <BogBanner
         type="brand-message"
         tone="filled"
-        iconName="info"
+        iconProps={{ name: 'info' }}
         content={<span>This is the description.</span>}
       />
 
       {/* outlined */}
-      <Banner
+      <BogBanner
         type="error"
         tone="outlined"
-        iconName="error"
+        iconProps={{ name: 'error' }}
         content={<span>This is the description.</span>}
       />
-      <Banner
+      <BogBanner
         type="success"
         tone="outlined"
-        iconName="success"
+        iconProps={{ name: 'success' }}
         content={<span>This is the description.</span>}
       />
-      <Banner
+      <BogBanner
         type="warning"
         tone="outlined"
-        iconName="warning"
+        iconProps={{ name: 'warning' }}
         content={<span>This is the description.</span>}
       />
-      <Banner
+      <BogBanner
         type="message"
         tone="outlined"
-        iconName="info"
+        iconProps={{ name: 'info' }}
         content={<span>This is the description.</span>}
       />
-      <Banner
+      <BogBanner
         type="brand-message"
         tone="outlined"
-        iconName="info"
+        iconProps={{ name: 'info' }}
         content={<span>This is the description.</span>}
       />
     </div>
