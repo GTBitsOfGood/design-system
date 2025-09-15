@@ -8,7 +8,7 @@
 
   .bog-tabs-list {
     display: flex;
-    border-bottom: 1.5px solid var(--color-grey-stroke-weak);
+    border-bottom: 0.1rem solid var(--color-grey-stroke-weak);
     gap: 0.5rem;
     background: transparent;
     padding: 0 0.5rem;
@@ -30,7 +30,7 @@
   .bog-tabs-trigger {
     background: none;
     border: none;
-    border-bottom: 2.5px solid transparent;
+    border-bottom: 0.2rem solid transparent;
     color: var(--color-grey-text-weak);
     padding: 0.5rem 1.25rem 0.5rem 1.25rem;
     cursor: pointer;
@@ -42,15 +42,19 @@
 
   .bog-tabs-trigger[data-state='active'] {
     color: var(--color-grey-text-strong);
-    border-bottom: 2.5px solid var(--color-grey-text-strong);
+    border-bottom: 0.2rem solid var(--color-grey-text-strong);
   }
 
   .bog-tabs-label {
-    padding: 4px;
-    border-radius: 4px;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
   }
 
   .bog-tabs-trigger:hover .bog-tabs-label {
     background: var(--color-grey-fill-weak);
+  }
+
+  .bog-tabs-content {
+    margin-top: 1rem;
   }
 }
