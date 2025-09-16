@@ -24,26 +24,26 @@ const columnHeaders: ColumnHeaderCellContent[] = [
 const rows: TableRow[] = [
   {
     cells: [
-      { content: <span>John Doe</span> },
-      { content: <span>30</span> },
-      { content: <span>USA</span> },
-      { content: <span>Developer</span> },
+      { content: 'John Doe' },
+      { content: '30' },
+      { content: 'USA' },
+      { content: 'Developer' },
     ],
   },
   {
     cells: [
-      { content: <span>Jane Smith</span> },
-      { content: <span>25</span> },
-      { content: <span>Canada</span> },
-      { content: <span>Designer</span> },
+      { content: 'Jane Smith' },
+      { content: '25' },
+      { content: 'Canada' },
+      { content: 'Designer' },
     ],
   },
   {
     cells: [
-      { content: <span>Sam Wilson</span> },
-      { content: <span>35</span> },
-      { content: <span>UK</span> },
-      { content: <span>Engineering Manager</span> },
+      { content: 'Sam Wilson' },
+      { content: '35' },
+      { content: 'UK' },
+      { content: 'Engineering Manager' },
     ],
   },
 ];
