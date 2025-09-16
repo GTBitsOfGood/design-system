@@ -6,8 +6,13 @@
   padding: 0.8rem;
   border-width: 1px;
   border-style: solid;
-  font-family: var(--font-sans, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif);
-  font-size: 1.6rem;
+  font-family: var(--font-paragraph);
+  font-size: var(--text-mobile-small);
+  line-height: var(--text-mobile-small--line-height);
+  @media (width >= 1024px) {
+    font-size: var(--text-desktop-small);
+    line-height: var(--text-desktop-small--line-height);
+  }
   width: 100%;
 }
 

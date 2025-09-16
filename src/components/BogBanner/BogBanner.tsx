@@ -1,4 +1,3 @@
-// src/components/BogBanner/BogBanner.tsx
 import React from 'react';
 import { Callout } from '@radix-ui/themes';
 import clsx from 'clsx';
