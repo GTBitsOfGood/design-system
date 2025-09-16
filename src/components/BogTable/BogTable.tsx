@@ -1,8 +1,11 @@
 import { Table, Theme } from '@radix-ui/themes';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import styles from './styles.module.css';
 import { useResponsive } from '../../utils/hooks/useResponsive';
-import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
+import {
+  getNumericalSizeFromBreakpoint,
+  getSizeFromBreakpoint,
+} from '../../utils/breakpoints/breakpoints';
 import '@radix-ui/themes/styles.css';
 
 export type ColumnHeaderCellContent = {
@@ -16,7 +19,7 @@ export type RowCellContent = {
   /** Props forwarded to Radix Table.Cell / Table.RowHeaderCell */
   styleProps?: React.ComponentProps<typeof Table.Cell>;
   /** Cell text/content */
-  content: ReactElement;
+  content: ReactNode;
 };
 
 export type TableRow = {
@@ -33,17 +36,11 @@ interface BogTableProps
   /** Data rows (rendered in tbody) */
   rows: TableRow[];
   /** Visual size; responsive maps breakpoints -> small|medium|large */
-  size?: 'small' | 'medium' | 'large' | 'responsive';
+  size?: 'mobile' | 'tablet' | 'desktop' | 'responsive';
   /** Tailwind / custom class names */
   className?: string;
   /** Inline styles */
   style?: React.CSSProperties;
-}
-
-function mapSizeToRadix(size: 'small' | 'medium' | 'large'): '1' | '2' | '3' {
-  if (size === 'small') return '1';
-  if (size === 'medium') return '2';
-  return '3';
 }
 
 const BogTable: React.FC<BogTableProps> = ({
@@ -56,8 +53,10 @@ const BogTable: React.FC<BogTableProps> = ({
 }) => {
   const breakpoint = useResponsive();
   const resolvedSize =
-    size === 'responsive' ? getSizeFromBreakpoint(breakpoint) : size;
-  const radixSize = mapSizeToRadix(resolvedSize);
+    size === 'responsive'
+      ? getNumericalSizeFromBreakpoint(breakpoint)
+      : getNumericalSizeFromBreakpoint(size);
+  const radixSize = resolvedSize;
 
   const sizeClass = `size${radixSize}`;
 
