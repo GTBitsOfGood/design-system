@@ -1,0 +1,77 @@
+
+@layer base {
+    .container {
+        min-height: auto !important;
+        border-radius: 0.8rem !important;
+        overflow: hidden;          
+        
+    }
+    .container .radix-themes:where([data-is-root-theme='true']) {
+        min-height: auto !important; 
+    }
+
+    .cellBase {
+    border-bottom: 1px solid var(--color-grey-stroke-weak) !important;
+    box-shadow: none !important;
+    font-size: var(--text-desktop-small);
+
+  }
+
+
+   .columnHeaderCell {
+    background-color: var(--color-grey-fill-weaker) !important;
+    position: relative;
+    padding: 0 1.2rem;
+    font-weight: 600;
+    vertical-align: middle;
+    font-size: var(--text-desktop-small);
+
+  }
+
+
+  .columnHeaderCell:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 30%;
+    bottom: 30%;
+    right: 0;
+    width: 0.1rem;
+    background: var(--color-grey-fill-weak) !important; 
+    pointer-events: none;
+  }
+  .rowHeaderCell {
+    font-weight: 600;
+  }
+
+  .size1 {
+    min-height: 3rem !important;
+    min-width: 10rem !important;
+  }
+
+  .size2 {
+    min-height: 3.5rem !important;
+    min-width: 12rem !important;
+  }
+
+  .size3 {
+    min-height: 4rem !important;
+    min-width: 15.53125rem !important;
+  }
+
+
+  
+     
+    
+  :global(.radix-themes .radix-themes-table-root) {
+    border-radius: 0.8rem
+  }
+
+
+  :global(.radix-themes[data-is-root-theme='true']) {
+    min-height: auto !important;
+  }
+
+
+}
+
+

@@ -11,3 +11,11 @@ export const getSizeFromBreakpoint = (
   if (breakpoint === 'tablet') return 'medium';
   return 'large';
 };
+
+export const getNumericalSizeFromBreakpoint = (
+  breakpoint: string,
+): '1' | '2' | '3' => {
+  if (breakpoint === 'mobile') return '1';
+  if (breakpoint === 'tablet') return '2';
+  return '3';
+};
