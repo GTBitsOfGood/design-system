@@ -1,0 +1,29 @@
+@layer base {
+    .overlay {
+        background-color: var(--color-grey-fill-weaker);
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+    }
+    
+    .content {
+        width: 47vw;
+        height: 50vh;
+        border-radius: 1.6rem;
+        background-color: var(--color-solid-bg-base);
+        box-shadow: 0 16px 25.1px -2px var(--color-grey-stroke-weak);
+        padding: 1.6rem;
+        position: fixed;
+        inset: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+
+        .closeButton {
+            position: absolute;
+            top: 1.6rem;
+            right: 1.6rem;
+        }
+    }
+
+
+}
