@@ -19,6 +19,8 @@
 
 
    .columnHeaderCell {
+    display: flex;
+
     background-color: var(--color-grey-fill-weaker) !important;
     position: relative;
     padding: 0 1.2rem;
@@ -56,6 +58,35 @@
   .size3 {
     min-height: 4rem !important;
     min-width: 15.53125rem !important;
+  }
+
+  .searchWrapper {
+    position: relative;
+    margin-bottom: 0.8rem;
+  }
+
+  .searchWithIcon input {
+    padding-right: 2.6rem !important; 
+  }
+
+  .searchWrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    border-left: 0.1rem solid var(--color-grey-stroke-weak);
+    right: calc(1.3rem + 2rem + 0.5rem); 
+    pointer-events: none;
+  }
+
+  .searchIcon {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-grey-stroke-strong);
+    pointer-events: none; 
   }
 
 

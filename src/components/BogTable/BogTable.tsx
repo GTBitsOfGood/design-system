@@ -7,12 +7,18 @@ import {
   getSizeFromBreakpoint,
 } from '../../utils/breakpoints/breakpoints';
 import '@radix-ui/themes/styles.css';
+import BogTextInput from '../BogTextInput/BogTextInput';
+import BogIcon from '../BogIcon/BogIcon';
+
+type ColumnDatatype = 'string' | 'string[]' | 'number' | 'number[]' | 'other';
 
 export type ColumnHeaderCellContent = {
   /** Props forwarded to Radix Table.Cell / Table.RowHeaderCell */
   styleProps?: React.ComponentProps<typeof Table.ColumnHeaderCell>;
   /** Cell text/content */
   content: string;
+  /** datatype for sorting behavior */
+  datatype?: ColumnDatatype;
 };
 
 export type RowCellContent = {
@@ -60,8 +66,42 @@ const BogTable: React.FC<BogTableProps> = ({
 
   const sizeClass = `size${radixSize}`;
 
+  const [query, setQuery] = React.useState('');
+
+  const extractText = (node: ReactNode): string => {
+    if (node == null || typeof node === 'boolean') return '';
+    if (typeof node === 'string' || typeof node === 'number')
+      return String(node);
+    if (Array.isArray(node)) return node.map(extractText).join(' ');
+    if (React.isValidElement(node)) return extractText(node.props?.children);
+    return '';
+  };
+
+  const filteredRows = React.useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return rows;
+    return rows.filter((row) =>
+      row.cells.some((cell) =>
+        extractText(cell.content).toLowerCase().includes(q),
+      ),
+    );
+  }, [rows, query]);
+
+  const handleSearchChange: React.ChangeEventHandler = (e) => {
+    const el = e.target as HTMLInputElement;
+    if (el && typeof el.value === 'string') setQuery(el.value);
+  };
+
   return (
     <Theme>
+      <div className={styles.searchWrapper} onChange={handleSearchChange}>
+        <BogTextInput
+          name="search"
+          placeholder="Enter text to search"
+          className={styles.searchWithIcon}
+        />
+        <BogIcon name="search" size={16} className={styles.searchIcon} />
+      </div>
       <div className={styles.container}>
         <Table.Root
           {...rootProps}
@@ -78,12 +118,13 @@ const BogTable: React.FC<BogTableProps> = ({
                   className={`${styles.columnHeaderCell} ${styles.cellBase} ${styles[sizeClass]}`}
                 >
                   {header.content}
+                  <BogIcon name="chevron-up" />
                 </Table.ColumnHeaderCell>
               ))}
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {rows.map((row, rIdx) => (
+            {filteredRows.map((row, rIdx) => (
               <Table.Row key={`row-${rIdx}`} {...row.styleProps}>
                 {row.cells.map((cell, cIdx) =>
                   cIdx === 0 ? (
