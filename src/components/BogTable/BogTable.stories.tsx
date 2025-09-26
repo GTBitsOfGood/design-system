@@ -15,7 +15,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const columnHeaders: ColumnHeaderCellContent[] = [
-  { content: 'Name' },
+  { content: 'Name', datatype: 'string' },
   { content: 'Age' },
   { content: 'Country' },
   { content: 'Title' },
@@ -46,12 +46,98 @@ const rows: TableRow[] = [
       { content: 'Engineering Manager' },
     ],
   },
+  {
+    cells: [
+      { content: 'John Doe' },
+      { content: '28' },
+      { content: 'Australia' },
+      { content: 'Product Manager' },
+    ],
+  },
 ];
 
-export const Default: Story = {
+const columnHeaders2: ColumnHeaderCellContent[] = [
+  { content: 'Product', datatype: 'string' },
+  { content: 'Price', datatype: 'string' },
+  { content: 'Stock', datatype: 'string' },
+  { content: 'Icon', datatype: 'other' },
+];
+
+const createProduceIcon = (label: string, color: string) => (
+  <span
+    role="img"
+    aria-label={`${label} icon`}
+    title={label}
+    style={{
+      display: 'inline-block',
+      width: 12,
+      height: 12,
+      borderRadius: '50%',
+      backgroundColor: color,
+      boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.08)',
+    }}
+  />
+);
+
+const rows2: TableRow[] = [
+  {
+    cells: [
+      { content: 'Apple' },
+      { content: '$1.99' },
+      { content: '120' },
+      {
+        content: createProduceIcon('Apple', '#d32f2f'),
+        styleProps: { style: { textAlign: 'center' } },
+      },
+    ],
+  },
+  {
+    cells: [
+      { content: 'Banana' },
+      { content: '$0.89' },
+      { content: '80' },
+      {
+        content: createProduceIcon('Banana', '#fbc02d'),
+        styleProps: { style: { textAlign: 'center' } },
+      },
+    ],
+  },
+  {
+    cells: [
+      { content: 'Avocado' },
+      { content: '$2.49' },
+      { content: '25' },
+      {
+        content: createProduceIcon('Avocado', '#4caf50'),
+        styleProps: { style: { textAlign: 'center' } },
+      },
+    ],
+  },
+  {
+    cells: [
+      { content: 'Carrot' },
+      { content: '$0.59' },
+      { content: '300' },
+      {
+        content: createProduceIcon('Carrot', '#fb8c00'),
+        styleProps: { style: { textAlign: 'center' } },
+      },
+    ],
+  },
+];
+
+export const Table: Story = {
   args: {
     columnHeaders,
     rows,
+    size: 'responsive',
+  },
+};
+
+export const TableWithNonSortableColumn: Story = {
+  args: {
+    columnHeaders: columnHeaders2,
+    rows: rows2,
     size: 'responsive',
   },
 };
