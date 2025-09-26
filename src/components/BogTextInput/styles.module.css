@@ -73,7 +73,9 @@
     }
 
     /* For multi-line inputs, keep the icon vertically near the top-left */
-    .multiline + .iconContainer {
+    /* For multi-line inputs, keep the icon vertically near the top-left */
+    .iconContainer:has(+ textarea),
+    .iconContainer:has(+ .multiline) {
       align-self: flex-start;
       padding-top: 0.6rem;
     }
