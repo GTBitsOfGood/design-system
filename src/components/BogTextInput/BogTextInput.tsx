@@ -1,5 +1,7 @@
 import styles from './styles.module.css';
 import React, { useState } from 'react';
+import type { IconProps } from '../../utils/types/types';
+import BogIcon from '../BogIcon/BogIcon';
 
 interface BogTextInputProps {
   /** Whether or not the text input has multiple lines. */
@@ -20,6 +22,8 @@ interface BogTextInputProps {
   className?: string;
   /** Additional CSS styles to apply to the text input. */
   style?: React.CSSProperties;
+  /** Optional icon configuration to render inside the input. */
+  iconProps?: IconProps;
 }
 
 export default function BogTextInput({
@@ -32,6 +36,7 @@ export default function BogTextInput({
   disabled = false,
   style,
   className,
+  iconProps,
 }: BogTextInputProps) {
   const [value, setValue] = useState<string>('');
 
@@ -41,29 +46,46 @@ export default function BogTextInput({
       style={style}
     >
       {label}
-      {multiline ? (
-        <textarea
-          name={name}
-          required={required}
-          disabled={disabled}
-          rows={4}
-          placeholder={placeholder}
-          className={`${styles.input} placeholder:text-paragraph-2`}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      ) : (
-        <input
-          name={name}
-          type={type}
-          required={required}
-          disabled={disabled}
-          placeholder={placeholder}
-          className={`${styles.input} placeholder:text-paragraph-2 `}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      )}
+      <div
+        className={`${styles.inputWrapper} ${iconProps && (iconProps.position === 'right' ? styles.iconRight : styles.iconLeft)}`}
+      >
+        {multiline ? (
+          <textarea
+            name={name}
+            required={required}
+            disabled={disabled}
+            rows={4}
+            placeholder={placeholder}
+            className={`${styles.input} placeholder:text-paragraph-2 ${styles.multiline}`}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        ) : (
+          <input
+            name={name}
+            type={type}
+            required={required}
+            disabled={disabled}
+            placeholder={placeholder}
+            className={`${styles.input} placeholder:text-paragraph-2 `}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        )}
+
+        {iconProps && (
+          <div
+            className={`${styles.iconContainer} ${
+              iconProps.onClick ? styles.clickable : ''
+            }`}
+            onClick={(e) => {
+              if (iconProps.onClick) iconProps.onClick(e);
+            }}
+          >
+            <BogIcon {...iconProps.iconProps} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
