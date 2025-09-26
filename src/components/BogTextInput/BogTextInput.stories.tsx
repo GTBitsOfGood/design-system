@@ -26,3 +26,34 @@ export const TextInput: Story = {
     placeholder: 'Enter text here',
   },
 };
+
+export const WithClickableIcon: Story = {
+  args: {
+    name: 'clickable-input',
+    placeholder: 'Search...',
+    iconProps: {
+      iconProps: {
+        name: 'search',
+        size: 18,
+      },
+      position: 'left',
+      onClick: () => alert('Clicked'),
+    },
+  },
+};
+
+export const WithUnclickableIconOnRight: Story = {
+  args: {
+    label: 'example label',
+    name: 'unclickable-input',
+    placeholder: 'Search...',
+    multiline: true,
+    iconProps: {
+      iconProps: {
+        name: 'search',
+        size: 18,
+      },
+      position: 'right',
+    },
+  },
+};
