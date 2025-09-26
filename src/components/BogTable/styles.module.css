@@ -19,17 +19,49 @@
 
 
    .columnHeaderCell {
-    display: flex;
-
     background-color: var(--color-grey-fill-weaker) !important;
     position: relative;
     padding: 0 1.2rem;
+    padding-right: 4rem;    
     font-weight: 600;
     vertical-align: middle;
     font-size: var(--text-desktop-small);
 
   }
+  .sortIcons {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-grey-off-state);
+    pointer-events: auto;    
+    cursor: pointer;
+  }
 
+  .sortDisabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.7;
+  }
+
+  .sortChevronActive {
+    color: var(--color-grey-text-strong) !important;
+  }
+  .sortChevronInactive {
+    color: var(--color-grey-off-state) !important;
+  }
+
+  .sortIcons :global(svg) {
+    display: block;
+  }
+
+  .sortIcons :global(svg + svg) {
+    margin-top: -0.5rem;
+  }
 
   .columnHeaderCell:not(:last-child)::after {
     content: '';
@@ -67,6 +99,8 @@
 
   .searchWithIcon input {
     padding-right: 2.6rem !important; 
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif !important;
+    font-size: var(--text-mobile-paragraph-2) !important;
   }
 
   .searchWrapper::after {
