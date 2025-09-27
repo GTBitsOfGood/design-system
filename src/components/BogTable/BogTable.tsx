@@ -183,7 +183,6 @@ const BogTable: React.FC<BogTableProps> = ({
               {columnHeaders.map((header, i) => {
                 const dir = getSortForColumn(i);
                 const isSortable = header.datatype !== 'other';
-                console.log(header.datatype);
                 return (
                   <Table.ColumnHeaderCell
                     key={`col-${i}`}
