@@ -40,7 +40,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {
+export const Card: Story = {
   args: {
     variant: 'surface',
     size: '2',
