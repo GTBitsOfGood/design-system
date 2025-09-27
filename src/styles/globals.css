@@ -107,6 +107,42 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 
+  h1 {
+    line-height: var(--text-mobile-heading-1--line-height);
+    font-size: var(--text-mobile-heading-1);
+    font-family: var(--font-heading);
+  }
+
+  h2 {
+    line-height: var(--text-mobile-heading-2--line-height);
+    font-size: var(--text-mobile-heading-2);
+    font-family: var(--font-heading);
+  }
+
+  h3 {
+    line-height: var(--text-mobile-heading-3--line-height);
+    font-size: var(--text-mobile-heading-3);
+    font-family: var(--font-heading);
+  }
+
+  h4, h5, h6 {
+    line-height: var(--text-mobile-heading-4--line-height);
+    font-size: var(--text-mobile-heading-4);
+    font-family: var(--font-heading);
+  }
+
+  small {
+    line-height: var(--text-mobile-small--line-height);
+    font-size: var(--text-mobile-small);
+    font-family: var(--font-paragraph);
+  }
+
+  p, pre, span, ul, ol, li, a {
+    line-height: var(--text-mobile-paragraph-1--line-height);
+    font-size: var(--text-mobile-paragraph-1);
+    font-family: var(--font-paragraph);
+  }
+
   @font-face {
     font-family: 'Visby Extra Bold';
     src:
@@ -216,6 +252,36 @@
     .text-small {
       line-height: var(--text-desktop-small--line-height);
       font-size: var(--text-desktop-small);
+    }
+
+    h1 {
+      line-height: var(--text-desktop-heading-1--line-height);
+      font-size: var(--text-desktop-heading-1);
+    }
+
+    h2 {
+      line-height: var(--text-desktop-heading-2--line-height);
+      font-size: var(--text-desktop-heading-2);
+    }
+
+    h3 {
+      line-height: var(--text-desktop-heading-3--line-height);
+      font-size: var(--text-desktop-heading-3);
+    }
+
+    h4, h5, h6 {
+      line-height: var(--text-desktop-heading-4--line-height);
+      font-size: var(--text-desktop-heading-4);
+    }
+
+    small {
+      line-height: var(--text-desktop-small--line-height);
+      font-size: var(--text-desktop-small);
+    }
+
+    p, pre, span, ul, ol, li, a {
+      line-height: var(--text-desktop-paragraph-1--line-height);
+      font-size: var(--text-desktop-paragraph-1);
     }
   }
 }
