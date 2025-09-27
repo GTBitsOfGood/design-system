@@ -1,0 +1,57 @@
+@layer base {
+  .card {
+    border-radius: 16px !important;
+    display: block !important;
+    --shadow-1: none !important;
+    --shadow-2: none !important;
+    --shadow-3: none !important;
+    --shadow-4: none !important;
+  }
+
+  .card:where([data-variant="surface"]) {
+    background-color: #F9F9F9 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .card:where([data-variant="classic"]) {
+    background-color: white !important;
+    border: 1px solid #E5E5E5 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .card:where([data-variant="ghost"]) {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .card:not([data-variant]) {
+    background-color: #F9F9F9 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .card::before,
+  .card::after {
+    content: none !important;
+    box-shadow: none !important;
+  }
+  
+  .card.rt-CardRoot {
+    border-radius: 16px !important;
+  }
+  
+  .card:focus,
+  .card:focus-visible,
+  .card:active {
+    outline: none !important;
+  }
+  
+  .card a,
+  .card a:focus,
+  .card a:focus-visible,
+  .card a:active {
+    outline: none !important;
+  }
+}
