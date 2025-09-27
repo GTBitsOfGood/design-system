@@ -1,26 +1,19 @@
 @layer base {
   .toast {
-    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 8px;
-    border-radius: 4px;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
     font-family: var(--font-paragraph);
-    width: 318px;
-    pointer-events: auto;
-    user-select: none;
-    touch-action: none;
-    
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: var(--ease-in-out);
-    transition-duration: 200ms;
+    pointer-events: auto; /* ensures users can interact with the toast */
+    user-select: none;  /* prevents text selection */
+    touch-action: none; /* prevents touch actions */
   }
 
-  /* Status variants */
+  /* FILLED TOAST */
   .toast.success {
     background-color: var(--color-status-green-text);
-    color: white;
+    color: white; 
   }
 
   .toast.error {
@@ -28,25 +21,25 @@
     color: white;
   }
 
-  .toast.message-primary {
+  .toast.info {
     background-color: var(--color-status-blue-text);
     color: white;
   }
 
-  .toast.message-secondary {
+  .toast.warning {
     background-color: var(--color-status-amber-text);
     color: white;
   }
 
-  .toast.message-brand {
+  .toast.brand {
     background-color: var(--color-brand-text);
     color: white;
   }
 
-  /* Outlined variants*/
+  /* OUTLINE TOAST */
   .toast.outlined {
     background-color: white;
-    border: 1px solid;
+    border: 0.1rem solid;
   }
 
   .toast.outlined.success {
@@ -59,21 +52,51 @@
     color: var(--color-status-red-text);
   }
 
-  .toast.outlined.message-primary {
+  .toast.outlined.info {
     border-color: var(--color-status-blue-text);
     color: var(--color-status-blue-text);
   }
 
-  .toast.outlined.message-secondary {
+  .toast.outlined.warning {
     border-color: var(--color-status-amber-text);
     color: var(--color-status-amber-text);
   }
 
-  .toast.outlined.message-brand {
+  .toast.outlined.brand {
     border-color: var(--color-brand-text);
     color: var(--color-brand-text);
   }
 
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    background-color: transparent;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .icon.success {
+    background-color: white;
+    color: var(--color-status-green-text);
+    border-radius: 50%;
+  }
+
+  .toast.outlined .icon {
+    background-color: inherit;
+    color: inherit;
+  }
+
+  .toast.outlined .icon.success {
+    background-color: var(--color-status-green-text);
+    color: white;
+    border-radius: 50%;
+  }
+  
+  /* CONTENT */
   .content {
     display: flex;
     flex-direction: column;
@@ -82,14 +105,12 @@
   
   .top-row {
     display: flex;
-    align-items: flex-start;
-    gap: 8px;
+    gap: 0.8rem;
     width: 100%;
   }
-
+  
   .toast .title {
-    margin-top: 3px;
-    font-weight: 300;
+    margin-top: 0.3rem;
     font-size: var(--text-mobile-small);
     line-height: var(--text-mobile-small--line-height);
     font-family: var(--font-heading);
@@ -100,7 +121,6 @@
   }
 
   .description {
-    font-weight: 400;
     font-size: var(--text-mobile-small);
     line-height: var(--text-mobile-small--line-height);
     @media (width >= 1024px) {
@@ -117,13 +137,9 @@
     cursor: pointer;
     font-size: var(--text-mobile-small);
     font-family: var(--font-heading);
-    font-weight: 300;
     padding: 0.25rem 0.5rem;
-    margin-right: 20px;
+    margin-right: 2rem;
     border-radius: 0.25rem;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: var(--ease-in-out);
-    transition-duration: 200ms;
   }
 
   .action:hover {
@@ -132,7 +148,7 @@
 
   .action:focus {
     outline: none;
-    --tw-ring-offset-width: 2px;
+    --tw-ring-offset-width: 0.2rem;
     --tw-ring-color: rgba(59, 130, 246, var(--tw-ring-opacity));
   }
 
@@ -148,8 +164,8 @@
 
   .close {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 0.8rem;
+    right: 0.8rem;
     background: none;
     border: none;
     cursor: pointer;
@@ -158,10 +174,6 @@
     align-items: center;
     justify-content: center;
     border-radius: 0.25rem;
-    
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: var(--ease-in-out);
-    transition-duration: 200ms;
   }
 
   .close:hover {
@@ -170,11 +182,10 @@
 
   .close:focus {
     outline: none;
-    --tw-ring-offset-width: 2px;
+    --tw-ring-offset-width: 0.2rem;
     --tw-ring-color: rgba(59, 130, 246, var(--tw-ring-opacity));
   }
 
-  /* Outlined variant close styles */
   .toast.outlined .close {
     color: inherit;
   }
@@ -184,93 +195,22 @@
     color: inherit;
   }
 
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    background-color: transparent;
-    color: white;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .icon.success {
-    background-color: white;
-    color: var(--color-status-green-text);
-    border-radius: 50%;
-  }
-
-  .icon.error {
-    background-color: var(--color-status-red-text);
-    color: var(--color-status-white-text);
-  }
-
-  /* Outlined variant icon styles */
-  .toast.outlined .icon {
-    color: inherit;
-  }
-
-  .toast.outlined .icon.success {
-    background-color: var(--color-status-green-text);
-    color: white;
-    border-radius: 50%;
-  }
-
-  .toast.outlined .icon.error {
-    background-color: transparent;
-    color: var(--color-status-red-text);
-  }
-
-  .toast.outlined .icon.info,
-  .toast.outlined .icon.amber,
-  .toast.outlined .icon.brand {
-    background-color: transparent;
-    color: inherit;
-  }
-
   .viewport {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    max-width: 317.33px;
+    gap: 0.8rem;
+    max-width: 31.75rem;
     width: auto;
     padding: 0;
     margin: 0;
     list-style: none;
-    z-index: 2147483647;
+    z-index: 2147483647; /* highest z-index possible */
     outline: none;
     pointer-events: none;
   }
 
-  .viewport.centered {
-    bottom: auto;
-    right: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 }
 
-@layer base {
-  [data-radix-toast-viewport] {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-width: 317.33px;
-    width: auto;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    z-index: 2147483647;
-    outline: none;
-    pointer-events: none;
-  }
-}

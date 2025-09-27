@@ -1,40 +1,35 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Toast } from 'radix-ui';
 import { createPortal } from 'react-dom';
 import styles from './styles.module.css';
 import BogIcon from '../BogIcon/BogIcon';
 
-interface BogToastProps extends React.ComponentProps<typeof Toast.Provider> {
+interface BogToastProps extends React.ComponentProps<typeof Toast.Root> {
+  /** Additional props to pass to the toast viewport container. */
   viewportProps?: React.ComponentPropsWithoutRef<typeof Toast.Viewport>;
+  /** The main title text displayed in the toast. */
   title?: string;
+  /** The description text displayed below the title in the toast. */
   description?: string;
+  /** Custom action element to display in the toast (e.g., a button). */
   action?: ReactElement;
-  status?:
-    | 'success'
-    | 'error'
-    | 'message-primary'
-    | 'message-secondary'
-    | 'message-brand';
+  /** The visual status/type of the toast that determines its styling and icon. */
+  status?: 'success' | 'error' | 'info' | 'warning' | 'brand';
+  /** The visual style variant of the toast. */
   variant?: 'filled' | 'outlined';
+  /** Whether to show a button in the toast. */
   button?: boolean;
+  /** Whether to show an icon in the toast based on the status. */
   icon?: boolean;
 
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
+  /** How long the toast should be visible in seconds. Use 0 toast to remain visible until closed. */
   duration?: number;
 
-  // Positioning
-  centered?: boolean;
-
+  /** Additional class names to apply styles to the toast. These can be tailwind classes or custom CSS classes. */
   className?: string;
+  /** Additional CSS styles to apply to the toast. */
   style?: React.CSSProperties;
 }
-
-// Default props for the component
-const defaultProps: Partial<BogToastProps> = {
-  duration: Infinity,
-  open: false,
-};
 
 export default function BogToast({
   viewportProps,
@@ -45,49 +40,55 @@ export default function BogToast({
   variant,
   button,
   icon,
-  open = defaultProps.open,
-  onOpenChange,
-  duration = defaultProps.duration,
-  centered,
+  duration = 0,
   className,
   style,
-  ...providerProps
+  ...props
 }: BogToastProps) {
+  const statusStyles = {
+    success: styles.success,
+    error: styles.error,
+    info: styles.info,
+    warning: styles.warning,
+    brand: styles.brand,
+  };
+
+  const variantStyles = {
+    filled: styles.filled,
+    outlined: styles.outlined,
+  };
+
+  // Icon names per the BogIcon component options
+  const iconNames = {
+    success: 'check',
+    error: 'warning',
+    info: 'info',
+    warning: 'info',
+    brand: 'info',
+  };
+
+  // Builds the toast className by
+  // combining base styles with variant style
+  const toastClass = `${styles.toast} ${status ? statusStyles[status] : ''} ${
+    variant ? variantStyles[variant] : ''
+  } ${className || ''}`.trim();
+
   const toastContent = (
     <Toast.Root
-      className={`${styles.toast} ${status ? styles[status] : ''} ${variant === 'outlined' ? styles.outlined : ''} ${className}`}
+      className={toastClass}
       style={style}
-      open={open ?? false}
-      onOpenChange={(isOpen) => {
-        if (!isOpen && onOpenChange) {
-          setTimeout(() => {
-            onOpenChange(false);
-          }, 0);
-        }
-      }}
-      duration={duration ?? Infinity} //set to infinity as placeholder for duration controls
+      duration={duration}
+      {...props}
     >
       <div className={styles['top-row']}>
         {icon && (
           <div
-            className={`${styles.icon} ${status === 'success' ? styles.success : status === 'error' ? styles.error : status === 'message-primary' ? styles.info : status === 'message-secondary' ? styles.amber : status === 'message-brand' ? styles.brand : ''}`}
+            className={`${styles.icon} ${status ? statusStyles[status] : ''}`}
           >
             <BogIcon
-              name={
-                status === 'success'
-                  ? 'check'
-                  : status === 'error'
-                    ? 'warning'
-                    : 'info'
-              }
+              name={(status ? iconNames[status] || 'info' : 'info') as any}
               size={18}
-              weight={
-                status === 'success'
-                  ? 'bold'
-                  : status === 'error'
-                    ? 'fill'
-                    : 'fill'
-              }
+              weight={status === 'success' ? 'bold' : 'fill'}
             />
           </div>
         )}
@@ -112,13 +113,14 @@ export default function BogToast({
   );
 
   return (
-    <Toast.Provider duration={Infinity} {...providerProps}>
-      {open && toastContent}
+    <Toast.Provider duration={duration === 0 ? Infinity : duration * 1000}>
+      {toastContent}
+      {/* Portal logic necessary to render toast outside of parent component in docs */}
       {createPortal(
         <Toast.Viewport
-          className={`${styles.viewport} ${centered ? styles.centered : ''}`}
+          className={`${styles.viewport}`}
           {...viewportProps}
-          key={`toast-viewport-${centered ? 'centered' : 'normal'}`}
+          key={`toast-viewport`}
         />,
         document.body,
       )}

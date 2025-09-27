@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
 
 import BogToast from './BogToast';
 import BogButton from '../BogButton/BogButton';
@@ -21,13 +20,7 @@ const meta = {
     description: { control: 'text' },
     status: {
       control: 'select',
-      options: [
-        'success',
-        'error',
-        'message-primary',
-        'message-secondary',
-        'message-brand',
-      ],
+      options: ['success', 'error', 'info', 'warning', 'brand'],
     },
     variant: {
       control: 'select',
@@ -35,14 +28,11 @@ const meta = {
     },
     icon: { control: 'boolean' },
     button: { control: 'boolean' },
-    open: { control: 'boolean' },
-    duration: { control: false },
+    duration: { control: 'number' },
     action: { control: false },
-    centered: { control: false },
     viewportProps: { control: false },
-    onOpenChange: { control: false },
-    className: { control: false },
-    style: { control: false },
+    className: { control: 'text' },
+    style: { control: 'text' },
   },
 } satisfies Meta<typeof BogToast>;
 
@@ -59,23 +49,26 @@ export const Toast: Story = {
     variant: 'filled',
     icon: true,
     button: true,
-    action: <span>Button</span>,
-    duration: Infinity,
-    open: false,
+    action: <div>Button</div>,
+    duration: 0,
   },
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(args.open);
+    const [open, setOpen] = useState(false);
 
     return (
       <div style={{ padding: '2rem' }}>
-        <BogToast {...args} open={isOpen} onOpenChange={setIsOpen} />
         <BogButton
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setOpen(false);
+            setTimeout(() => setOpen(true), 100);
+          }}
           variant="primary"
           size="responsive"
         >
-          Show Toast
+          Button
         </BogButton>
+
+        <BogToast {...args} open={open} onOpenChange={setOpen} />
       </div>
     );
   },
