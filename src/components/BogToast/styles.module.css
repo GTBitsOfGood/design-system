@@ -133,17 +133,19 @@
     align-self: flex-end;
     color: white;
     background: none;
-    border: none;
+    border: 0.1rem solid white;
     cursor: pointer;
     font-size: var(--text-mobile-small);
     font-family: var(--font-heading);
-    padding: 0.25rem 0.5rem;
+    padding: 0.4rem 0.8rem;
     margin-right: 2rem;
-    border-radius: 0.25rem;
+    border-radius: 0.4rem;
+    transition: all 0.1s ease; /* hover transition in seconds */
   }
 
   .action:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: white;
+    color: inherit;
   }
 
   .action:focus {
@@ -152,14 +154,111 @@
     --tw-ring-color: rgba(59, 130, 246, var(--tw-ring-opacity));
   }
 
-  .toast.outlined .action {
-    color: inherit;
-    border: none;
+  /* ACTION FILLED */
+  .toast.success .action {
+    border-color: white;
+    color: white;
   }
 
-  .toast.outlined .action:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  .toast.success .action:hover {
+    background-color: white;
+    color: var(--color-status-green-text);
+  }
+
+  .toast.error .action {
+    border-color: white;
+    color: white;
+  }
+
+  .toast.error .action:hover {
+    background-color: white;
+    color: var(--color-status-red-text);
+  }
+
+  .toast.info .action {
+    border-color: white;
+    color: white;
+  }
+
+  .toast.info .action:hover {
+    background-color: white;
+    color: var(--color-status-blue-text);
+  }
+
+  .toast.warning .action {
+    border-color: white;
+    color: white;
+  }
+
+  .toast.warning .action:hover {
+    background-color: white;
+    color: var(--color-status-amber-text);
+  }
+
+  .toast.brand .action {
+    border-color: white;
+    color: white;
+  }
+
+  .toast.brand .action:hover {
+    background-color: white;
+    color: var(--color-brand-text);
+  }
+
+  /* ACTION OUTLINED */
+  .toast.outlined .action {
     color: inherit;
+    background: none;
+  }
+
+  .toast.outlined.success .action {
+    border-color: var(--color-status-green-text);
+    color: var(--color-status-green-text);
+  }
+
+  .toast.outlined.success .action:hover {
+    background-color: var(--color-status-green-text);
+    color: white;
+  }
+
+  .toast.outlined.error .action {
+    border-color: var(--color-status-red-text);
+    color: var(--color-status-red-text);
+  }
+
+  .toast.outlined.error .action:hover {
+    background-color: var(--color-status-red-text);
+    color: white;
+  }
+
+  .toast.outlined.info .action {
+    border-color: var(--color-status-blue-text);
+    color: var(--color-status-blue-text);
+  }
+
+  .toast.outlined.info .action:hover {
+    background-color: var(--color-status-blue-text);
+    color: white;
+  }
+
+  .toast.outlined.warning .action {
+    border-color: var(--color-status-amber-text);
+    color: var(--color-status-amber-text);
+  }
+
+  .toast.outlined.warning .action:hover {
+    background-color: var(--color-status-amber-text);
+    color: white;
+  }
+
+  .toast.outlined.brand .action {
+    border-color: var(--color-brand-text);
+    color: var(--color-brand-text);
+  }
+
+  .toast.outlined.brand .action:hover {
+    background-color: var(--color-brand-text);
+    color: white;
   }
 
   .close {

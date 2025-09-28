@@ -68,7 +68,7 @@ export default function BogToast({
   };
 
   // Builds the toast className by
-  // combining base styles with variant style
+  // combining base styles with variant style and additional className
   const toastClass = `${styles.toast} ${status ? statusStyles[status] : ''} ${
     variant ? variantStyles[variant] : ''
   } ${className || ''}`.trim();
@@ -87,7 +87,7 @@ export default function BogToast({
           >
             <BogIcon
               name={(status ? iconNames[status] || 'info' : 'info') as any}
-              size={18}
+              size={16}
               weight={status === 'success' ? 'bold' : 'fill'}
             />
           </div>
@@ -103,7 +103,7 @@ export default function BogToast({
       </div>
       {button && (
         <Toast.Action className={styles.action} altText={'Button'}>
-          {action || 'Button'}
+          {action}
         </Toast.Action>
       )}
       <Toast.Close className={styles.close}>
