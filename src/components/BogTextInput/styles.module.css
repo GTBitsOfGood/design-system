@@ -24,13 +24,11 @@
       }
     }
     
-    /* Wrapper to position an icon inside the input field */
     .inputWrapper {
       position: relative;
       display: flex;
       align-items: center;
 
-      /* ensure the inner input takes full width */
       .input {
         width: 100%;
         box-sizing: border-box;
@@ -53,16 +51,14 @@
       justify-content: center;
       height: 100%;
       color: var(--color-grey-stroke-strong);
-      pointer-events: none; /* non-clickable by default */
+      pointer-events: none;
     }
 
-    /* If icon should be on the right */
     .iconRight .iconContainer {
       left: auto;
       right: 0.6rem;
     }
 
-    /* When icon is clickable, enable pointer events */
     .clickable {
       pointer-events: auto;
       cursor: pointer;
@@ -72,8 +68,6 @@
       color: var(--color-brand-stroke-strong);
     }
 
-    /* For multi-line inputs, keep the icon vertically near the top-left */
-    /* For multi-line inputs, keep the icon vertically near the top-left */
     .iconContainer:has(+ textarea),
     .iconContainer:has(+ .multiline) {
       align-self: flex-start;
