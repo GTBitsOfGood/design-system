@@ -15,7 +15,7 @@ export type ColumnHeaderCellContent = {
   /** Cell text/content */
   content: string;
   /** datatype for sorting behavior */
-  datatype?: ColumnDatatype;
+  datatype: ColumnDatatype;
 };
 
 export type RowCellContent = {
