@@ -2,7 +2,6 @@
 @layer base {
     .container {
         min-height: auto !important;
-        border-radius: 0.8rem !important;
         overflow: hidden;          
         
     }
@@ -94,7 +93,7 @@
 
   .searchWrapper {
     position: relative;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
   }
 
   .searchWithIcon input {
