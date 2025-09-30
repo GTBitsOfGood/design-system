@@ -42,6 +42,7 @@ export default function BogCard({
     <Card
       {...rest}
       variant={variant}
+      data-variant={variant}
       size={resolvedSize}
       className={`${styles.card} ${styles[sizeClass]}${
         className ? ` ${className}` : ''

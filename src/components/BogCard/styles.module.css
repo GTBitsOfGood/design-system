@@ -56,18 +56,18 @@
   }
 
   .size1 {
-    min-height: 3rem !important;
-    min-width: 10rem !important;
+    min-height: 10rem !important;
+    min-width: 30rem !important;
   }
 
   .size2 {
-    min-height: 3.5rem !important;
-    min-width: 12rem !important;
+    min-height: 14rem !important;
+    min-width: 45rem !important;
   }
 
   .size3 {
-    min-height: 4rem !important;
-    min-width: 15.53125rem !important;
+    min-height: 17rem !important;
+    min-width: 62.2rem !important;
   }
 
   :global(.radix-themes[data-is-root-theme='true']) {

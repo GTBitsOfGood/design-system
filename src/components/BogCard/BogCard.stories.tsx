@@ -39,15 +39,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const CardStory: Story = {
+export const Card: Story = {
   args: {},
-  render: (args) => (
-    <Theme appearance="light">
-      <div style={{ width: 622 }}>
-        <BogCard {...args}>
-          <div style={{ height: 170 }} />
-        </BogCard>
-      </div>
-    </Theme>
-  ),
 };
