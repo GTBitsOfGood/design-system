@@ -58,7 +58,7 @@ export const BogTabs: React.FC<BogTabsProps> = ({
             onClick={(e) => {
               if (href) {
                 e.preventDefault();
-                window.open(href, '_blank');
+                window.open(href, '_blank', 'noopener,noreferrer');
               }
             }}
           >
