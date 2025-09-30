@@ -42,7 +42,7 @@
 
   .bog-tabs-trigger[data-state='active'] {
     color: var(--color-grey-text-strong);
-    border-bottom: 0.2rem solid var(--color-grey-text-strong);
+    border-bottom: 0.2rem solid var(--color-grey-stroke-strong);
   }
 
   .bog-tabs-label {

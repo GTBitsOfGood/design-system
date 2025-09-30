@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
+import { BrowserRouter } from 'react-router';
 import BogTabs, { BogTab, BogTabsProps } from './BogTabs';
-
 import { InfoIcon } from '@phosphor-icons/react';
 
 const tabContents: Record<string, BogTab> = {
@@ -29,12 +29,24 @@ const tabContents: Record<string, BogTab> = {
       </button>
     ),
   },
+  link: {
+    label: 'Link',
+    content: 'Link to a particular page',
+    href: 'https://www.radix-ui.com/themes/docs/components/badge',
+  },
 };
 
 const meta: Meta<BogTabsProps> = {
   title: 'Tabs',
   component: BogTabs,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <BrowserRouter>
+        <Story />
+      </BrowserRouter>
+    ),
+  ],
 };
 
 export default meta;
@@ -43,7 +55,7 @@ type Story = StoryObj<BogTabsProps>;
 export const Tabs: Story = {
   args: {
     defaultValue: 'overview',
-    tabContents,
+    tabContents: tabContents,
     size: 2,
   },
 };

@@ -2,10 +2,12 @@ import * as Tabs from '@radix-ui/react-tabs';
 import React from 'react';
 import styles from './styles.module.css';
 import { useResponsive } from '../../utils/hooks/useResponsive';
+import { Link } from 'react-router';
 
 export type BogTab = {
   label: string;
   content: React.ReactNode;
+  href?: string;
 };
 
 export interface BogTabsProps extends React.ComponentProps<typeof Tabs.Root> {
@@ -48,25 +50,38 @@ export const BogTabs: React.FC<BogTabsProps> = ({
       {...rootProps}
     >
       <Tabs.List className={listClass}>
-        {Object.entries(tabContents).map(([value, { label }]) => (
+        {Object.entries(tabContents).map(([value, { label, href }]) => (
           <Tabs.Trigger
             key={value}
             value={value}
             className={styles['bog-tabs-trigger']}
+            // asChild={!!href}
           >
-            <div className={styles['bog-tabs-label']}>{label}</div>
+            {href ? (
+              <Link
+                to={href}
+                target="_blank"
+                className={styles['bog-tabs-label']}
+              >
+                {label}
+              </Link>
+            ) : (
+              <div className={styles['bog-tabs-label']}>{label}</div>
+            )}
           </Tabs.Trigger>
         ))}
       </Tabs.List>
-      {Object.entries(tabContents).map(([value, { content }]) => (
-        <Tabs.Content
-          key={value}
-          value={value}
-          className={styles['bog-tabs-content']}
-        >
-          {content}
-        </Tabs.Content>
-      ))}
+      {Object.entries(tabContents).map(([value, { content, href }]) =>
+        !href ? (
+          <Tabs.Content
+            key={value}
+            value={value}
+            className={styles['bog-tabs-content']}
+          >
+            {content}
+          </Tabs.Content>
+        ) : null,
+      )}
     </Tabs.Root>
   );
 };
