@@ -55,33 +55,26 @@ export const BogTabs: React.FC<BogTabsProps> = ({
             key={value}
             value={value}
             className={styles['bog-tabs-trigger']}
-            // asChild={!!href}
+            onClick={(e) => {
+              if (href) {
+                e.preventDefault();
+                window.open(href, '_blank');
+              }
+            }}
           >
-            {href ? (
-              <Link
-                to={href}
-                target="_blank"
-                className={styles['bog-tabs-label']}
-              >
-                {label}
-              </Link>
-            ) : (
-              <div className={styles['bog-tabs-label']}>{label}</div>
-            )}
+            <div className={styles['bog-tabs-label']}>{label}</div>
           </Tabs.Trigger>
         ))}
       </Tabs.List>
-      {Object.entries(tabContents).map(([value, { content, href }]) =>
-        !href ? (
-          <Tabs.Content
-            key={value}
-            value={value}
-            className={styles['bog-tabs-content']}
-          >
-            {content}
-          </Tabs.Content>
-        ) : null,
-      )}
+      {Object.entries(tabContents).map(([value, { content, href }]) => (
+        <Tabs.Content
+          key={value}
+          value={value}
+          className={styles['bog-tabs-content']}
+        >
+          {!href ? content : null}
+        </Tabs.Content>
+      ))}
     </Tabs.Root>
   );
 };

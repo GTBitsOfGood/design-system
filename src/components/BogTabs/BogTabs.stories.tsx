@@ -32,7 +32,7 @@ const tabContents: Record<string, BogTab> = {
   link: {
     label: 'Link',
     content: 'Link to a particular page',
-    href: 'https://www.radix-ui.com/themes/docs/components/badge',
+    href: '/?path=/docs/icon--docs',
   },
 };
 
@@ -55,7 +55,7 @@ type Story = StoryObj<BogTabsProps>;
 export const Tabs: Story = {
   args: {
     defaultValue: 'overview',
-    tabContents: tabContents,
+    tabContents,
     size: 2,
   },
 };
