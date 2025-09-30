@@ -1,6 +1,6 @@
 @layer base {
   .card {
-    border-radius: 16px !important;
+    border-radius: 1.6rem !important;
     display: block !important;
     --shadow-1: none !important;
     --shadow-2: none !important;
@@ -9,15 +9,15 @@
   }
 
   .card:where([data-variant="surface"]) {
-    background-color: #F9F9F9 !important;
+    background-color: var(--color-solid-bg-sunken) !important;
     border: none !important;
     box-shadow: none !important;
   }
 
   .card:where([data-variant="classic"]) {
-    background-color: white !important;
-    border: 1px solid #E5E5E5 !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    background-color: var(--color-solid-bg-sunken) !important;
+    border: 0.1rem solid var(--color-grey-stroke-weak) !important;
+    box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1) !important;
   }
 
   .card:where([data-variant="ghost"]) {
@@ -27,7 +27,7 @@
   }
 
   .card:not([data-variant]) {
-    background-color: #F9F9F9 !important;
+    background-color: var(--color-solid-bg-sunken) !important;
     border: none !important;
     box-shadow: none !important;
   }
@@ -37,21 +37,40 @@
     content: none !important;
     box-shadow: none !important;
   }
-  
+
   .card.rt-CardRoot {
-    border-radius: 16px !important;
+    border-radius: 1.6rem !important;
   }
-  
+
   .card:focus,
   .card:focus-visible,
   .card:active {
     outline: none !important;
   }
-  
+
   .card a,
   .card a:focus,
   .card a:focus-visible,
   .card a:active {
     outline: none !important;
+  }
+
+  .size1 {
+    min-height: 3rem !important;
+    min-width: 10rem !important;
+  }
+
+  .size2 {
+    min-height: 3.5rem !important;
+    min-width: 12rem !important;
+  }
+
+  .size3 {
+    min-height: 4rem !important;
+    min-width: 15.53125rem !important;
+  }
+
+  :global(.radix-themes[data-is-root-theme='true']) {
+    min-height: auto !important;
   }
 }

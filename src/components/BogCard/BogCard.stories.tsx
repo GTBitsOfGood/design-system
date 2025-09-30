@@ -2,8 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import BogCard from './BogCard';
-import { Text, Theme } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
+import { Theme } from '@radix-ui/themes';
 
 const meta = {
   title: 'Card',
@@ -18,8 +17,8 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: ['1', '2', '3'],
-      description: 'The size of the card (affects border radius)',
+      options: ['small', 'medium', 'large', 'responsive'],
+      description: 'The size of the card',
     },
     children: {
       control: false,
@@ -40,20 +39,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Card: Story = {
-  args: {
-    variant: 'surface',
-    size: '2',
-  },
+export const CardStory: Story = {
+  args: {},
   render: (args) => (
     <Theme appearance="light">
       <div style={{ width: 622 }}>
         <BogCard {...args}>
-          <div
-            style={{
-              height: 170,
-            }}
-          ></div>
+          <div style={{ height: 170 }} />
         </BogCard>
       </div>
     </Theme>
