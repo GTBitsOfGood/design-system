@@ -23,5 +23,55 @@
         opacity: 0.85;
       }
     }
+    
+    .inputWrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .input {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+    .iconLeft .input {
+      padding-left: 2.5rem;
+    }
+
+    .iconRight .input {
+      padding-right: 2.5rem;
+    }
+
+    .iconContainer {
+      position: absolute;
+      left: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--color-grey-stroke-strong);
+      pointer-events: none;
+    }
+
+    .iconRight .iconContainer {
+      left: auto;
+      right: 0.6rem;
+    }
+
+    .clickable {
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    .clickable:hover {
+      color: var(--color-brand-stroke-strong);
+    }
+
+    .iconContainer:has(+ textarea),
+    .iconContainer:has(+ .multiline) {
+      align-self: flex-start;
+      padding-top: 0.6rem;
+    }
   }
 }
