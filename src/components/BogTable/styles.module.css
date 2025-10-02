@@ -2,7 +2,6 @@
 @layer base {
     .container {
         min-height: auto !important;
-        border-radius: 0.8rem !important;
         overflow: hidden;          
         
     }
@@ -22,12 +21,46 @@
     background-color: var(--color-grey-fill-weaker) !important;
     position: relative;
     padding: 0 1.2rem;
+    padding-right: 4rem;    
     font-weight: 600;
     vertical-align: middle;
     font-size: var(--text-desktop-small);
 
   }
+  .sortIcons {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-grey-off-state);
+    pointer-events: auto;    
+    cursor: pointer;
+  }
 
+  .sortDisabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.7;
+  }
+
+  .sortChevronActive {
+    color: var(--color-grey-text-strong) !important;
+  }
+  .sortChevronInactive {
+    color: var(--color-grey-off-state) !important;
+  }
+
+  .sortIcons :global(svg) {
+    display: block;
+  }
+
+  .sortIcons :global(svg + svg) {
+    margin-top: -0.5rem;
+  }
 
   .columnHeaderCell:not(:last-child)::after {
     content: '';
@@ -56,6 +89,37 @@
   .size3 {
     min-height: 4rem !important;
     min-width: 15.53125rem !important;
+  }
+
+  .searchWrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .searchWithIcon input {
+    padding-right: 2.6rem !important; 
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif !important;
+    font-size: var(--text-mobile-paragraph-2) !important;
+  }
+
+  .searchWrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    border-left: 0.1rem solid var(--color-grey-stroke-weak);
+    right: calc(1.3rem + 2rem + 0.5rem); 
+    pointer-events: none;
+  }
+
+  .searchIcon {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-grey-stroke-strong);
+    pointer-events: none; 
   }
 
 

@@ -1,18 +1,21 @@
 import { Table, Theme } from '@radix-ui/themes';
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styles from './styles.module.css';
 import { useResponsive } from '../../utils/hooks/useResponsive';
-import {
-  getNumericalSizeFromBreakpoint,
-  getSizeFromBreakpoint,
-} from '../../utils/breakpoints/breakpoints';
+import { getNumericalSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
 import '@radix-ui/themes/styles.css';
+import BogTextInput from '../BogTextInput/BogTextInput';
+import BogIcon from '../BogIcon/BogIcon';
+
+type ColumnDatatype = 'string' | 'string[]' | 'number' | 'number[]' | 'other';
 
 export type ColumnHeaderCellContent = {
   /** Props forwarded to Radix Table.Cell / Table.RowHeaderCell */
   styleProps?: React.ComponentProps<typeof Table.ColumnHeaderCell>;
   /** Cell text/content */
   content: string;
+  /** datatype for sorting behavior */
+  datatype: ColumnDatatype;
 };
 
 export type RowCellContent = {
@@ -36,7 +39,7 @@ interface BogTableProps
   /** Data rows (rendered in tbody) */
   rows: TableRow[];
   /** Visual size; responsive maps breakpoints -> small|medium|large */
-  size?: 'mobile' | 'tablet' | 'desktop' | 'responsive';
+  size?: 'small' | 'medium' | 'large' | 'responsive';
   /** Tailwind / custom class names */
   className?: string;
   /** Inline styles */
@@ -52,16 +55,122 @@ const BogTable: React.FC<BogTableProps> = ({
   ...rootProps
 }) => {
   const breakpoint = useResponsive();
-  const resolvedSize =
+  type SortDirection = 'asc' | 'desc';
+  type SortEntry = { index: number; direction: SortDirection };
+
+  const [sorts, setSorts] = React.useState<SortEntry[]>([]);
+  const [query, setQuery] = React.useState('');
+
+  const extractText = (node: ReactNode): string => {
+    if (node == null || typeof node === 'boolean') return '';
+    if (typeof node === 'string' || typeof node === 'number')
+      return String(node);
+    if (Array.isArray(node)) return node.map(extractText).join(' ');
+    if (React.isValidElement(node)) {
+      const { children } = (node.props as { children?: ReactNode }) ?? {};
+      return extractText(children);
+    }
+    return '';
+  };
+
+  const filteredRows = React.useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return rows;
+    return rows.filter((row) =>
+      row.cells.some((cell) =>
+        extractText(cell.content).toLowerCase().includes(q),
+      ),
+    );
+  }, [rows, query]);
+
+  const getSortForColumn = (colIndex: number): SortDirection | undefined =>
+    sorts.find((s) => s.index === colIndex)?.direction;
+
+  const toggleSort = (colIndex: number) => {
+    setSorts((prev) => {
+      const i = prev.findIndex((s) => s.index === colIndex);
+      if (i === -1) {
+        return [...prev, { index: colIndex, direction: 'asc' }];
+      }
+      const dir = prev[i].direction;
+      if (dir === 'asc') {
+        const next = [...prev];
+        next[i] = { index: colIndex, direction: 'desc' };
+        return next;
+      }
+      return prev.filter((s) => s.index !== colIndex);
+    });
+  };
+
+  const getSortValue = (
+    node: ReactNode,
+    datatype?: ColumnDatatype,
+  ): number | string => {
+    const text = extractText(node).trim();
+    switch (datatype) {
+      case 'number':
+      case 'number[]': {
+        const nums = text.match(/-?\d+(\.\d+)?/g)?.map(Number) ?? [];
+        return nums.length ? nums[0] : Number.NaN;
+      }
+      case 'string':
+      case 'string[]':
+      default:
+        return text.toLowerCase();
+    }
+  };
+
+  const sortedRows = React.useMemo(() => {
+    if (sorts.length === 0) return filteredRows;
+    const decorated = filteredRows.map((row, idx) => ({ row, idx }));
+    decorated.sort((a, b) => {
+      for (const { index, direction } of sorts) {
+        const dt = columnHeaders[index]?.datatype;
+        const av = getSortValue(a.row.cells[index]?.content, dt);
+        const bv = getSortValue(b.row.cells[index]?.content, dt);
+
+        let cmp = 0;
+        if (typeof av === 'number' && typeof bv === 'number') {
+          const aNum = Number.isNaN(av) ? Number.POSITIVE_INFINITY : av;
+          const bNum = Number.isNaN(bv) ? Number.POSITIVE_INFINITY : bv;
+          cmp = aNum - bNum;
+        } else {
+          cmp = String(av).localeCompare(String(bv), undefined, {
+            numeric: true,
+            sensitivity: 'base',
+          });
+        }
+        if (cmp !== 0) {
+          return direction === 'asc' ? cmp : -cmp;
+        }
+      }
+      return a.idx - b.idx;
+    });
+    return decorated.map((d) => d.row);
+  }, [filteredRows, sorts, columnHeaders]);
+
+  const handleSearchChange: React.FormEventHandler<HTMLDivElement> = (e) => {
+    const el = e.target as HTMLInputElement;
+    if (el && typeof el.value === 'string') setQuery(el.value);
+  };
+
+  const radixSize: '1' | '2' | '3' =
     size === 'responsive'
       ? getNumericalSizeFromBreakpoint(breakpoint)
-      : getNumericalSizeFromBreakpoint(size);
-  const radixSize = resolvedSize;
+      : ({ small: '1', medium: '2', large: '3' } as const)[size];
 
   const sizeClass = `size${radixSize}`;
 
   return (
     <Theme>
+      <div className={styles.searchWrapper} onChange={handleSearchChange}>
+        <BogTextInput
+          name="search"
+          placeholder="Enter text to search"
+          className={styles.searchWithIcon}
+        />
+        <BogIcon name="search" size={16} className={styles.searchIcon} />
+      </div>
       <div className={styles.container}>
         <Table.Root
           {...rootProps}
@@ -71,19 +180,60 @@ const BogTable: React.FC<BogTableProps> = ({
         >
           <Table.Header>
             <Table.Row className={styles.headerRow}>
-              {columnHeaders.map((header, i) => (
-                <Table.ColumnHeaderCell
-                  key={`col-${i}`}
-                  {...header.styleProps}
-                  className={`${styles.columnHeaderCell} ${styles.cellBase} ${styles[sizeClass]}`}
-                >
-                  {header.content}
-                </Table.ColumnHeaderCell>
-              ))}
+              {columnHeaders.map((header, i) => {
+                const dir = getSortForColumn(i);
+                const isSortable = header.datatype !== 'other';
+                return (
+                  <Table.ColumnHeaderCell
+                    key={`col-${i}`}
+                    {...header.styleProps}
+                    className={`${styles.columnHeaderCell} ${styles.cellBase} ${styles[sizeClass]}`}
+                  >
+                    {header.content}
+
+                    {isSortable && (
+                      <div
+                        className={styles.sortIcons}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Sort by ${header.content}${
+                          dir
+                            ? `, ${dir === 'asc' ? 'ascending' : 'descending'}`
+                            : ''
+                        }`}
+                        onClick={() => toggleSort(i)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            toggleSort(i);
+                          }
+                        }}
+                      >
+                        <BogIcon
+                          name="chevron-up"
+                          className={
+                            dir === 'asc'
+                              ? styles.sortChevronActive
+                              : styles.sortChevronInactive
+                          }
+                        />
+                        <BogIcon
+                          name="chevron-down"
+                          className={
+                            dir === 'desc'
+                              ? styles.sortChevronActive
+                              : styles.sortChevronInactive
+                          }
+                        />
+                      </div>
+                    )}
+                  </Table.ColumnHeaderCell>
+                );
+              })}
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {rows.map((row, rIdx) => (
+            {sortedRows.map((row, rIdx) => (
               <Table.Row key={`row-${rIdx}`} {...row.styleProps}>
                 {row.cells.map((cell, cIdx) =>
                   cIdx === 0 ? (
