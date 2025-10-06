@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, Dispatch, SetStateAction, useState } from 'react';
 import styles from './styles.module.css';
 import { Dialog } from 'radix-ui';
 import BogButton from '../BogButton/BogButton';
@@ -12,13 +12,19 @@ interface BogModalContentProps
   style?: React.CSSProperties;
 }
 
-interface BogModalProps extends React.ComponentProps<typeof Dialog.Root> {
-  /** Whether the modal is open by default. */
-  defaultOpen: boolean;
-  /** Controls whether the modal is open. */
+interface OpenState {
   open: boolean;
-  /** Function that is called when the modal is opened or closed. */
-  onOpenChange: (open: boolean) => void;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+interface BogModalProps extends React.ComponentProps<typeof Dialog.Root> {
+  /** Controls modal's open/closed state. Takes both {open, setOpen}, which are to be defined by React's useState
+   * where open is a boolean value. Alternatively, neither is passed in and a default {open, setOpen} is generated. */
+  openState?: OpenState;
+  /** Whether the modal is open by default. Useful for when openState is not passed in. */
+  defaultOpen?: boolean;
+  /** Custom actions that occur when opening/closing the modal. */
+  onOpenChange?: (open: boolean) => void;
   /** Whether the dialog is modal (blocks interaction with the rest of the interface) or not. */
   modal?: boolean;
   /** The button to close the modal. */
@@ -33,45 +39,59 @@ interface BogModalProps extends React.ComponentProps<typeof Dialog.Root> {
   description?: ReactElement;
 }
 
-const defaultCloseButton = (
-  <BogButton variant="tertiary">
-    <BogIcon name="close" />
-  </BogButton>
-);
+const defaultCloseButton = <BogIcon name="close" size="24" />;
 
 const defaultTrigger = <BogButton>Click me!</BogButton>;
 
 export default function BogModal({
-  defaultOpen,
-  open,
+  openState,
+  defaultOpen = false,
   onOpenChange,
   modal = true,
   closeButton = defaultCloseButton,
   trigger = defaultTrigger,
   contentProps,
-  title,
-  description,
+  title = <span></span>,
+  description = <span></span>,
   ...props
 }: BogModalProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [internalOpen, internalSetOpen] = useState(defaultOpen);
+  const open = openState ? openState.open : internalOpen;
+  const setOpen = openState ? openState.setOpen : internalSetOpen;
 
-  useEffect(() => {
-    setIsOpen(open);
-  }, [open]);
-
-  useEffect(() => {
-    onOpenChange(isOpen);
-  }, [isOpen]);
+  const handleOpenChange = (newOpen: boolean) => {
+    setOpen(newOpen);
+    if (onOpenChange) onOpenChange(newOpen);
+  };
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={setIsOpen} {...props}>
+    <Dialog.Root
+      open={open}
+      onOpenChange={handleOpenChange}
+      modal={modal}
+      {...props}
+    >
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />
-        <Dialog.Content {...contentProps} className={styles.content}>
-          <Dialog.Title asChild>{title}</Dialog.Title>
-          <Dialog.Description asChild>{description}</Dialog.Description>
-          <Dialog.Close className={styles.closeButton} asChild>
+        <Dialog.Content
+          {...contentProps}
+          className={styles.content}
+          onPointerDownOutside={(e) => {
+            if (!modal) e.preventDefault();
+          }}
+          onInteractOutside={(e) => {
+            if (!modal) e.preventDefault();
+          }}
+        >
+          {/* Global CSS classes 'text-heading-1' and 'text-paragraph-1' handle responsiveness between desktop and mobile */}
+          <Dialog.Title className="text-heading-1" asChild>
+            {title}
+          </Dialog.Title>
+          <Dialog.Description className="text-paragraph-1" asChild>
+            {description}
+          </Dialog.Description>
+          <Dialog.Close className={styles.closeButton}>
             {closeButton}
           </Dialog.Close>
         </Dialog.Content>
