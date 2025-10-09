@@ -1,0 +1,76 @@
+@layer base {
+  .card {
+    border-radius: 1.6rem !important;
+    display: block !important;
+    --shadow-1: none !important;
+    --shadow-2: none !important;
+    --shadow-3: none !important;
+    --shadow-4: none !important;
+  }
+
+  .card:where([data-variant="surface"]) {
+    background-color: var(--color-solid-bg-sunken) !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .card:where([data-variant="classic"]) {
+    background-color: var(--color-solid-bg-sunken) !important;
+    border: 0.1rem solid var(--color-grey-stroke-weak) !important;
+    box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .card:where([data-variant="ghost"]) {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .card:not([data-variant]) {
+    background-color: var(--color-solid-bg-sunken) !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .card::before,
+  .card::after {
+    content: none !important;
+    box-shadow: none !important;
+  }
+
+  .card.rt-CardRoot {
+    border-radius: 1.6rem !important;
+  }
+
+  .card:focus,
+  .card:focus-visible,
+  .card:active {
+    outline: none !important;
+  }
+
+  .card a,
+  .card a:focus,
+  .card a:focus-visible,
+  .card a:active {
+    outline: none !important;
+  }
+
+  .size1 {
+    min-height: 10rem !important;
+    min-width: 30rem !important;
+  }
+
+  .size2 {
+    min-height: 14rem !important;
+    min-width: 45rem !important;
+  }
+
+  .size3 {
+    min-height: 17rem !important;
+    min-width: 62.2rem !important;
+  }
+
+  :global(.radix-themes[data-is-root-theme='true']) {
+    min-height: auto !important;
+  }
+}
