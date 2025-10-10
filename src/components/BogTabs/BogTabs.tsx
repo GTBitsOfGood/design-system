@@ -54,10 +54,13 @@ export const BogTabs: React.FC<BogTabsProps> = ({
           <Tabs.Trigger
             key={value}
             value={value}
-            className={styles['bog-tabs-trigger']}
+            className={`${styles['bog-tabs-trigger']} ${href ? '' : styles['bog-tabs-label-wrapper']}`}
           >
             {href ? (
-              <a href={href} className={styles['bog-tabs-href']}>
+              <a
+                href={href}
+                className={`${styles['bog-tabs-href']} ${styles['bog-tabs-label-wrapper']}`}
+              >
                 <div className={styles['bog-tabs-label']}>{label}</div>
               </a>
             ) : (

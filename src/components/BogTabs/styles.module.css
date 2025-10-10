@@ -31,7 +31,6 @@
     border: none;
     border-bottom: 0.2rem solid transparent;
     color: var(--color-grey-text-weak);
-    padding: 0.5rem 1.25rem 0.5rem 1.25rem;
     cursor: pointer;
     position: relative;
     width: 100%;
@@ -43,6 +42,10 @@
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+
+  .bog-tabs-label-wrapper {
+    padding: 0.5rem 1.25rem 0.5rem 1.25rem;
   }
 
   .bog-tabs-trigger[data-state='active'] {
