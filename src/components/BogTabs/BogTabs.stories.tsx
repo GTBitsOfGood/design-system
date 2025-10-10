@@ -47,3 +47,18 @@ export const Tabs: Story = {
     size: 2,
   },
 };
+
+export const NavigationTabs: Story = {
+  args: {
+    defaultValue: 'overview',
+    tabContents: {
+      overview: { label: 'Overview', content: 'Overview content' },
+      externalLink: {
+        label: 'Navigation',
+        content: 'This content should not be displayed',
+        href: '#',
+      },
+    },
+    size: 2,
+  },
+};
