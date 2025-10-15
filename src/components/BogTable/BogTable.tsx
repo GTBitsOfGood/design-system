@@ -5,6 +5,9 @@ import { useResponsive } from '../../utils/hooks/useResponsive';
 import { getNumericalSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
 import BogTextInput from '../BogTextInput/BogTextInput';
 import BogIcon from '../BogIcon/BogIcon';
+import BogButton from '../BogButton/BogButton';
+import BogPopover from '../BogPopover/BogPopover';
+import { Popover } from 'radix-ui';
 
 type ColumnDatatype = 'string' | 'string[]' | 'number' | 'number[]' | 'other';
 
@@ -162,13 +165,62 @@ const BogTable: React.FC<BogTableProps> = ({
 
   return (
     <Theme>
-      <div className={styles.searchWrapper} onChange={handleSearchChange}>
-        <BogTextInput
-          name="search"
-          placeholder="Enter text to search"
-          className={styles.searchWithIcon}
+      <div className={styles.topBar}>
+        <div className={styles.searchWrapper} onChange={handleSearchChange}>
+          <BogTextInput
+            name="search"
+            placeholder="Enter text to search"
+            className={styles.searchWithIcon}
+          />
+          <BogIcon name="search" size={16} className={styles.searchIcon} />
+        </div>
+        <BogPopover
+          className={styles.noClosePadding}
+          contentProps={{
+            side: 'bottom',
+            align: 'end',
+            sideOffset: 6,
+          }}
+          arrowProps={{
+            className: styles.hiddenArrow,
+            width: 0,
+            height: 0,
+            style: { display: 'none' },
+          }}
+          closeProps={{
+            closeButton: <span />, // replace the default icon/content
+            style: { display: 'none' }, // hide the Close wrapper itself
+          }}
+          trigger={
+            <BogButton
+              className={styles.filterButton}
+              size="medium"
+              iconProps={{
+                iconProps: {
+                  name: 'funnel-simple',
+                  size: 20,
+                },
+                position: 'right',
+              }}
+            >
+              Filter
+            </BogButton>
+          }
+          content={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {/* Replace with your real filter UI */}
+              <span>Filter options go here</span>
+
+              <div className={styles.popoverFooter}>
+                <Popover.Close asChild>
+                  <BogButton variant="secondary" size="medium">
+                    Cancel
+                  </BogButton>
+                </Popover.Close>
+              </div>
+            </div>
+          }
         />
-        <BogIcon name="search" size={16} className={styles.searchIcon} />
       </div>
       <div className={styles.container}>
         <Table.Root

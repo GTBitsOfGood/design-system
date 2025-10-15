@@ -5,7 +5,7 @@
     min-height: auto !important;
     border-radius: 0.8rem !important;
     overflow: hidden;          
-    font-family: 'Open Sans (Custom)', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    font-family: var(--font-paragraph);
       
   }
   .container .radix-themes:where([data-is-root-theme='true']) {
@@ -18,7 +18,6 @@
     font-size: var(--text-desktop-small);
 
   }
-
 
    .columnHeaderCell {
     background-color: var(--color-grey-fill-weaker) !important;
@@ -94,10 +93,31 @@
     min-width: 15.53125rem !important;
   }
 
-  .searchWrapper {
-    position: relative;
+  .topBar {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1.5rem;
   }
+
+
+
+  .filterButton {
+    font-family: var(--font-paragraph);
+    padding: 0.5rem .75rem;
+    font-size: 14px;
+  }
+
+
+  .searchWrapper {
+    flex: 1;
+    position: relative;
+    
+  }
+.noClosePadding {
+  padding-right: 1rem !important;
+}
 
   .searchWithIcon input {
     padding-right: 2.6rem !important; 
@@ -234,6 +254,7 @@
     border: 1px solid var(--gray-a5);
     border-radius: var(--table-border-radius);
     background-color: var(--color-panel);
+    -webkit-backdrop-filter: var(--backdrop-filter-panel);
     backdrop-filter: var(--backdrop-filter-panel);
     background-clip: padding-box;
     position: relative;

@@ -43,7 +43,8 @@ export type IconName =
   | 'x'
   | 'error'
   | 'warning'
-  | 'success';
+  | 'success'
+  | 'funnel-simple';
 
 // Include all props from Phosphor Icons
 interface BogIconProps
