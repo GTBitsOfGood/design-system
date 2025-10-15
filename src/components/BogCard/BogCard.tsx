@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
 import { useResponsive } from '../../utils/hooks/useResponsive';
 import { getNumericalSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
 import styles from './styles.module.css';

@@ -3,7 +3,6 @@ import React, { ReactNode } from 'react';
 import styles from './styles.module.css';
 import { useResponsive } from '../../utils/hooks/useResponsive';
 import { getNumericalSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
-import '@radix-ui/themes/styles.css';
 import BogTextInput from '../BogTextInput/BogTextInput';
 import BogIcon from '../BogIcon/BogIcon';
 
