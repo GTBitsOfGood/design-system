@@ -15,9 +15,9 @@ export type BogChipState =
   | 'inProgress'
   | 'inReview';
 
-export interface BogChipProps extends Omit<RadixBadgeProps, 'size' | 'radius'> {
-  size?: '1' | '2' | '3' | 'responsive';
-  variant?: NonNullable<BadgeProps['variant']>;
+export interface BogChipProps
+  extends Omit<RadixBadgeProps, 'size' | 'radius' | 'variant'> {
+  size?: '1' | '2' | '3' | '4' | 'responsive';
   color?: BadgeProps['color'];
   highContrast?: boolean;
   asChild?: boolean;
@@ -28,10 +28,11 @@ export interface BogChipProps extends Omit<RadixBadgeProps, 'size' | 'radius'> {
   children?: React.ReactNode;
 }
 
-const sizeClassMap: Record<'1' | '2' | '3', string> = {
+const sizeClassMap: Record<'1' | '2' | '3' | '4', string> = {
   '1': styles.size1,
   '2': styles.size2,
   '3': styles.size3,
+  '4': styles.size4,
 };
 
 const stateClassMap: Record<Exclude<BogChipState, 'none'>, string> = {
@@ -51,10 +52,11 @@ const iconByState: Record<
   inReview: 'info',
 };
 
-const iconPxBySize: Record<'1' | '2' | '3', number> = {
+const iconPxBySize: Record<'1' | '2' | '3' | '4', number> = {
   '1': 14,
   '2': 16,
   '3': 18,
+  '4': 20,
 };
 
 const stateInlinePalette: Record<
@@ -62,24 +64,24 @@ const stateInlinePalette: Record<
   { color: string; backgroundColor: string; ring: string }
 > = {
   complete: {
-    color: '#0A7B40',
-    backgroundColor: 'rgba(10,123,64,0.05)',
-    ring: '#0A7B40',
+    color: 'var(--color-status-green-text)',
+    backgroundColor: 'var(--color-status-green-fill)',
+    ring: 'var(--color-status-green-text)',
   },
   failure: {
-    color: '#C73A3A',
-    backgroundColor: 'rgba(199,58,58,0.05)',
-    ring: '#C73A3A',
+    color: 'var(--color-status-red-text)',
+    backgroundColor: 'var(--color-status-red-fill)',
+    ring: 'var(--color-status-red-text)',
   },
   inProgress: {
-    color: '#8F6C1A',
-    backgroundColor: 'rgba(143,108,26,0.05)',
-    ring: '#8F6C1A',
+    color: 'var(--color-status-amber-text)',
+    backgroundColor: 'var(--color-status-amber-fill)',
+    ring: 'var(--color-status-amber-text)',
   },
   inReview: {
-    color: '#325CE8',
-    backgroundColor: 'rgba(50,92,232,0.05)',
-    ring: '#325CE8',
+    color: 'var(--color-status-blue-text)',
+    backgroundColor: 'var(--color-status-blue-fill)',
+    ring: 'var(--color-status-blue-text)',
   },
 };
 
@@ -87,7 +89,6 @@ export default function BogChip({
   asChild,
   children,
   size = 'responsive',
-  variant = 'soft',
   color,
   highContrast = false,
   radius = 'full',
@@ -97,7 +98,7 @@ export default function BogChip({
   ...rest
 }: BogChipProps) {
   const bp = useResponsive?.() ?? 'large';
-  const resolvedSize: '1' | '2' | '3' =
+  const resolvedSize: '1' | '2' | '3' | '4' =
     size === 'responsive' ? (bp === 'small' ? '1' : '2') : (size ?? '2');
 
   const hasState = state !== 'none';
@@ -117,19 +118,15 @@ export default function BogChip({
   const palette = hasState
     ? stateInlinePalette[state as Exclude<BogChipState, 'none'>]
     : null;
+  const isOutline = (rest as RadixBadgeProps).variant === 'outline';
 
   const mergedStyle: React.CSSProperties = {
     ...(hasState
-      ? variant === 'outline'
-        ? {
-            color: palette!.color,
-            backgroundColor: 'transparent',
-            boxShadow: `inset 0 0 0 1px ${palette!.ring}`,
-          }
-        : {
-            color: palette!.color,
-            backgroundColor: palette!.backgroundColor,
-          }
+      ? {
+          color: palette!.color,
+          backgroundColor: isOutline ? 'transparent' : palette!.backgroundColor,
+          ...(isOutline && { boxShadow: `inset 0 0 0 1px ${palette!.ring}` }),
+        }
       : null),
     ...style,
   };
@@ -138,8 +135,7 @@ export default function BogChip({
     <Badge
       {...(rest as Omit<RadixBadgeProps, 'radius' | 'size'>)}
       asChild={asChild}
-      size={resolvedSize}
-      variant={variant}
+      size={resolvedSize as RadixBadgeProps['size']}
       color={hasState ? undefined : color}
       highContrast={highContrast}
       radius={radius}

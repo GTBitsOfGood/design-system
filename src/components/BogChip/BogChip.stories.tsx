@@ -9,7 +9,7 @@ const meta = {
   component: BogChip,
   parameters: {
     layout: 'centered',
-    docs: { story: { height: '160px' } },
+    docs: { story: { inline: true, height: '120px' } },
   },
   tags: ['autodocs'],
   decorators: [
@@ -25,6 +25,8 @@ const meta = {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            height: '120px',
+            margin: 0,
             padding: 0,
           }}
         >
@@ -35,11 +37,7 @@ const meta = {
   ],
   argTypes: {
     asChild: { control: 'boolean' },
-    size: { control: 'radio', options: ['1', '2', '3', 'responsive'] },
-    variant: {
-      control: 'radio',
-      options: ['solid', 'soft', 'surface', 'outline'],
-    },
+    size: { control: 'radio', options: ['1', '2', '3', '4', 'responsive'] },
     color: {
       control: 'radio',
       options: ['green', 'crimson', 'orange', 'indigo'],
@@ -57,12 +55,8 @@ const meta = {
   },
   args: {
     children: 'Complete',
-    state: 'none',
-    size: 'responsive',
-    variant: 'soft',
     color: 'green',
-    highContrast: false,
-    radius: 'full',
+    state: 'none',
   },
 } satisfies Meta<typeof BogChip>;
 

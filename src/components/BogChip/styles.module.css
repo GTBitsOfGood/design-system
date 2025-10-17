@@ -4,11 +4,14 @@
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    font-family: "Visby CF", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-weight: 500;
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     box-sizing: border-box;
     white-space: nowrap;
     line-height: 1;
+  }
+
+  .my-semi-bold-class {
+    font-weight: 600;
   }
 
   .content {
@@ -18,31 +21,59 @@
   }
 
   .size1 {
-    min-width: 5.75rem;
-    min-height: 1.5rem;
-    padding-inline: 0.75rem;
-    font-size: var(--text-body-small);
-    line-height: var(--text-body-small--line-height);
+    min-width: 9.2rem;
+    min-height: 2.4rem;
+    padding-inline: 0.8rem;
+    font-size: 1.6rem !important;
+    font-weight: 600 !important;
+  }
+  .size1 .content,
+  .size1 .content > span {
+    font-size: 1.6rem !important;
+    font-weight: 600 !important;
   }
 
   .size2 {
-    min-width: 7.4375rem;
-    min-height: 2rem;
+    min-width: 11.9rem;
+    min-height: 3.2rem;
     padding-inline: 1rem;
-    font-size: var(--text-body-paragraph-2);
-    line-height: var(--text-body-paragraph-2--line-height);
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
+  }
+  .size2 .content,
+  .size2 .content > span {
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
   }
 
   .size3 {
-    min-width: 8.375rem;
-    min-height: 2.375rem;
+    min-width: 13.4rem;
+    min-height: 3.8rem;
     padding-inline: 1.2rem;
-    font-size: var(--text-body-paragraph-1);
-    line-height: var(--text-body-paragraph-1--line-height);
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
+  }
+  .size3 .content,
+  .size3 .content > span {
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
   }
 
-  .stateComplete { color: #0a7b40; background-color: rgba(10,123,64,0.05); }
-  .stateFailure { color: #c73a3a; background-color: rgba(199,58,58,0.05); }
-  .stateInProgress { color: #8f6c1a; background-color: rgba(143,108,26,0.05); }
-  .stateInReview { color: #325ce8; background-color: rgba(50,92,232,0.05); }
+  .size4 {
+    min-width: 16.2rem;
+    min-height: 4.2rem;
+    padding-inline: 1.3rem;
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+  }
+  .size4 .content,
+  .size4 .content > span {
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+  }
+
+  .stateComplete { color: var(--color-status-green-text); background-color: var(--color-status-green-fill); }
+  .stateFailure { color: var(--color-status-red-text); background-color: var(--color-status-red-fill); }
+  .stateInProgress { color: var(--color-status-amber-text); background-color: var(--color-status-amber-fill); }
+  .stateInReview { color: var(--color-status-blue-text); background-color: var(--color-status-blue-fill); }
 }
