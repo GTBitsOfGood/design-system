@@ -1,0 +1,48 @@
+@layer base {
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-family: "Visby CF", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    box-sizing: border-box;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .content {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .size1 {
+    min-width: 5.75rem;
+    min-height: 1.5rem;
+    padding-inline: 0.75rem;
+    font-size: var(--text-body-small);
+    line-height: var(--text-body-small--line-height);
+  }
+
+  .size2 {
+    min-width: 7.4375rem;
+    min-height: 2rem;
+    padding-inline: 1rem;
+    font-size: var(--text-body-paragraph-2);
+    line-height: var(--text-body-paragraph-2--line-height);
+  }
+
+  .size3 {
+    min-width: 8.375rem;
+    min-height: 2.375rem;
+    padding-inline: 1.2rem;
+    font-size: var(--text-body-paragraph-1);
+    line-height: var(--text-body-paragraph-1--line-height);
+  }
+
+  .stateComplete { color: #0a7b40; background-color: rgba(10,123,64,0.05); }
+  .stateFailure { color: #c73a3a; background-color: rgba(199,58,58,0.05); }
+  .stateInProgress { color: #8f6c1a; background-color: rgba(143,108,26,0.05); }
+  .stateInReview { color: #325ce8; background-color: rgba(50,92,232,0.05); }
+}
