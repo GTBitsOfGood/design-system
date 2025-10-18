@@ -372,7 +372,7 @@ const BogTable: React.FC<BogTableProps> = ({
                 active.condition === 'is-not-blank' ||
                 (active.value ?? '').trim().length > 0);
             const chipText = active?.condition
-              ? `${header}: ${CONDITION_LABEL[active.condition]}: ${active.value}`
+              ? `${header}: ${CONDITION_LABEL[active.condition]}${active.value ? `: ${active.value}` : ''}`
               : header;
 
             return (
