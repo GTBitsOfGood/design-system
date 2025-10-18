@@ -253,7 +253,7 @@
   .chipPopoverContentRoot {
     background-color: #fff !important; 
     border: 1px solid var(--color-grey-stroke-weak);
-    border-radius: 8px;
+    border-radius: 0.8rem;
     box-shadow: var(--shadow-2, 0 4px 12px rgba(0,0,0,0.08));
     padding: 1.2rem; 
     
