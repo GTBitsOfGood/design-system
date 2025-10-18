@@ -177,8 +177,7 @@
     gap: 0.8rem;
     padding: 1.2rem;
     font-size: .5rem !important;
-    display: 'flex';
-    gap: 8 
+  
   }
 
   .popoverBody {
@@ -219,8 +218,6 @@
     gap: 0.8rem;
     padding: 1.2rem;
     font-size: .5rem !important;
-    display: 'flex';
-    gap: 8 
   }
 
   .chipPopoverBody {
