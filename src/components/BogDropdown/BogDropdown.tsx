@@ -32,6 +32,10 @@ interface BogDropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   /** Additional CSS styles to apply to the dropdown. */
   style?: React.CSSProperties;
+  /** The current value of the dropdown for controlled components. */
+  value?: string | string[];
+  /** The default value of the dropdown for uncontrolled components. */
+  defaultValue?: string | string[];
 }
 
 export default function BogDropdown({
@@ -44,10 +48,15 @@ export default function BogDropdown({
   onSelectionChange,
   style,
   className,
+  value,
+  defaultValue,
 }: BogDropdownProps) {
+  const isCheckbox = type === 'checkbox';
+  const isControlled = value !== undefined;
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<string | string[]>(
-    type === 'checkbox' ? [] : '',
+    defaultValue !== undefined ? defaultValue : isCheckbox ? [] : '',
   );
   const triggerRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -59,6 +68,12 @@ export default function BogDropdown({
       setTriggerWidth(triggerRef.current.offsetWidth);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if (isControlled) {
+      setSelected(value as any);
+    }
+  }, [isControlled, value]);
 
   const openInput = () => {
     if (inputRef.current) {
