@@ -32,7 +32,9 @@ interface BogDropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   /** Additional CSS styles to apply to the dropdown. */
   style?: React.CSSProperties;
+  /** The current value of the dropdown for controlled components. */
   value?: string | string[];
+  /** The default value of the dropdown for uncontrolled components. */
   defaultValue?: string | string[];
 }
 
