@@ -1,4 +1,3 @@
-
 @layer base {
 
   .container {
@@ -98,15 +97,32 @@
     gap: 2rem;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
   }
 
+  .filterButton.filterButton {
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    gap: none !important;
+    min-height: 2.4rem;
+  }
 
+  .filterIcon{
+  transform: scaleX(0.77); transform-origin: center; 
+}
 
   .filterButton {
     font-family: var(--font-paragraph);
-    padding: 0.5rem .75rem;
-    font-size: 14px;
+    padding: 0.5rem .75rem .5rem 1rem !important;
+    font-size: 1.5rem !important;
+    font-weight: 500 !important;
+    box-sizing: border-box;
+    border-radius: 0.4rem !important;
+    border: 1px solid transparent;
+  }
+
+  .filterButton > div {
+    gap: 0 !important; 
   }
 
 
@@ -115,9 +131,6 @@
     position: relative;
     
   }
-.noClosePadding {
-  padding-right: 1rem !important;
-}
 
   .searchWithIcon input {
     padding-right: 2.6rem !important; 
@@ -145,8 +158,156 @@
     pointer-events: none; 
   }
 
+  .bogTable { 
+    display: flex;
+    flex-direction: column;
 
+  }
+  .popoverFooter {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding-top: 0.8rem;
+  }
+
+
+  .popoverContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.2rem;
+    font-size: .5rem !important;
+    display: 'flex';
+    gap: 8 
+  }
+
+  .popoverBody {
+    display: flex;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--color-grey-stroke-weak);
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.8rem;
+    height: 15.4rem;
+    width: 35.1rem;
+    background-color: var(--color-solid-bg-sunken);
+  }
+
+
+  .popoverContentRoot {
+    background-color: #fff !important; 
+    border: 1px solid var(--color-grey-stroke-weak);
+    border-radius: 8px;
+    box-shadow: var(--shadow-2, 0 4px 12px rgba(0,0,0,0.08));
+    padding: 1.2rem; 
+    
+    
+  }
+
+  .chipPopoverFooter {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding-top: 0.8rem;
+  }
+
+
+  .chipPopoverContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.2rem;
+    font-size: .5rem !important;
+    display: 'flex';
+    gap: 8 
+  }
+
+  .chipPopoverBody {
+    display: flex;
+    border-radius: 0.4rem;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.8rem;
+    height: 15.4rem;
+    width: 35.1rem;
+  }
+
+  .chipPopoverLabel {
+    font-size: 15px;
+  }
+
+  .chipInputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .chipDropdownWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
   
+
+  .chipPopoverContentRoot {
+    background-color: #fff !important; 
+    border: 1px solid var(--color-grey-stroke-weak);
+    border-radius: 8px;
+    box-shadow: var(--shadow-2, 0 4px 12px rgba(0,0,0,0.08));
+    padding: 1.2rem; 
+    
+    
+  }
+
+ .popoverContent h4 {
+    font-size: var(--text-desktop-paragraph-1) !important;
+    line-height: var(--text-desktop-paragraph-1--line-height) !important;
+  }
+
+
+  .popoverBody :global(button[role="checkbox"]) {
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+    min-width: 1.4rem !important;
+    min-height: 1.4rem !important;
+    border-radius: 0.3rem;
+  }
+
+  .popoverBody :global(button[role="checkbox"] > span) {
+    transform: scale(1.15) !important;         
+    transform-origin: center;
+  }
+
+  .popoverBody :global(button[role="checkbox"] svg) {
+    width: 1.4rem!important;
+    height: 2rem !important;
+  }
+
+  .tableDivider {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 1rem 0;
+    align-items: center;
+  }
+
+  .filterChip :global(button) {
+    background: var(--color-grey-fill-weak) !important;
+    border-radius: 10000rem;
+    color: black !important;
+    font-weight: 400;
+    
+  }
+
+  .filterChipActive :global(button) {
+    background: var(--color-status-blue-fill) !important;
+    color: var(--color-status-blue-text) !important;
+    border: 0.1rem solid var(--color-status-blue-stroke-strong) !important;
+  }
+  .filterChip {
+    gap: 2;
+  }
      
     
   :global(.radix-themes .radix-themes-table-root) {
