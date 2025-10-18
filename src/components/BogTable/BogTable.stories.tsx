@@ -24,15 +24,15 @@ const columnHeaders: ColumnHeaderCellContent[] = [
 const rows: TableRow[] = [
   {
     cells: [
-      { content: 'John Doe' },
-      { content: '30' },
+      { content: 'Pim Pimling' },
+      { content: '32' },
       { content: 'USA' },
       { content: 'Developer' },
     ],
   },
   {
     cells: [
-      { content: 'Jane Smith' },
+      { content: 'Charlie Dompler' },
       { content: '25' },
       { content: 'Canada' },
       { content: 'Designer' },
@@ -40,7 +40,7 @@ const rows: TableRow[] = [
   },
   {
     cells: [
-      { content: 'Sam Wilson' },
+      { content: 'Glep' },
       { content: '35' },
       { content: 'UK' },
       { content: 'Engineering Manager' },
@@ -48,10 +48,10 @@ const rows: TableRow[] = [
   },
   {
     cells: [
-      { content: 'John Doe' },
+      { content: 'Glep' },
       { content: '28' },
-      { content: 'Australia' },
-      { content: 'Product Manager' },
+      { content: 'Spamtopia' },
+      { content: 'Mr Frog' },
     ],
   },
 ];
