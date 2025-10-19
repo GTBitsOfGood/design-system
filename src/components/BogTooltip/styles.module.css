@@ -4,10 +4,10 @@
         color: var(--color-grey-text-strong);
         border: none;
         border-radius: 0.6rem;
-        padding: 0.5rem 0.5rem;
+        padding: 0.5rem 0.8rem 0.3rem 0.8rem;
         font-family: var(--font-paragraph);
-        font-size: var(--text-mobile-paragraph-2);
-        line-height: var(--text-mobile-paragraph-2--line-height);
+        font-size: var(--text-mobile-small);
+        line-height: var(--text-mobile-small--line-height);
     }
 
     .bog-tooltip__arrow {
