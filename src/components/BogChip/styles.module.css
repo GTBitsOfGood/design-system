@@ -1,79 +1,90 @@
-@layer base {
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    box-sizing: border-box;
-    white-space: nowrap;
-    line-height: 1;
+.chip.chip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+
+  &.small {
+    height: 2.4rem;
+
+    p, span, pre, a {
+      font-size: var(--text-mobile-small);
+      line-height: var(--text-mobile-small--line-height);
+      font-family: var(--font-paragraph);
+      font-weight: 600;
+      @media (width >= 1024px) {
+          font-size: var(--text-desktop-small);
+          line-height: var(--text-desktop-small--line-height);
+      }
+    }
   }
 
-  .my-semi-bold-class {
+  &.medium {
+    height: 3.2rem;
+
+    p, span, pre, a {
+      font-size: var(--text-mobile-paragraph-2);
+      line-height: var(--text-mobile-paragraph-2--line-height);
+      font-family: var(--font-paragraph);
+      font-weight: 600;
+      @media (width >= 1024px) {
+          font-size: var(--text-desktop-paragraph-2);
+          line-height: var(--text-desktop-paragraph-2--line-height);
+      }
+    }
+  }
+
+  &.large {
+    height: 3.8rem;
+    font-size: var(--text-mobile-paragraph-1);
+    line-height: var(--text-mobile-paragraph-1--line-height);
+    font-family: var(--font-paragraph);
     font-weight: 600;
+    @media (width >= 1024px) {
+        font-size: var(--text-desktop-paragraph-1);
+        line-height: var(--text-desktop-paragraph-1--line-height);
+    }
   }
 
-  .content {
-    display: inline-flex;
+  &.complete {
+    background-color: var(--color-status-green-fill);
+    color: var(--color-status-green-text);
+  }
+
+  &.failure {
+    background-color: var(--color-status-red-fill);
+    color: var(--color-status-red-text);
+  }
+
+  &.in-progress {
+    background-color: var(--color-status-amber-fill);
+    color: var(--color-status-amber-text);
+  }
+
+  &.in-review {
+    background-color: var(--color-status-blue-fill);
+    color: var(--color-status-blue-text);
+  }
+
+  &.radius-small {
+    border-radius: 0.1rem;
+  }
+
+  &.radius-medium {
+    border-radius: 0.25rem;
+  }
+
+  &.radius-large {
+    border-radius: 0.5rem;
+  }
+
+  &.radius-full {
+    border-radius: 1rem;
+  }
+
+  .contentContainer {
+    display: flex;
     align-items: center;
-    gap: 0.375rem;
+    gap: 0.5rem;
   }
-
-  .size1 {
-    min-width: 9.2rem;
-    min-height: 2.4rem;
-    padding-inline: 0.8rem;
-    font-size: 1.6rem !important;
-    font-weight: 600 !important;
-  }
-  .size1 .content,
-  .size1 .content > span {
-    font-size: 1.6rem !important;
-    font-weight: 600 !important;
-  }
-
-  .size2 {
-    min-width: 11.9rem;
-    min-height: 3.2rem;
-    padding-inline: 1rem;
-    font-size: 1.8rem !important;
-    font-weight: 600 !important;
-  }
-  .size2 .content,
-  .size2 .content > span {
-    font-size: 1.8rem !important;
-    font-weight: 600 !important;
-  }
-
-  .size3 {
-    min-width: 13.4rem;
-    min-height: 3.8rem;
-    padding-inline: 1.2rem;
-    font-size: 1.8rem !important;
-    font-weight: 600 !important;
-  }
-  .size3 .content,
-  .size3 .content > span {
-    font-size: 1.8rem !important;
-    font-weight: 600 !important;
-  }
-
-  .size4 {
-    min-width: 16.2rem;
-    min-height: 4.2rem;
-    padding-inline: 1.3rem;
-    font-size: 2rem !important;
-    font-weight: 600 !important;
-  }
-  .size4 .content,
-  .size4 .content > span {
-    font-size: 2rem !important;
-    font-weight: 600 !important;
-  }
-
-  .stateComplete { color: var(--color-status-green-text); background-color: var(--color-status-green-fill); }
-  .stateFailure { color: var(--color-status-red-text); background-color: var(--color-status-red-fill); }
-  .stateInProgress { color: var(--color-status-amber-text); background-color: var(--color-status-amber-fill); }
-  .stateInReview { color: var(--color-status-blue-text); background-color: var(--color-status-blue-fill); }
 }
