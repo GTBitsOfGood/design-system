@@ -9,13 +9,11 @@ import 'react-day-picker/style.css';
 import styles from './styles.module.css';
 
 type SelectedState = {
-  /** The currently selected date value. */
   selected: Date | undefined;
-  /** The setter function to update the selected date. */
   setSelected: Dispatch<SetStateAction<Date | undefined>>;
 };
 
-type BogDatePickerProps = PropsSingle & {
+type BogDatePickerProps = Omit<PropsSingle, 'mode'> & {
   /** The layout style of the caption (month and year). Options include:
    *  - `"label"`: Displays month and year as a label.
    *  - `"dropdown"`: Displays both month and year as dropdowns.
@@ -30,7 +28,7 @@ type BogDatePickerProps = PropsSingle & {
    *  - `"after"`: Places arrows on the right after the caption.
    */
   navLayout?: 'around' | 'after';
-  /** Whether to always display 6 weeks per month view, including leading/trailing spaces. */
+  /** Whether to always display 6 weeks per month view, including any trailing spaces. */
   fixedWeeks?: boolean;
   /** Custom content displayed below the calendar. If none provided, a default footer will be shown. */
   footer?: ReactNode;
@@ -38,7 +36,7 @@ type BogDatePickerProps = PropsSingle & {
   hideWeekdays?: boolean;
   /** Displays months in reverse order when showing multiple months side by side. */
   reverseMonths?: boolean;
-  /** Whether to show days from the previous and next months in the current month view. */
+  /** Whether to display the list of months in reverse chronological order (from newest to oldest). */
   showOutsideDays?: boolean;
   /** Whether to show the week number at the start of each week row. */
   showWeekNumber?: boolean;
@@ -53,9 +51,9 @@ type BogDatePickerProps = PropsSingle & {
    * If not provided, the component will manage its own internal selected state.
    */
   selectedState?: SelectedState;
-  /** Additional class names to apply styles to the modal. These can be tailwind classes or custom CSS classes. */
+  /** Additional class names to apply styles to the date picker. These can be tailwind classes or custom CSS classes. */
   className?: string;
-  /** Additional CSS styles to apply to the modal. */
+  /** Additional CSS styles to apply to the date picker. */
   style?: React.CSSProperties;
 };
 
@@ -116,8 +114,8 @@ export default function BogDatePicker({
         ...defaultClassNames,
         month_grid: `${defaultClassNames.month_grid} ${styles.monthGrid}`,
         month_caption: `${defaultClassNames.month_caption} text-paragraph-1 ${styles.monthCaption}`,
-        weekday: `${styles.weekday} text-small `,
-        day_button: `${styles.dayButton} text-small`,
+        weekday: `${styles.weekday} text-small`,
+        day: `${styles.day} text-small`,
       }}
       style={
         {
