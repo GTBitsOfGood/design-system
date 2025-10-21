@@ -6,6 +6,8 @@ import { useResponsive } from '../../utils/hooks/useResponsive';
 export type BogTab = {
   label: string;
   content: React.ReactNode;
+  /** Optional href — when present the tab should navigate instead of rendering content. */
+  href?: string;
 };
 
 export interface BogTabsProps extends React.ComponentProps<typeof Tabs.Root> {
@@ -48,25 +50,38 @@ export const BogTabs: React.FC<BogTabsProps> = ({
       {...rootProps}
     >
       <Tabs.List className={listClass}>
-        {Object.entries(tabContents).map(([value, { label }]) => (
+        {Object.entries(tabContents).map(([value, { label, href }]) => (
           <Tabs.Trigger
             key={value}
             value={value}
-            className={styles['bog-tabs-trigger']}
+            className={`${styles['bog-tabs-trigger']} ${href ? '' : styles['bog-tabs-label-wrapper']}`}
           >
-            <div className={styles['bog-tabs-label']}>{label}</div>
+            {href ? (
+              <a
+                href={href}
+                className={`${styles['bog-tabs-href']} ${styles['bog-tabs-label-wrapper']}`}
+              >
+                <div className={styles['bog-tabs-label']}>{label}</div>
+              </a>
+            ) : (
+              <div className={styles['bog-tabs-label']}>{label}</div>
+            )}
           </Tabs.Trigger>
         ))}
       </Tabs.List>
-      {Object.entries(tabContents).map(([value, { content }]) => (
-        <Tabs.Content
-          key={value}
-          value={value}
-          className={styles['bog-tabs-content']}
-        >
-          {content}
-        </Tabs.Content>
-      ))}
+
+      {/* Only render content for tabs that do not have an href (navigational tabs shouldn't render content) */}
+      {Object.entries(tabContents)
+        .filter(([_, tab]) => !tab.href)
+        .map(([value, { content }]) => (
+          <Tabs.Content
+            key={value}
+            value={value}
+            className={styles['bog-tabs-content']}
+          >
+            {content}
+          </Tabs.Content>
+        ))}
     </Tabs.Root>
   );
 };
