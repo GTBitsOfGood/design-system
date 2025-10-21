@@ -1,0 +1,90 @@
+.chip.chip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+
+  &.small {
+    height: 2.4rem;
+
+    p, span, pre, a {
+      font-size: var(--text-mobile-small);
+      line-height: var(--text-mobile-small--line-height);
+      font-family: var(--font-paragraph);
+      font-weight: 600;
+      @media (width >= 1024px) {
+          font-size: var(--text-desktop-small);
+          line-height: var(--text-desktop-small--line-height);
+      }
+    }
+  }
+
+  &.medium {
+    height: 3.2rem;
+
+    p, span, pre, a {
+      font-size: var(--text-mobile-paragraph-2);
+      line-height: var(--text-mobile-paragraph-2--line-height);
+      font-family: var(--font-paragraph);
+      font-weight: 600;
+      @media (width >= 1024px) {
+          font-size: var(--text-desktop-paragraph-2);
+          line-height: var(--text-desktop-paragraph-2--line-height);
+      }
+    }
+  }
+
+  &.large {
+    height: 3.8rem;
+    font-size: var(--text-mobile-paragraph-1);
+    line-height: var(--text-mobile-paragraph-1--line-height);
+    font-family: var(--font-paragraph);
+    font-weight: 600;
+    @media (width >= 1024px) {
+        font-size: var(--text-desktop-paragraph-1);
+        line-height: var(--text-desktop-paragraph-1--line-height);
+    }
+  }
+
+  &.complete {
+    background-color: var(--color-status-green-fill);
+    color: var(--color-status-green-text);
+  }
+
+  &.failure {
+    background-color: var(--color-status-red-fill);
+    color: var(--color-status-red-text);
+  }
+
+  &.in-progress {
+    background-color: var(--color-status-amber-fill);
+    color: var(--color-status-amber-text);
+  }
+
+  &.in-review {
+    background-color: var(--color-status-blue-fill);
+    color: var(--color-status-blue-text);
+  }
+
+  &.radius-small {
+    border-radius: 0.1rem;
+  }
+
+  &.radius-medium {
+    border-radius: 0.25rem;
+  }
+
+  &.radius-large {
+    border-radius: 0.5rem;
+  }
+
+  &.radius-full {
+    border-radius: 1rem;
+  }
+
+  .contentContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
