@@ -2,8 +2,8 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import BogButton from './BogButton';
-import BogIcon from '../BogIcon/BogIcon';
+import BogButton from '../components/BogButton/BogButton';
+import BogIcon from '../components/BogIcon/BogIcon';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

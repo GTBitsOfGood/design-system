@@ -3,6 +3,158 @@
   justify-content: center;
   align-items: center;
   padding: 0.4rem 0.8rem;
+  background-color: var(--background);
+  color: var(--foreground);
+
+  &.complete {
+    --background: var(--color-status-green-fill);
+    --foreground: var(--color-status-green-text);
+  }
+
+  &.failure {
+    --background: var(--color-status-red-fill);
+    --foreground: var(--color-status-red-text);
+  }
+
+  &.in-progress {
+    --background: var(--color-status-amber-fill);
+    --foreground: var(--color-status-amber-text);
+  }
+
+  &.in-review {
+    --background: var(--color-status-blue-fill);
+    --foreground: var(--color-status-blue-text);
+  }
+
+  &.gray {
+    --foreground: gray;
+    --background: rgba(128, 128, 128, 0.05);
+  }
+
+  &.gold {
+    --foreground: gold;
+    --background: rgba(255, 215, 0, 0.05);
+  }
+
+  &.bronze {
+    --foreground: rgba(205, 127, 50, 1.0);
+    --background: rgba(205, 127, 50, 0.05);
+  }
+
+  &.brown {
+    --foreground: brown;
+    --background: rgba(165, 42, 42, 0.05);
+  }
+
+  &.yellow {
+    --foreground: yellow;
+    --background: rgba(255, 255, 0, 0.05);
+  }
+
+  &.amber {
+    --foreground: rgba(255, 191, 0, 1.0);
+    --background: rgba(255, 191, 0, 0.05);
+  }
+
+  &.orange {
+    --foreground: orange;
+    --background: rgba(255, 165, 0, 0.05);
+  }
+
+  &.tomato {
+    --foreground: tomato;
+    --background: rgba(255, 99, 71, 0.05);
+  }
+
+  &.red {
+    --foreground: red;
+    --background: rgba(255, 0, 0, 0.05);
+  }
+
+  &.ruby {
+    --foreground: rgba(225, 23, 99, 1.0);
+    --background: rgba(225, 23, 99, 0.05);
+  }
+
+  &.crimson {
+    --foreground: crimson;
+    --background: rgba(220, 20, 60, 0.05);
+  }
+
+  &.pink {
+    --foreground: pink;
+    --background: rgba(255, 192, 203, 0.05);
+  }
+
+  &.plum {
+    --foreground: plum;
+    --background: rgba(221, 160, 221, 0.05);
+  }
+
+  &.purple {
+    --foreground: purple;
+    --background: rgba(128, 0, 128, 0.05);
+  }
+
+  &.violet {
+    --foreground: violet;
+    --background: rgba(238, 130, 238, 0.05);
+  }
+
+  &.iris {
+    --foreground: rgba(93, 63, 211);
+    --background: rgba(93, 63, 211, 0.05);
+  }
+
+  &.indigo {
+    --foreground: indigo;
+    --background: rgba(75, 0, 130, 0.05);
+  }
+
+  &.blue {
+    --foreground: blue;
+    --background: rgba(0, 0, 255, 0.05);
+  }
+
+  &.cyan {
+    --foreground: cyan;
+    --background: rgba(0, 255, 255, 0.05);
+  }
+
+  &.teal {
+    --foreground: teal;
+    --background: rgba(0, 128, 128, 0.05);
+  }
+
+  &.jade {
+    --foreground: rgba(0, 168, 107, 1.0);
+    --background: rgba(0, 168, 107, 0.05);
+  }
+
+  &.green {
+    --foreground: green;
+    --background: rgba(0, 128, 0, 0.05);
+  }
+
+  &.grass {
+    --foreground: rgba(52, 140, 49, 1.0);
+    --background: rgba(52, 140, 49, 0.05);
+  }
+
+  &.lime {
+    --foreground: lime;
+    --background: rgba(0, 255, 0, 0.05);
+  }
+
+  &.mint {
+    --foreground: rgba(152, 255, 152, 1.0);
+    --background: rgba(152, 255, 152, 0.05);
+  }
+
+  &.sky {
+    --foreground: skyblue;
+    --background: rgba(135, 206, 235, 0.05);
+  }
 
   &.small {
     height: 2.4rem;
@@ -44,26 +196,6 @@
         font-size: var(--text-desktop-paragraph-1);
         line-height: var(--text-desktop-paragraph-1--line-height);
     }
-  }
-
-  &.complete {
-    background-color: var(--color-status-green-fill);
-    color: var(--color-status-green-text);
-  }
-
-  &.failure {
-    background-color: var(--color-status-red-fill);
-    color: var(--color-status-red-text);
-  }
-
-  &.in-progress {
-    background-color: var(--color-status-amber-fill);
-    color: var(--color-status-amber-text);
-  }
-
-  &.in-review {
-    background-color: var(--color-status-blue-fill);
-    color: var(--color-status-blue-text);
   }
 
   &.radius-small {

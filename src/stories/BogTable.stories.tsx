@@ -1,6 +1,9 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import BogTable, { ColumnHeaderCellContent, TableRow } from './BogTable';
+import BogTable, {
+  ColumnHeaderCellContent,
+  TableRow,
+} from '../components/BogTable/BogTable';
 
 const meta = {
   title: 'Table',

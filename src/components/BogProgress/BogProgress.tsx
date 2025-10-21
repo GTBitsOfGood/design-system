@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './styles.module.css';
 import { Progress } from 'radix-ui';
-import { useResponsive } from '../../utils/hooks/useResponsive';
-import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
+import { useResponsive } from '../../utils/design-system/hooks/useResponsive';
+import { getSizeFromBreakpoint } from '../../utils/design-system/breakpoints/breakpoints';
 
 interface BogProgressProps extends React.ComponentProps<typeof Progress.Root> {
   /** A number prop that indicates what percentage (from 0 - 100) the indicator should show. */

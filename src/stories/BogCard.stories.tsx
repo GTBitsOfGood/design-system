@@ -1,8 +1,6 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import BogCard from './BogCard';
-import { Theme } from '@radix-ui/themes';
+import BogCard from '../components/BogCard/BogCard';
 
 const meta = {
   title: 'Card',

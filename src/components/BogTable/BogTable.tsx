@@ -1,8 +1,8 @@
 import { Table, Theme } from '@radix-ui/themes';
 import React, { ReactNode } from 'react';
 import styles from './styles.module.css';
-import { useResponsive } from '../../utils/hooks/useResponsive';
-import { getNumericalSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
+import { useResponsive } from '../../utils/design-system/hooks/useResponsive';
+import { getNumericalSizeFromBreakpoint } from '../../utils/design-system/breakpoints/breakpoints';
 import BogTextInput from '../BogTextInput/BogTextInput';
 import BogIcon from '../BogIcon/BogIcon';
 import BogButton from '../BogButton/BogButton';

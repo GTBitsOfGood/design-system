@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import BogChip from './BogChip';
+import BogChip from '../components/BogChip/BogChip';
 
 const meta = {
   title: 'Chip',

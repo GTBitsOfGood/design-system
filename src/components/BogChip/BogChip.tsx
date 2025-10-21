@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Badge, type BadgeProps } from '@radix-ui/themes';
+import clsx from 'clsx';
 import styles from './styles.module.css';
-import { useResponsive } from '../../utils/hooks/useResponsive';
+import { useResponsive } from '../../utils/design-system/hooks/useResponsive';
 import BogIcon from '../BogIcon/BogIcon';
-import { getNumericalSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
+import { getNumericalSizeFromBreakpoint } from '../../utils/design-system/breakpoints/breakpoints';
 
 export type BogChipState = 'complete' | 'failure' | 'in-progress' | 'in-review';
 
@@ -80,10 +81,16 @@ export default function BogChip({
   return (
     <Badge
       asChild={asChild}
-      color={color}
       highContrast={highContrast}
       radius={radius}
-      className={`${styles.chip} ${className} ${sizeMap[responsiveSize]} ${radius ? styles[`radius-${radius}`] : ''} ${state ? styles[state] : ''}`}
+      className={clsx(
+        styles.chip,
+        sizeMap[responsiveSize],
+        radius && styles[`radius-${radius}`],
+        state && styles[state],
+        color && styles[color],
+        className,
+      )}
       style={style}
       {...rest}
     >

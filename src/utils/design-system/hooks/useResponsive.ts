@@ -1,4 +1,4 @@
-import { breakpoints } from '../breakpoints/breakpoints';
+import { breakpoints } from '..//breakpoints/breakpoints';
 import { useWindowSize } from 'react-use';
 
 function getBreakpoint(width: number) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import BogTabs, { BogTab, BogTabsProps } from './BogTabs';
+import BogTabs, { BogTab, BogTabsProps } from '../components/BogTabs/BogTabs';
 
 import { InfoIcon } from '@phosphor-icons/react';
 

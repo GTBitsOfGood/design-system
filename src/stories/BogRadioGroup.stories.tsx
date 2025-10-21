@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import BogRadioGroup from './BogRadioGroup';
-import BogRadioItem from '../BogRadioItem/BogRadioItem';
+import BogRadioGroup from '../components/BogRadioGroup/BogRadioGroup';
+import BogRadioItem from '../components/BogRadioItem/BogRadioItem';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
