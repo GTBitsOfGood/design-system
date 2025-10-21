@@ -2,36 +2,38 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import BogDropdown from './BogDropdown';
+import BogCheckbox from '../components/BogCheckbox/BogCheckbox';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Dropdown',
-  component: BogDropdown,
+  title: 'Checkbox',
+  component: BogCheckbox,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
-    docs: {
-      story: {
-        height: '20rem',
-      },
-    },
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  // Use `fn` to spy on the onSelectionChange arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onSelectionChange: fn() },
-} satisfies Meta<typeof BogDropdown>;
+  // More on argTypes: https://storybook.js.org/docs/api/argtypes
+  argTypes: {
+    checked: {
+      control: {
+        type: 'select',
+      },
+      options: [true, false, 'indeterminate'],
+    },
+  },
+  // Use `fn` to spy on the onCheckedChange arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+  args: { onCheckedChange: fn() },
+} satisfies Meta<typeof BogCheckbox>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Dropdown: Story = {
+export const Checkbox: Story = {
   args: {
-    options: ['Option 1', 'Option 2', 'Option 3'],
-    name: 'dropdown',
-    style: { width: '25vw' },
-    type: 'checkbox',
+    label: 'Checkbox',
+    name: 'checkbox',
   },
 };

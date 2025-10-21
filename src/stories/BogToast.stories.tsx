@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import BogToast from './BogToast';
-import BogButton from '../BogButton/BogButton';
+import BogToast from '../components/BogToast/BogToast';
+import BogButton from '../components/BogButton/BogButton';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

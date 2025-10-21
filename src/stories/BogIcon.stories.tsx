@@ -1,12 +1,12 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import BogSwitch from './BogSwitch';
+import BogIcon from '../components/BogIcon/BogIcon';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Switch',
-  component: BogSwitch,
+  title: 'Icon',
+  component: BogIcon,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
@@ -14,14 +14,22 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-} satisfies Meta<typeof BogSwitch>;
+  argTypes: {
+    size: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
+  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+} satisfies Meta<typeof BogIcon>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Switch: Story = {
+export const Icon: Story = {
   args: {
-    label: 'Switch',
+    name: 'plus',
   },
 };

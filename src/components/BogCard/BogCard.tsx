@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
-import { useResponsive } from '../../utils/hooks/useResponsive';
-import { getNumericalSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
+import { useResponsive } from '../../utils/design-system/hooks/useResponsive';
+import { getNumericalSizeFromBreakpoint } from '../../utils/design-system/breakpoints/breakpoints';
 import styles from './styles.module.css';
 
 type SizeToken = 'small' | 'medium' | 'large' | 'responsive';

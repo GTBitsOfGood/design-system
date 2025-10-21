@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import BogTextInput from './BogTextInput';
+import BogTextInput from '../components/BogTextInput/BogTextInput';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
