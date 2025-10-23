@@ -27,6 +27,7 @@
   z-index: 0;
 }
 .outlined::before { content: none; }
+.surface::before { content: none; }
 
 .inner {
   position: relative;
@@ -60,6 +61,13 @@
   border-color: var(--bor-outlined, var(--color-accent, #FC5B43));
 }
 .outlined .icon { color: currentColor; }
+
+.surface {
+  background: color-mix(in srgb, var(--bg-filled, var(--color-accent, #FC5B43)) 5%, transparent);
+  color: var(--fg-outlined, var(--color-accent, #FC5B43));
+  border-color: var(--bor-outlined, var(--color-accent, #FC5B43));
+}
+.surface .icon { color: currentColor; }
 
 .error {
   --rail: var(--color-error, #C73A3A);
