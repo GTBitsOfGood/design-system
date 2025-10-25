@@ -1,52 +1,48 @@
 import React from 'react';
 import { Card } from '@radix-ui/themes';
+import clsx from 'clsx';
+import styles from './styles.module.css';
 import { useResponsive } from '../../utils/design-system/hooks/useResponsive';
 import { getNumericalSizeFromBreakpoint } from '../../utils/design-system/breakpoints/breakpoints';
-import styles from './styles.module.css';
 
-type SizeToken = 'small' | 'medium' | 'large' | 'responsive';
-type RadixSize = '1' | '2' | '3';
-
-interface BogCardProps extends Omit<React.ComponentProps<typeof Card>, 'size'> {
-  children?: React.ReactNode;
+export interface BogCardProps
+  extends Omit<
+    React.ComponentProps<typeof Card>,
+    'size' | 'variant' | 'asChild'
+  > {
   variant?: 'surface' | 'classic' | 'ghost';
-  size?: SizeToken;
+  size?: '1' | '2' | '3' | 'responsive';
+  asChild?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  asChild?: boolean;
-  [key: string]: any;
+  children?: React.ReactNode;
 }
 
 export default function BogCard({
-  children,
+  variant = 'classic',
+  size = 'responsive',
   className,
   style,
-  variant = 'surface',
-  size = 'responsive',
-  ...rest
+  children,
+  asChild,
+  ...props
 }: BogCardProps) {
-  const currentBreakpoint = useResponsive();
+  const breakpoint = useResponsive();
+  const resolvedNumericSize =
+    size === 'responsive' ? getNumericalSizeFromBreakpoint(breakpoint) : size;
 
-  const resolvedSize: RadixSize =
-    size === 'responsive'
-      ? getNumericalSizeFromBreakpoint(currentBreakpoint)
-      : ({ small: '1', medium: '2', large: '3' } as const)[size ?? 'medium'];
-
-  const radiusBySize: Record<RadixSize, number> = { '1': 12, '2': 16, '3': 20 };
-  const resolvedRadius = radiusBySize[resolvedSize] ?? 16;
-
-  const sizeClass = `size${resolvedSize}`;
+  const sizeClass = styles[
+    `size${resolvedNumericSize}` as keyof typeof styles
+  ] as string;
 
   return (
     <Card
-      {...rest}
-      variant={variant}
+      {...props}
+      asChild={asChild}
+      className={clsx(styles.card, sizeClass, className)}
+      style={style}
+      data-size={resolvedNumericSize}
       data-variant={variant}
-      size={resolvedSize}
-      className={`${styles.card} ${styles[sizeClass]}${
-        className ? ` ${className}` : ''
-      }`}
-      style={{ borderRadius: resolvedRadius, ...style }}
     >
       {children}
     </Card>
