@@ -1,7 +1,11 @@
 @layer base {
   .card {
     border-radius: 1.6rem !important;
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding-block: 1.6rem !important;
+    padding-inline: 2.4rem !important;
     --shadow-1: none !important;
     --shadow-2: none !important;
     --shadow-3: none !important;
@@ -11,19 +15,22 @@
   .card:where([data-variant="surface"]) {
     background-color: var(--color-solid-bg-sunken) !important;
     border: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 1.2rem 2rem var(--color-grey-fill-weaker),
+      0 0.2rem 0.6rem var(--color-grey-fill-weak) !important;
   }
 
   .card:where([data-variant="classic"]) {
-    background-color: var(--color-solid-bg-sunken) !important;
-    border: 0.1rem solid var(--color-grey-stroke-weak) !important;
-    box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1) !important;
+    background-color: var(--color-solid-bg-base) !important;
+    border: none !important;
+    box-shadow:
+      0 1.6rem 2.4rem var(--color-grey-fill-weaker),
+      0 0.4rem 0.8rem var(--color-grey-fill-weak) !important;
   }
 
   .card:where([data-variant="ghost"]) {
     background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+    border: 0.1rem solid var(--color-grey-stroke-weak) !important;
+    box-shadow: 0 1rem 1.6rem var(--color-grey-fill-weaker) !important;
   }
 
   .card:not([data-variant]) {
@@ -56,18 +63,18 @@
   }
 
   .size1 {
-    min-height: 10rem !important;
-    min-width: 30rem !important;
+    min-width: 35.5rem !important;
+    min-height: 9.2rem !important;
   }
 
   .size2 {
-    min-height: 14rem !important;
-    min-width: 45rem !important;
+    min-width: 40.3rem !important;
+    min-height: 10.4rem !important;
   }
 
   .size3 {
-    min-height: 17rem !important;
-    min-width: 62.2rem !important;
+    min-width: 48.9rem !important;
+    min-height: 11.8rem !important;
   }
 
   :global(.radix-themes[data-is-root-theme='true']) {
