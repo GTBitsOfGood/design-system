@@ -57,8 +57,13 @@ export default function BogModal({
   closeButton = defaultCloseButton,
   trigger = defaultTrigger,
   contentProps,
-  title = <span></span>,
-  description = <span></span>,
+  title = <h3>Modal Heading</h3>,
+  description = (
+    <span>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.{' '}
+    </span>
+  ),
   ...props
 }: BogModalProps) {
   const breakpoint = useResponsive();

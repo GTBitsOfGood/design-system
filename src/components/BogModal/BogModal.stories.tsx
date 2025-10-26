@@ -47,26 +47,5 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 // More on rendering stories as custom JS objects (useful for passing in state management here): https://storybook.js.org/docs/api/csf/index#custom-render-functions
 export const Modal: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false);
-
-    const handleOpenChange = (newOpen: boolean) => {
-      console.log('Modal state changed:', newOpen ? 'Opened' : 'Closed');
-    };
-
-    return (
-      <BogModal
-        size="responsive"
-        openState={{ open, setOpen }}
-        onOpenChange={handleOpenChange}
-        title={<h3>Modal Heading</h3>}
-        description={
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{' '}
-          </span>
-        }
-      />
-    );
-  },
+  args: {},
 };
