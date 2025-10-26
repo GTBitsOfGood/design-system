@@ -7,23 +7,59 @@
     }
     
     .content {
-        width: 47vw;
-        height: 50vh;
+        height: max-content;
+        max-width: 90vw;
         border-radius: 1.6rem;
-        color: white;
-        background-color: var(--color-brand-text);
+        color: var(--color-grey-text-strong);
+        background-color: var(--color-white);
         box-shadow: 0 16px 25.1px -2px var(--color-grey-stroke-weak);
-        padding: 1.6rem;
+        padding: 4rem 2.4rem;
         position: fixed;
         inset: 50%;
         transform: translate(-50%, -50%);
         z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
 
-        .closeButton {
-            position: absolute;
-            top: 1.6rem;
-            right: 1.6rem;
-            cursor: pointer;
+        &.small {
+            width: 32.2rem;
+        }
+        &.medium {
+            width: 39.5rem;
+        }
+        &.large {
+            width: 50rem;
+        }
+
+        .titleContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: stretch;
+            flex-direction: row-reverse;
+            gap: 1rem;
+
+            .title {
+                color: var(--color-grey-text-strong);
+                display: flex;
+                flex-grow: 1;
+            }
+            .closeButton {
+                display: flex;
+                flex-grow: 0;
+                cursor: pointer;
+                height: 1em;
+                min-width: 1rem;
+            }
+        }
+        .description {
+            color: var(--color-grey-text-weak);
+        }
+        .buttonsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
         }
     }
 
