@@ -56,10 +56,16 @@ export const Modal: Story = {
 
     return (
       <BogModal
+        size="responsive"
         openState={{ open, setOpen }}
         onOpenChange={handleOpenChange}
-        title={<h3>Modal Title</h3>}
-        description={<span>Modal Description</span>}
+        title={<h3>Modal Heading</h3>}
+        description={
+          <span>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.{' '}
+          </span>
+        }
       />
     );
   },

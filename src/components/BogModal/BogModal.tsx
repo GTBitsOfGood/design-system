@@ -3,6 +3,8 @@ import styles from './styles.module.css';
 import { Dialog } from 'radix-ui';
 import BogButton from '../BogButton/BogButton';
 import BogIcon from '../BogIcon/BogIcon';
+import { useResponsive } from '../../utils/hooks/useResponsive';
+import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
 
 interface BogModalContentProps
   extends React.ComponentProps<typeof Dialog.Content> {
@@ -18,6 +20,9 @@ interface OpenState {
 }
 
 interface BogModalProps extends React.ComponentProps<typeof Dialog.Root> {
+  /** The size of the button. Values are "small", "medium", "large", or "responsive" which
+   * makes the button automatically resize with the screen. */
+  size?: 'small' | 'medium' | 'large' | 'responsive';
   /** Controls modal's open/closed state. Takes both {open, setOpen}, which are to be defined by React's useState
    * where open is a boolean value. Alternatively, neither is passed in and a default {open, setOpen} is generated. */
   openState?: OpenState;
@@ -39,11 +44,12 @@ interface BogModalProps extends React.ComponentProps<typeof Dialog.Root> {
   description?: ReactElement;
 }
 
-const defaultCloseButton = <BogIcon name="close" size="24" />;
+const defaultCloseButton = <BogIcon name="x" size="auto" />;
 
 const defaultTrigger = <BogButton>Click me!</BogButton>;
 
 export default function BogModal({
+  size = 'responsive',
   openState,
   defaultOpen = false,
   onOpenChange,
@@ -55,6 +61,28 @@ export default function BogModal({
   description = <span></span>,
   ...props
 }: BogModalProps) {
+  const breakpoint = useResponsive();
+  const responsiveSize =
+    size === 'responsive' ? getSizeFromBreakpoint(breakpoint) : size;
+
+  {
+    /* Global CSS classes 'text-heading-n' and 'text-paragraph-n' handle responsiveness between desktop and mobile */
+  }
+  const titleClass = `${styles.title} ${
+    responsiveSize === 'small'
+      ? 'text-heading-4'
+      : responsiveSize === 'medium'
+        ? 'text-heading-3'
+        : 'text-heading-2'
+  }`;
+
+  const descriptionClass = `${styles.description} ${
+    responsiveSize === 'small' ? 'text-paragraph-2' : 'text-paragraph-1'
+  }`;
+
+  const buttonSize: 'small' | 'medium' | 'large' | 'responsive' =
+    responsiveSize === 'large' ? 'large' : 'medium';
+
   const [internalOpen, internalSetOpen] = useState(defaultOpen);
   const open = openState ? openState.open : internalOpen;
   const setOpen = openState ? openState.setOpen : internalSetOpen;
@@ -76,7 +104,7 @@ export default function BogModal({
         <Dialog.Overlay className={styles.overlay} />
         <Dialog.Content
           {...contentProps}
-          className={styles.content}
+          className={`${styles.content} ${styles[responsiveSize]}`}
           onPointerDownOutside={(e) => {
             if (!modal) e.preventDefault();
           }}
@@ -84,16 +112,33 @@ export default function BogModal({
             if (!modal) e.preventDefault();
           }}
         >
-          {/* Global CSS classes 'text-heading-1' and 'text-paragraph-1' handle responsiveness between desktop and mobile */}
-          <Dialog.Title className="text-heading-1" asChild>
-            {title}
-          </Dialog.Title>
-          <Dialog.Description className="text-paragraph-1" asChild>
+          <div className={styles.titleContainer}>
+            <Dialog.Close className={`${titleClass} ${styles.closeButton}`}>
+              {closeButton}
+            </Dialog.Close>
+            <Dialog.Title className={`${titleClass} ${styles.title}`} asChild>
+              {title}
+            </Dialog.Title>
+          </div>
+          <Dialog.Description className={descriptionClass} asChild>
             {description}
           </Dialog.Description>
-          <Dialog.Close className={styles.closeButton}>
-            {closeButton}
-          </Dialog.Close>
+          <div className={styles.buttonsContainer}>
+            <BogButton
+              variant="secondary"
+              size={buttonSize}
+              onClick={() => handleOpenChange(false)}
+            >
+              Secondary
+            </BogButton>
+            <BogButton
+              variant="primary"
+              size={buttonSize}
+              onClick={() => handleOpenChange(false)}
+            >
+              Primary
+            </BogButton>
+          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
