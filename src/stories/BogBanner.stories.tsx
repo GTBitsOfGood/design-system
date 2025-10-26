@@ -25,9 +25,9 @@ const meta: Meta<typeof BogBanner> = {
       options: ['message', 'success', 'warning', 'error', 'brand-message'],
       description: 'Semantic style',
     },
-    tone: {
+    variant: {
       control: 'inline-radio',
-      options: ['filled', 'outlined'],
+      options: ['filled', 'surface', 'outlined'],
       description: 'Visual style',
     },
     iconProps: {
@@ -47,7 +47,7 @@ type Story = StoryObj<typeof meta>;
 export const Banner: Story = {
   args: {
     type: 'message',
-    tone: 'filled',
+    variant: 'filled',
     iconProps: { name: 'info' },
     content: <span>This is the description.</span>,
   },
