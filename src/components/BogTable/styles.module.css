@@ -107,9 +107,10 @@
     min-height: 2.4rem;
   }
 
-  .filterIcon{
-  transform: scaleX(0.77); transform-origin: center; 
-}
+  .filterIcon {
+    transform: scaleX(0.77);
+    transform-origin: center;
+  }
 
   .filterButton {
     font-family: var(--font-paragraph);
@@ -122,7 +123,7 @@
   }
 
   .filterButton > div {
-    gap: 0 !important; 
+    gap: 0.3rem !important; 
   }
 
 
@@ -167,9 +168,14 @@
     display: flex;
     justify-content: space-between;
     gap: 0.8rem;
-    padding-top: 0.8rem;
+    padding-top: 0.4rem;
   }
 
+  .popoverFooter .popoverActionBtn.popoverActionBtn {
+    padding: 0.65rem 1.4rem;
+    border-radius: 0.4rem;
+    font-weight: bold;
+  }
 
   .popoverContent {
     display: flex;
@@ -177,7 +183,6 @@
     gap: 0.8rem;
     padding: 1.2rem;
     font-size: .5rem !important;
-  
   }
 
   .popoverBody {
@@ -209,6 +214,12 @@
     justify-content: space-between;
     gap: 0.8rem;
     padding-top: 0.8rem;
+  }
+
+  .chipPopoverFooter .chipPopoverFooterBtn.chipPopoverFooterBtn {
+    padding: 0.65rem 1.4rem;
+    border-radius: 0.4rem;
+    font-weight: bold;
   }
 
 
@@ -246,7 +257,14 @@
     gap: 0.55rem;
   }
   
+  .chipPopoverDropdownInput.chipPopoverDropdownInput :global(button) {
+    padding: 1rem 0.8rem;
+  }
 
+  .chipPopoverTextInput.chipPopoverTextInput :global(input){
+    padding: 1rem 0.8rem;
+  }
+ 
   .chipPopoverContentRoot {
     background-color: #fff !important; 
     border: 1px solid var(--color-grey-stroke-weak);
@@ -272,7 +290,7 @@
   }
 
   .popoverBody :global(button[role="checkbox"] > span) {
-    transform: scale(1.15) !important;         
+    transform: scale(1.35) !important;         
     transform-origin: center;
   }
 
@@ -289,10 +307,11 @@
     align-items: center;
   }
 
-  .filterChip :global(button) {
-    background: var(--color-grey-fill-weak) !important;
+  .filterChip.filterChip :global(button) {
+    background: var(--color-grey-fill-weak);
     border-radius: 10000rem;
-    color: black !important;
+    font-size: var(--text-mobile-paragraph-1);
+    color: black;
     font-weight: 400;
     
   }
