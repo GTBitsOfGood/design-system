@@ -1,7 +1,9 @@
 import React, { ButtonHTMLAttributes, ReactNode, CSSProperties } from 'react';
+import type { IconProps } from '../../utils/design-system/types/types';
 import styles from './styles.module.css';
-import { useResponsive } from '../../utils/hooks/useResponsive';
-import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
+import { useResponsive } from '../../utils/design-system/hooks/useResponsive';
+import { getSizeFromBreakpoint } from '../../utils/design-system/breakpoints/breakpoints';
+import BogIcon from '../BogIcon/BogIcon';
 
 interface BogButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** The type of the button. Values are "primary", "secondary", or "tertiary" */
@@ -15,10 +17,7 @@ interface BogButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * to display and whether to place it on the left or right side
    * of the button.
    * */
-  icon?: {
-    icon: ReactNode;
-    position: 'left' | 'right';
-  };
+  iconProps?: IconProps;
   /** The name of the data this button represents for forms. */
   name?: string;
   /** The value of the data this button represents for forms. */
@@ -34,7 +33,7 @@ interface BogButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function BogButton({
   variant = 'primary',
   size = 'responsive',
-  icon,
+  iconProps,
   name,
   value,
   children,
@@ -53,9 +52,13 @@ export default function BogButton({
       {...props}
     >
       <div className={`${styles.contentContainer}`}>
-        {icon && icon.position === 'left' && icon.icon}
+        {iconProps && iconProps.position === 'left' && (
+          <BogIcon {...iconProps.iconProps} />
+        )}
         {children}
-        {icon && icon.position === 'right' && icon.icon}
+        {iconProps && iconProps.position === 'right' && (
+          <BogIcon {...iconProps.iconProps} />
+        )}
       </div>
     </button>
   );

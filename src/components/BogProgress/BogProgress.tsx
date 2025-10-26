@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './styles.module.css';
 import { Progress } from 'radix-ui';
-import { useResponsive } from '../../utils/hooks/useResponsive';
-import { getSizeFromBreakpoint } from '../../utils/breakpoints/breakpoints';
+import { useResponsive } from '../../utils/design-system/hooks/useResponsive';
+import { getSizeFromBreakpoint } from '../../utils/design-system/breakpoints/breakpoints';
 
 interface BogProgressProps extends React.ComponentProps<typeof Progress.Root> {
   /** A number prop that indicates what percentage (from 0 - 100) the indicator should show. */
@@ -15,7 +15,7 @@ interface BogProgressProps extends React.ComponentProps<typeof Progress.Root> {
   color: string;
   /** The height of the progress bar. */
   size?: 'small' | 'medium' | 'large' | 'responsive';
-  /**  Additional class names to apply styles to the icon. These can be tailwind classes or custom CSS classes. */
+  /**  Additional class names to apply styles to the progress bar. These can be tailwind classes or custom CSS classes. */
   className?: string;
   /** Additional CSS styles to apply to the progress bar. */
   style?: React.CSSProperties;

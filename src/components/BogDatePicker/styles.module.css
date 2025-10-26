@@ -1,0 +1,28 @@
+@layer base {
+    .root {
+        padding: 3.2rem 1.2rem;
+        border-radius: 1.6rem;
+        border: 1px solid var(--color-grey-stroke-weak);
+        box-shadow: 0 0.8rem 0.8rem -0.4rem rgba(0, 0, 0, 0.04), 0 2rem 2.4rem -0.4rem rgba(0, 0, 0, 0.08);
+        
+        .monthGrid {
+            margin-top: 0.8rem;
+        }
+        .monthCaption {
+            color: var(--color-grey-text-strong);
+            font-weight: 700;
+        }
+        .weekday {
+            color: var(--color-grey-text-weak);
+            font-weight: 600;
+        }
+        .day {
+            color: var(--color-grey-text-strong);
+            font-weight: 600;
+        }
+        .footerText {
+            text-align: center;
+            color: var(--color-grey-text-weak);
+        }
+    }
+}

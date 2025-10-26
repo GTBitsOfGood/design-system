@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import BogTabs, { BogTab, BogTabsProps } from './BogTabs';
+import BogTabs, { BogTab, BogTabsProps } from '../components/BogTabs/BogTabs';
 
 import { InfoIcon } from '@phosphor-icons/react';
 
@@ -44,6 +44,21 @@ export const Tabs: Story = {
   args: {
     defaultValue: 'overview',
     tabContents,
+    size: 2,
+  },
+};
+
+export const NavigationTabs: Story = {
+  args: {
+    defaultValue: 'overview',
+    tabContents: {
+      overview: { label: 'Overview', content: 'Overview content' },
+      externalLink: {
+        label: 'Navigation',
+        content: 'This content should not be displayed',
+        href: '#',
+      },
+    },
     size: 2,
   },
 };

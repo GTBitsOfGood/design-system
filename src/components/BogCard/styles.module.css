@@ -1,0 +1,83 @@
+@layer base {
+  .card {
+    border-radius: 1.6rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding-block: 1.6rem !important;
+    padding-inline: 2.4rem !important;
+    --shadow-1: none !important;
+    --shadow-2: none !important;
+    --shadow-3: none !important;
+    --shadow-4: none !important;
+  }
+
+  .card:where([data-variant="surface"]) {
+    background-color: var(--color-solid-bg-sunken) !important;
+    border: none !important;
+    box-shadow: 0 1.2rem 2rem var(--color-grey-fill-weaker),
+      0 0.2rem 0.6rem var(--color-grey-fill-weak) !important;
+  }
+
+  .card:where([data-variant="classic"]) {
+    background-color: var(--color-solid-bg-base) !important;
+    border: none !important;
+    box-shadow:
+      0 1.6rem 2.4rem var(--color-grey-fill-weaker),
+      0 0.4rem 0.8rem var(--color-grey-fill-weak) !important;
+  }
+
+  .card:where([data-variant="ghost"]) {
+    background-color: transparent !important;
+    border: 0.1rem solid var(--color-grey-stroke-weak) !important;
+    box-shadow: 0 1rem 1.6rem var(--color-grey-fill-weaker) !important;
+  }
+
+  .card:not([data-variant]) {
+    background-color: var(--color-solid-bg-sunken) !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .card::before,
+  .card::after {
+    content: none !important;
+    box-shadow: none !important;
+  }
+
+  .card.rt-CardRoot {
+    border-radius: 1.6rem !important;
+  }
+
+  .card:focus,
+  .card:focus-visible,
+  .card:active {
+    outline: none !important;
+  }
+
+  .card a,
+  .card a:focus,
+  .card a:focus-visible,
+  .card a:active {
+    outline: none !important;
+  }
+
+  .size1 {
+    min-width: 35.5rem !important;
+    min-height: 9.2rem !important;
+  }
+
+  .size2 {
+    min-width: 40.3rem !important;
+    min-height: 10.4rem !important;
+  }
+
+  .size3 {
+    min-width: 48.9rem !important;
+    min-height: 11.8rem !important;
+  }
+
+  :global(.radix-themes[data-is-root-theme='true']) {
+    min-height: auto !important;
+  }
+}

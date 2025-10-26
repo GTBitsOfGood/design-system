@@ -1,0 +1,32 @@
+.trigger {
+    cursor: pointer;
+}
+
+.content {
+    background-color: var(--color-brand-text);
+    color: white;
+    border-radius: 1rem;
+    padding: 0.5rem 3rem 1rem 1rem;
+    position: relative;
+    max-width: 25vw;
+
+    .close {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        float: right;
+
+        &:hover {
+            opacity: 75%;
+            cursor: pointer;
+        }
+
+        &:active {
+            opacity: 100%;
+        }
+    }
+
+    .arrow {
+        fill: var(--color-brand-text);
+    }
+}

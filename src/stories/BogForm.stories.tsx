@@ -2,10 +2,10 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import BogForm from './BogForm';
-import BogCheckbox from '../BogCheckbox/BogCheckbox';
-import BogRadioGroup from '../BogRadioGroup/BogRadioGroup';
-import BogRadioItem from '../BogRadioItem/BogRadioItem';
+import BogForm from '../components/BogForm/BogForm';
+import BogCheckbox from '../components/BogCheckbox/BogCheckbox';
+import BogRadioGroup from '../components/BogRadioGroup/BogRadioGroup';
+import BogRadioItem from '../components/BogRadioItem/BogRadioItem';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

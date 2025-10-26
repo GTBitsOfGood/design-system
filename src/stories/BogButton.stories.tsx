@@ -2,8 +2,8 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import BogButton from './BogButton';
-import BogIcon from '../BogIcon/BogIcon';
+import BogButton from '../components/BogButton/BogButton';
+import BogIcon from '../components/BogIcon/BogIcon';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -21,13 +21,13 @@ const meta = {
     onClick: {
       description: 'The function that gets executed when clicking the button.',
     },
-    icon: {
+    iconProps: {
       control: false,
       description:
-        'The icon to display in the button. This is an object containing the React node of the icon to display ' +
+        'The icon to display in the button. This is an object containing the React Component props of the icon to display ' +
         'and the position of the icon (left or right). ' +
         'This cannot be dynamically edited in this page, but use the Icon story to see how the icon component works, ' +
-        'and then pass the icon component as a prop to this button.',
+        'and then pass the icon props to this button.',
     },
     children: {
       control: false,
@@ -57,8 +57,11 @@ export const NoIconButton: Story = {
 
 export const IconButton: Story = {
   args: {
-    icon: {
-      icon: <BogIcon name="plus" size={16} />,
+    iconProps: {
+      iconProps: {
+        name: 'plus',
+        size: 16,
+      },
       position: 'left',
     },
     children: 'Icon Button',
