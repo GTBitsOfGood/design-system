@@ -73,7 +73,7 @@ export default function BogModal({
   {
     /* Global CSS classes 'text-heading-n' and 'text-paragraph-n' handle responsiveness between desktop and mobile */
   }
-  const titleClass = `${styles.title} ${
+  const headerSizeClass = `${
     responsiveSize === 'small'
       ? 'text-heading-4'
       : responsiveSize === 'medium'
@@ -118,10 +118,15 @@ export default function BogModal({
           }}
         >
           <div className={styles.titleContainer}>
-            <Dialog.Close className={`${titleClass} ${styles.closeButton}`}>
+            <Dialog.Close
+              className={`${headerSizeClass} ${styles.closeButton}`}
+            >
               {closeButton}
             </Dialog.Close>
-            <Dialog.Title className={`${titleClass} ${styles.title}`} asChild>
+            <Dialog.Title
+              className={`${headerSizeClass} ${styles.title}`}
+              asChild
+            >
               {title}
             </Dialog.Title>
           </div>
