@@ -10,6 +10,7 @@ import BogPopover from '../BogPopover/BogPopover';
 import { Popover } from 'radix-ui';
 import BogCheckbox from '../BogCheckbox/BogCheckbox';
 import BogDropdown from '../BogDropdown/BogDropdown';
+import BogChip from '../BogChip/BogChip';
 
 type ColumnDatatype = 'string' | 'string[]' | 'number' | 'number[]' | 'other';
 
@@ -390,21 +391,14 @@ const BogTable: React.FC<BogTableProps> = ({
                   style: { display: 'none' },
                 }}
                 trigger={
-                  <div
+                  <BogChip
+                    size="responsive"
+                    radius="full"
                     className={`${styles.filterChip} ${isActiveChip ? styles.filterChipActive : ''}`}
                   >
-                    <BogButton
-                      variant="tertiary"
-                      size="responsive"
-                      className={styles.filterChip}
-                      iconProps={{
-                        iconProps: { name: 'caret-down', size: 12 },
-                        position: 'right',
-                      }}
-                    >
-                      {chipText}
-                    </BogButton>
-                  </div>
+                    {chipText}
+                    <BogIcon name="caret-down" size={16} />
+                  </BogChip>
                 }
                 content={
                   <div className={styles.chipPopoverContent}>

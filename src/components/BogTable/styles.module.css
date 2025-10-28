@@ -307,19 +307,19 @@
     align-items: center;
   }
 
-  .filterChip.filterChip :global(button) {
-    background: var(--color-grey-fill-weak);
-    border-radius: 10000rem;
-    font-size: var(--text-mobile-paragraph-1);
-    color: black;
+  .filterChip.filterChip {
+    --background: var(--color-grey-fill-weak);
+    border-radius: 10000rem !important;
+    font-size: var(--text-mobile-paragraph-1) !important;
+    --foreground: black;
     font-weight: 400;
     
   }
 
-  .filterChipActive :global(button) {
-    background: var(--color-status-blue-fill) !important;
-    color: var(--color-status-blue-text) !important;
-    border: 0.1rem solid var(--color-status-blue-stroke-strong) !important;
+  .filterChipActive.filterChipActive {
+    --background: var(--color-status-blue-fill);
+    --foreground: var(--color-status-blue-text);
+    border: 0.1rem solid var(--color-status-blue-stroke-strong);
   }
   .filterChip {
     gap: 2;
