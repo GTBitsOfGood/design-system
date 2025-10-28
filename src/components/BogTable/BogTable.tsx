@@ -10,16 +10,17 @@ import BogPopover from '../BogPopover/BogPopover';
 import { Popover } from 'radix-ui';
 import BogCheckbox from '../BogCheckbox/BogCheckbox';
 import BogDropdown from '../BogDropdown/BogDropdown';
+import BogChip from '../BogChip/BogChip';
 
 type ColumnDatatype = 'string' | 'string[]' | 'number' | 'number[]' | 'other';
 
 type FilterCondition =
-  | 'is'
-  | 'is-not'
-  | 'contains'
-  | 'not-contains'
-  | 'is-blank'
-  | 'is-not-blank';
+  | 'Value is'
+  | 'Value is not'
+  | 'Value contains'
+  | 'Value does not contain'
+  | 'Value is blank'
+  | 'Value is not blank';
 
 type ColumnFilter = {
   condition: FilterCondition;
@@ -27,7 +28,7 @@ type ColumnFilter = {
 };
 
 export type ColumnHeaderCellContent = {
-  /** Props forwarded to Radix Table.Cell / Table.RowHeaderCell */
+  /** Props forwarded to Radix Table.Cell / Table.ColumnHeaderCell */
   styleProps?: React.ComponentProps<typeof Table.ColumnHeaderCell>;
   /** Cell text/content */
   content: string;
@@ -103,17 +104,17 @@ const BogTable: React.FC<BogTableProps> = ({
     const v = text.trim();
     const lc = v.toLowerCase();
     switch (f.condition) {
-      case 'is':
+      case 'Value is':
         return f.value != null && lc === String(f.value).toLowerCase().trim();
-      case 'is-not':
+      case 'Value is not':
         return f.value != null && lc !== String(f.value).toLowerCase().trim();
-      case 'contains':
+      case 'Value contains':
         return f.value != null && lc.includes(String(f.value).toLowerCase());
-      case 'not-contains':
+      case 'Value does not contain':
         return f.value != null && !lc.includes(String(f.value).toLowerCase());
-      case 'is-blank':
+      case 'Value is blank':
         return v.length === 0;
-      case 'is-not-blank':
+      case 'Value is not blank':
         return v.length > 0;
       default:
         return true;
@@ -224,32 +225,6 @@ const BogTable: React.FC<BogTableProps> = ({
 
   const sizeClass = `size${radixSize}`;
 
-  const conditionOptions = [
-    'Value is',
-    'Value is not',
-    'Value contains',
-    'Value does not contain',
-    'Value is blank',
-    'Value is not blank',
-  ] as const;
-
-  type ConditionLabel = (typeof conditionOptions)[number];
-
-  const CONDITION_LABEL: Record<FilterCondition, ConditionLabel> = {
-    is: 'Value is',
-    'is-not': 'Value is not',
-    contains: 'Value contains',
-    'not-contains': 'Value does not contain',
-    'is-blank': 'Value is blank',
-    'is-not-blank': 'Value is not blank',
-  };
-
-  const CONDITION_BY_LABEL = new Map<ConditionLabel, FilterCondition>(
-    (
-      Object.entries(CONDITION_LABEL) as [FilterCondition, ConditionLabel][]
-    ).map(([cond, label]) => [label, cond]),
-  );
-
   const removeColumnFilter = (colIdx: number) => {
     setSelectedColumns((prev) => prev.filter((i) => i !== colIdx));
     setColumnFilters((prev) => {
@@ -312,7 +287,9 @@ const BogTable: React.FC<BogTableProps> = ({
             }
             content={
               <div className={styles.popoverContent}>
-                <h4>Select Columns to Filter</h4>
+                <h4 className={styles.popoverTitle}>
+                  Select Columns to Filter
+                </h4>
                 <div className={styles.popoverBody}>
                   {columnHeaders.map((h, i) => (
                     <BogCheckbox
@@ -332,7 +309,11 @@ const BogTable: React.FC<BogTableProps> = ({
                 </div>
                 <div className={styles.popoverFooter}>
                   <Popover.Close asChild>
-                    <BogButton variant="secondary" size="medium">
+                    <BogButton
+                      variant="secondary"
+                      size="medium"
+                      className={styles.popoverActionBtn}
+                    >
                       Cancel
                     </BogButton>
                   </Popover.Close>
@@ -340,6 +321,7 @@ const BogTable: React.FC<BogTableProps> = ({
                     <BogButton
                       variant="primary"
                       size="medium"
+                      className={styles.popoverActionBtn}
                       onClick={() => {
                         setSelectedColumns(draftFilterCols);
                         setColumnFilters((prev) => {
@@ -351,7 +333,7 @@ const BogTable: React.FC<BogTableProps> = ({
                         });
                       }}
                     >
-                      Apply
+                      Apply Filter
                     </BogButton>
                   </Popover.Close>
                 </div>
@@ -368,11 +350,11 @@ const BogTable: React.FC<BogTableProps> = ({
 
             const isActiveChip =
               !!active &&
-              (active.condition === 'is-blank' ||
-                active.condition === 'is-not-blank' ||
+              (active.condition === 'Value is blank' ||
+                active.condition === 'Value is not blank' ||
                 (active.value ?? '').trim().length > 0);
             const chipText = active?.condition
-              ? `${header}: ${CONDITION_LABEL[active.condition]}${active.value ? `: ${active.value}` : ''}`
+              ? `${header}: ${active.condition}${active.value ? `: ${active.value}` : ''}`
               : header;
 
             return (
@@ -409,21 +391,14 @@ const BogTable: React.FC<BogTableProps> = ({
                   style: { display: 'none' },
                 }}
                 trigger={
-                  <div
+                  <BogChip
+                    size="responsive"
+                    radius="full"
                     className={`${styles.filterChip} ${isActiveChip ? styles.filterChipActive : ''}`}
                   >
-                    <BogButton
-                      variant="tertiary"
-                      size="responsive"
-                      className={styles.filterChip}
-                      iconProps={{
-                        iconProps: { name: 'caret-down', size: 12 },
-                        position: 'right',
-                      }}
-                    >
-                      {chipText}
-                    </BogButton>
-                  </div>
+                    {chipText}
+                    <BogIcon name="caret-down" size={16} />
+                  </BogChip>
                 }
                 content={
                   <div className={styles.chipPopoverContent}>
@@ -452,6 +427,7 @@ const BogTable: React.FC<BogTableProps> = ({
                         <p className={styles.chipPopoverLabel}>Condition</p>
                         <BogDropdown
                           type="radio"
+                          className={styles.chipPopoverDropdownInput}
                           options={[
                             'Value is',
                             'Value is not',
@@ -460,7 +436,7 @@ const BogTable: React.FC<BogTableProps> = ({
                             'Value is blank',
                             'Value is not blank',
                           ]}
-                          placeholder="Select filter"
+                          placeholder="Select Condition"
                           name={`chip-cond-${colIdx}`}
                           onSelectionChange={(sel) => {
                             if (!sel) {
@@ -471,16 +447,15 @@ const BogTable: React.FC<BogTableProps> = ({
                               });
                               return;
                             }
-                            const cond =
-                              CONDITION_BY_LABEL.get(sel as ConditionLabel) ??
-                              'contains';
+                            const cond = sel as FilterCondition;
                             setDraftColumnFilters((prev) => {
                               const current = prev[colIdx] ?? {
                                 condition: 'contains',
                                 value: '',
                               };
                               const value =
-                                cond === 'is-blank' || cond === 'is-not-blank'
+                                cond === 'Value is blank' ||
+                                cond === 'Value is not blank'
                                   ? ''
                                   : (current.value ?? '');
                               return {
@@ -489,13 +464,7 @@ const BogTable: React.FC<BogTableProps> = ({
                               };
                             });
                           }}
-                          value={
-                            draftColumnFilters[colIdx]?.condition
-                              ? CONDITION_LABEL[
-                                  draftColumnFilters[colIdx]!.condition
-                                ]
-                              : ''
-                          }
+                          value={draftColumnFilters[colIdx]?.condition ?? ''}
                           style={{ width: '100%' }}
                         />
                       </div>
@@ -503,9 +472,11 @@ const BogTable: React.FC<BogTableProps> = ({
                         <p className={styles.chipPopoverLabel}>Value</p>
                         <BogTextInput
                           name={`chip-value-${colIdx}`}
+                          className={styles.chipPopoverTextInput}
                           value={draftColumnFilters[colIdx]?.value ?? ''}
                           placeholder={
-                            draftColumnFilters[colIdx]?.value || 'Enter value'
+                            draftColumnFilters[colIdx]?.value ||
+                            'Enter Filter Value'
                           }
                           onChange={(e) => {
                             const v = (e.target as HTMLInputElement).value;
@@ -519,9 +490,9 @@ const BogTable: React.FC<BogTableProps> = ({
                           }}
                           disabled={
                             draftColumnFilters[colIdx]?.condition ===
-                              'is-blank' ||
+                              'Value is blank' ||
                             draftColumnFilters[colIdx]?.condition ===
-                              'is-not-blank'
+                              'Value is not blank'
                           }
                         />
                       </div>
@@ -529,7 +500,11 @@ const BogTable: React.FC<BogTableProps> = ({
 
                     <div className={styles.chipPopoverFooter}>
                       <Popover.Close asChild>
-                        <BogButton variant="secondary" size="medium">
+                        <BogButton
+                          variant="secondary"
+                          size="medium"
+                          className={styles.chipPopoverFooterBtn}
+                        >
                           Cancel
                         </BogButton>
                       </Popover.Close>
@@ -537,14 +512,15 @@ const BogTable: React.FC<BogTableProps> = ({
                         <BogButton
                           variant="primary"
                           size="medium"
+                          className={styles.chipPopoverFooterBtn}
                           onClick={() => {
                             setColumnFilters((prev) => {
                               const next = { ...prev };
                               const draft = draftColumnFilters[colIdx];
 
                               const isBlankCheck =
-                                draft?.condition === 'is-blank' ||
-                                draft?.condition === 'is-not-blank';
+                                draft?.condition === 'Value is blank' ||
+                                draft?.condition === 'Value is not blank';
                               const hasValue =
                                 (draft?.value ?? '').trim().length > 0;
 
@@ -557,7 +533,7 @@ const BogTable: React.FC<BogTableProps> = ({
                             });
                           }}
                         >
-                          Apply
+                          Apply Filter
                         </BogButton>
                       </Popover.Close>
                     </div>
