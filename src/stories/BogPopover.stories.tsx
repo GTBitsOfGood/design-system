@@ -14,6 +14,14 @@ const meta = {
     layout: 'centered',
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
+  argTypes: {
+    trigger: {
+      control: false,
+    },
+    content: {
+      control: false,
+    },
+  },
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
 } satisfies Meta<typeof BogPopover>;

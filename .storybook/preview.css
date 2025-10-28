@@ -1,0 +1,6 @@
+.docblock-argstable {
+    p, pre, span, li, a {
+        font-size: 13px;
+        line-height: 20px;
+    }
+}
