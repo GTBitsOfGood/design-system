@@ -10,40 +10,60 @@ import BogIcon from '../BogIcon/BogIcon';
 import styles from './styles.module.css';
 
 interface OpenState {
+  /** Whether the popover is open or not */
   open: boolean;
+  /** State function to set the open state */
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 interface BogPopoverContentProps
   extends React.ComponentProps<typeof Popover.Content> {
+  /** CSS or Tailwind class names to style the content */
   className?: string;
+  /** CSS styles to style the content */
   style?: CSSProperties;
 }
 
 interface BogPopoverArrowProps
   extends React.ComponentProps<typeof Popover.Arrow> {
+  /** CSS or Tailwind class names to style the arrow */
   className?: string;
+  /** CSS styles to style the arrow */
   style?: CSSProperties;
 }
 
 interface BogPopoverCloseProps
   extends React.ComponentProps<typeof Popover.Close> {
+  /** Custom close button element */
   closeButton?: ReactElement;
+  /** CSS or Tailwind class names to style the close button */
   className?: string;
+  /** CSS styles to style the close button */
   style?: CSSProperties;
 }
 
 interface BogPopoverProps extends React.ComponentProps<typeof Popover.Root> {
+  /** Trigger element for the popover */
   trigger: ReactElement;
+  /** Content inside the popover */
   content: ReactElement;
+  /** The open state and function to set the open state */
   openState?: OpenState;
+  /** The default value for the open state */
   defaultOpen?: boolean;
+  /** Callback function when the open state changes */
   onOpenChange?: (open: boolean) => void;
+  /** Whether the popover should behave as a modal */
   modal?: boolean;
+  /** Props for customizing the content of the popover */
   contentProps?: BogPopoverContentProps;
+  /** Props for customizing the arrow of the popover */
   arrowProps?: BogPopoverArrowProps;
+  /** Props for customizing the close button of the popover */
   closeProps?: BogPopoverCloseProps;
+  /** CSS styles to style the popover */
   style?: CSSProperties;
+  /** CSS or Tailwind class names to style the popover */
   className?: string;
 }
 

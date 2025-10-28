@@ -10,9 +10,9 @@ export type BannerType =
   | 'warning'
   | 'message'
   | 'brand-message';
-export type BannerTone = 'filled' | 'outlined';
+export type BannerVariant = 'filled' | 'surface' | 'outlined';
 export type BogBannerType = BannerType;
-export type BogBannerTone = BannerTone;
+export type BogBannerVariant = BannerVariant;
 type BogIconLikeProps = React.ComponentProps<typeof BogIcon>;
 
 export interface BogBannerProps
@@ -21,7 +21,7 @@ export interface BogBannerProps
     'variant' | 'content'
   > {
   type: BannerType;
-  tone?: BannerTone;
+  variant?: BannerVariant;
   iconProps?: BogIconLikeProps;
   content: React.ReactElement;
   className?: string;
@@ -53,7 +53,7 @@ function defaultIconFor(type: BannerType): BogIconLikeProps['name'] {
 
 export default function BogBanner({
   type,
-  tone = 'filled',
+  variant = 'filled',
   iconProps,
   content,
   className,
@@ -65,7 +65,7 @@ export default function BogBanner({
   const rootClass = clsx(
     styles.root,
     TYPE_CLASS[type],
-    styles[tone],
+    styles[variant],
     className,
   );
 
@@ -74,7 +74,7 @@ export default function BogBanner({
 
   const baseName = iconProps?.name ?? defaultIconFor(type);
   const forcedWeight =
-    iconProps?.weight ?? (tone === 'filled' ? 'fill' : 'regular');
+    iconProps?.weight ?? (variant === 'filled' ? 'fill' : 'regular');
 
   const iconNode = (
     <BogIcon
