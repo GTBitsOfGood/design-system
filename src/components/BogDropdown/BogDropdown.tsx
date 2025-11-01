@@ -153,7 +153,13 @@ export default function BogDropdown({
     } else if (type === 'checkbox') {
       return options.map((option) => (
         <DropdownMenu.Item
-          onSelect={(e) => e.preventDefault()}
+          onSelect={(e) => {
+            e.preventDefault();
+            const isChecked = Array.isArray(selected)
+              ? !selected.includes(option)
+              : true;
+            handleSelect(isChecked, option);
+          }}
           className={styles.dropdownItem}
           key={option}
         >
@@ -161,14 +167,13 @@ export default function BogDropdown({
             name={option}
             label={option}
             checked={Array.isArray(selected) && selected.includes(option)}
-            onCheckedChange={(e) => handleSelect(e, option)}
           />
         </DropdownMenu.Item>
       ));
     } else if (type === 'radio') {
       return options.map((option) => (
         <DropdownMenu.Item
-          onSelect={(e) => e.preventDefault()}
+          onSelect={(e) => handleSelect(e, option)}
           className={styles.dropdownItem}
           key={option}
         >
