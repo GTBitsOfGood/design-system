@@ -166,7 +166,6 @@ export default function BogDropdown({
             name={option}
             label={option}
             checked={Array.isArray(selected) && selected.includes(option)}
-            onCheckedChange={(e) => handleSelect(e, option)}
           />
         </DropdownMenu.Item>
       ));
