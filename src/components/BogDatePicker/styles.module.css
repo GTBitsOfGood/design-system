@@ -19,6 +19,10 @@
         .day {
             color: var(--color-grey-text-strong);
             font-weight: 600;
+            
+            &.dayOutside {
+                color: var(--color-grey-text-weak);
+            }
         }
         .footerText {
             text-align: center;
