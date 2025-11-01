@@ -4,6 +4,7 @@
     flex-direction: row;
     gap: 8px;
     align-items: center;
+    font-family: var(--font-paragraph);
   }
 
   .container[data-disabled='true']:hover {
