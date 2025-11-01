@@ -8,7 +8,7 @@
     display: inline-block;
 
     &.small {
-      padding: 0.25rem 0.5rem;
+      padding: 0.4rem 0.4rem;
       font-size: var(--text-mobile-small);
       line-height: var(--text-mobile-small--line-height);
       @media (width >= 1024px) {
@@ -18,7 +18,7 @@
     }
 
     &.medium {
-      padding: 0.5rem 0.75rem;
+      padding: 0.8rem 0.8rem;
       font-size: var(--text-mobile-paragraph-2);
       line-height: var(--text-mobile-paragraph-2--line-height);
       @media (width >= 1024px) {
@@ -28,7 +28,7 @@
     }
 
     &.large {
-      padding: 0.75rem 1rem;
+      padding: 0.8rem 1.2rem;
       font-size: var(--text-mobile-paragraph-1);
       line-height: var(--text-mobile-paragraph-1--line-height);
       @media (width >= 1024px) {
@@ -43,7 +43,7 @@
 
       &:disabled {
         cursor: not-allowed;
-        background-color: var(--color-grey-fill-weaker);
+        background-color: var(--color-grey-fill-weak);
       }
 
       &:not(:disabled):hover {
@@ -99,7 +99,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.25rem;
+      gap: 0.4rem;
       height: fit-content;
     }
   }
