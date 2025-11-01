@@ -153,7 +153,8 @@ export default function BogDropdown({
     } else if (type === 'checkbox') {
       return options.map((option) => (
         <DropdownMenu.Item
-          onSelect={() => {
+          onSelect={(e) => {
+            e.preventDefault();
             const isChecked = Array.isArray(selected)
               ? !selected.includes(option)
               : true;
