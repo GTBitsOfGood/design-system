@@ -67,7 +67,7 @@ export default function BogDatePicker({
   captionLayout = 'label',
   reverseYears = true,
   navLayout = 'after',
-  fixedWeeks = false,
+  fixedWeeks = true,
   footer = defaultFooter,
   hideWeekdays = false,
   reverseMonths = false,
