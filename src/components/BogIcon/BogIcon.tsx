@@ -107,10 +107,6 @@ const boldFillIcons = new Set([
   'arrow-down',
   'arrow-left',
   'arrow-right',
-  'caret-up',
-  'caret-down',
-  'caret-left',
-  'caret-right',
 ]);
 
 const BogIcon: React.FC<BogIconProps> = ({
@@ -123,7 +119,7 @@ const BogIcon: React.FC<BogIconProps> = ({
   className,
   style,
 }) => {
-  // Map custom names to actual Phosphor components
+  // Map special names to actual Phosphor components
   const iconMap: Record<string, string> = {
     chats: 'ChatsCircle',
     calendar: 'CalendarDots',
@@ -140,16 +136,22 @@ const BogIcon: React.FC<BogIconProps> = ({
     error: 'WarningOctagon',
   };
 
-  // Handle chevron special case (use caret with weight="fill")
   const isChevron = name.startsWith('chevron-');
-  let iconName = iconMap[name];
+  const isCaret = name.startsWith('caret-');
+  let iconName: string | undefined = iconMap[name];
+
   if (isChevron) {
-    iconName = 'Caret' + name.charAt(8).toUpperCase() + name.slice(9);
+    const dir = name.split('-')[1];
+    const chevronName = 'Chevron' + dir.charAt(0).toUpperCase() + dir.slice(1);
+    const caretName = 'Caret' + dir.charAt(0).toUpperCase() + dir.slice(1);
+    iconName = (PhosphorIcons as any)[chevronName] ? chevronName : caretName;
+  } else if (isCaret) {
+    const dir = name.split('-')[1];
+    iconName = 'Caret' + dir.charAt(0).toUpperCase() + dir.slice(1);
   } else if (iconName === undefined) {
-    iconName = name.charAt(0).toUpperCase() + name.slice(1);
-    iconName = iconName.replace(/-(.)/g, (_, nextChar) =>
-      nextChar.toUpperCase(),
-    );
+    iconName =
+      name.charAt(0).toUpperCase() +
+      name.slice(1).replace(/-(.)/g, (_, c: string) => c.toUpperCase());
   }
 
   // Get the icon component from PhosphorIcons
@@ -158,17 +160,20 @@ const BogIcon: React.FC<BogIconProps> = ({
     null;
 
   if (!IconComponent) {
-    console.warn(`BogIcon: Unknown icon name "${name}"`);
+    console.warn(
+      `BogIcon: Unknown icon name "${name}" (resolved to "${iconName}")`,
+    );
     return null;
   }
-
   // Only use default weight if custom weight is not provided
   let weight = customWeight;
   if (!weight) {
-    if (weightFillIcons.has(name) || isChevron) {
+    if (isCaret) {
       weight = 'fill';
     } else if (boldFillIcons.has(name)) {
       weight = 'bold';
+    } else if (weightFillIcons.has(name)) {
+      weight = 'fill';
     } else {
       weight = 'regular';
     }
