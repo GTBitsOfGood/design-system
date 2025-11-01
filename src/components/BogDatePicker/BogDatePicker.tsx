@@ -113,6 +113,7 @@ export default function BogDatePicker({
       classNames={{
         ...defaultClassNames,
         month_grid: `${defaultClassNames.month_grid} ${styles.monthGrid}`,
+        month_caption: `${defaultClassNames.month_caption} ${styles.monthCaption} text-paragraph-1`,
         weekday: `${styles.weekday} text-small`,
         day: `${defaultClassNames.day} ${styles.day} text-small`,
         outside: `${styles.dayOutside}`,
