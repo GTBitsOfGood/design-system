@@ -21,6 +21,7 @@ const meta = {
         'The content that appears inside the radio group. This cannot be dynamically edited in this page, but you can place whatever React components ' +
         "you'd like inside the Radio Group (Radio item components are intended).",
     },
+    className: { table: { disable: true }, control: false },
   },
 } satisfies Meta<typeof BogRadioGroup>;
 

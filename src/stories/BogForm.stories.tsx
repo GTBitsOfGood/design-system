@@ -24,6 +24,7 @@ const meta = {
         'The content of the form. This will be a React node. ' +
         'This cannot be dynamically edited in this page, but the Form is simply a container for any of the Form input components we provide.',
     },
+    className: { table: { disable: true }, control: false },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
 } satisfies Meta<typeof BogForm>;

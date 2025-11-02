@@ -36,7 +36,7 @@ const meta: Meta<typeof BogBanner> = {
     },
     highContrast: { control: 'boolean' },
     role: { control: 'text' },
-    className: { control: 'text' },
+    className: { table: { disable: true }, control: false },
     style: { control: 'object' },
   },
 };

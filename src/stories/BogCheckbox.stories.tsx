@@ -22,6 +22,7 @@ const meta = {
       },
       options: [true, false, 'indeterminate'],
     },
+    className: { table: { disable: true }, control: false },
   },
   // Use `fn` to spy on the onCheckedChange arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onCheckedChange: fn() },
