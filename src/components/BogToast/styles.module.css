@@ -3,11 +3,15 @@
     display: flex;
     flex-direction: column;
     padding: 0.8rem;
+    padding-right: 2.4rem; /* padding on right for close button */
     border-radius: 0.4rem;
     font-family: var(--font-paragraph);
     pointer-events: auto; /* ensures users can interact with the toast */
     user-select: none;  /* prevents text selection */
     touch-action: none; /* prevents touch actions */
+    min-height: fit-content;
+    min-width: 20rem; /* to prevent collapsing */
+    position: relative;
   }
 
   /* FILLED TOAST */
@@ -101,12 +105,14 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    min-width: 0;
   }
   
   .top-row {
     display: flex;
     gap: 0.8rem;
     width: 100%;
+    min-width: 0;
   }
   
   .toast .title {
@@ -138,9 +144,10 @@
     font-size: var(--text-mobile-small);
     font-family: var(--font-heading);
     padding: 0.4rem 0.8rem;
-    margin-right: 2rem;
+    margin-top: 0.4rem;
     border-radius: 0.4rem;
     transition: all 0.1s ease; /* hover transition in seconds */
+    min-height: fit-content;
   }
 
   .action:hover {
