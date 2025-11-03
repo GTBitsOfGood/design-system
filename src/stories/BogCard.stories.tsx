@@ -19,9 +19,7 @@ const meta: Meta<typeof BogCard> = {
     children: {
       control: false,
     },
-    className: {
-      control: 'text',
-    },
+    className: { table: { disable: true }, control: false },
     asChild: {
       control: 'boolean',
     },

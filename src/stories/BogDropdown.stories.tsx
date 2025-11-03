@@ -21,6 +21,9 @@ const meta = {
   tags: ['autodocs'],
   // Use `fn` to spy on the onSelectionChange arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onSelectionChange: fn() },
+  argTypes: {
+    className: { table: { disable: true }, control: false },
+  },
 } satisfies Meta<typeof BogDropdown>;
 
 export default meta;

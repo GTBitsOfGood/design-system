@@ -44,6 +44,7 @@ const meta = {
       control: 'radio',
       options: ['none', 'small', 'medium', 'large', 'full'],
     },
+    className: { table: { disable: true }, control: false },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof BogChip>;
