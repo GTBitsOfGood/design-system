@@ -31,7 +31,7 @@ const meta = {
     duration: { control: 'number' },
     action: { control: false },
     viewportProps: { control: false },
-    className: { control: 'text' },
+    className: { table: { disable: true }, control: false },
     style: { control: 'text' },
   },
 } satisfies Meta<typeof BogToast>;

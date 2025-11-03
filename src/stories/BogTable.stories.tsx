@@ -12,6 +12,9 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    className: { table: { disable: true }, control: false },
+  },
 } satisfies Meta<typeof BogTable>;
 
 export default meta;

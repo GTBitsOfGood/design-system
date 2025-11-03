@@ -13,9 +13,9 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  // argTypes: {
-
-  // }
+  argTypes: {
+    className: { table: { disable: true }, control: false },
+  },
 } satisfies Meta<typeof BogDatePicker>;
 
 export default meta;

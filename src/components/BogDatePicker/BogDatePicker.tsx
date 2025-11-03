@@ -67,11 +67,11 @@ export default function BogDatePicker({
   captionLayout = 'label',
   reverseYears = true,
   navLayout = 'after',
-  fixedWeeks = false,
+  fixedWeeks = true,
   footer = defaultFooter,
   hideWeekdays = false,
   reverseMonths = false,
-  showOutsideDays = true,
+  showOutsideDays = false,
   showWeekNumber = false,
   required = false,
   disabled,
@@ -113,9 +113,10 @@ export default function BogDatePicker({
       classNames={{
         ...defaultClassNames,
         month_grid: `${defaultClassNames.month_grid} ${styles.monthGrid}`,
-        month_caption: `${defaultClassNames.month_caption} text-paragraph-1 ${styles.monthCaption}`,
+        month_caption: `${defaultClassNames.month_caption} ${styles.monthCaption} text-paragraph-1`,
         weekday: `${styles.weekday} text-small`,
-        day: `${styles.day} text-small`,
+        day: `${defaultClassNames.day} ${styles.day} text-small`,
+        outside: `${styles.dayOutside}`,
       }}
       style={
         {

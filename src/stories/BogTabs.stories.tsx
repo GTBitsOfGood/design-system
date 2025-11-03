@@ -35,6 +35,9 @@ const meta: Meta<BogTabsProps> = {
   title: 'Tabs',
   component: BogTabs,
   tags: ['autodocs'],
+  argTypes: {
+    className: { table: { disable: true }, control: false },
+  },
 };
 
 export default meta;

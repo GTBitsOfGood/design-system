@@ -21,6 +21,7 @@ const meta = {
     content: {
       control: false,
     },
+    className: { table: { disable: true }, control: false },
   },
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes

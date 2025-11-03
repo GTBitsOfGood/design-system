@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Toast } from 'radix-ui';
 import { createPortal } from 'react-dom';
 import styles from './styles.module.css';
@@ -45,6 +45,12 @@ export default function BogToast({
   style,
   ...props
 }: BogToastProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const statusStyles = {
     success: styles.success,
     error: styles.error,
@@ -73,12 +79,15 @@ export default function BogToast({
     variant ? variantStyles[variant] : ''
   } ${className || ''}`.trim();
 
+  const toastDuration = duration === 0 ? Infinity : duration * 1000;
+
   const toastContent = (
     <Toast.Root
+      key={`toast-root-${duration}-${toastDuration}`}
       className={toastClass}
       style={style}
-      duration={duration}
       {...props}
+      duration={toastDuration}
     >
       <div className={styles['top-row']}>
         {icon && (
@@ -113,17 +122,19 @@ export default function BogToast({
   );
 
   return (
-    <Toast.Provider duration={duration === 0 ? Infinity : duration * 1000}>
+    <Toast.Provider key={`toast-provider-${duration}`}>
       {toastContent}
       {/* Portal logic necessary to render toast outside of parent component in docs */}
-      {createPortal(
-        <Toast.Viewport
-          className={`${styles.viewport}`}
-          {...viewportProps}
-          key={`toast-viewport`}
-        />,
-        document.body,
-      )}
+      {mounted &&
+        typeof window !== 'undefined' &&
+        createPortal(
+          <Toast.Viewport
+            className={`${styles.viewport}`}
+            {...viewportProps}
+            key={`toast-viewport`}
+          />,
+          document.body,
+        )}
     </Toast.Provider>
   );
 }

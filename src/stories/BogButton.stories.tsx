@@ -35,6 +35,7 @@ const meta = {
         'The content that appears inside the button. This cannot be dynamically edited in this page, but you can place whatever React components ' +
         'or text you want inside the button.',
     },
+    className: { table: { disable: true }, control: false },
   },
 } satisfies Meta<typeof BogButton>;
 
