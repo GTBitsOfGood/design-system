@@ -28,6 +28,8 @@ interface BogButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   /** Additional CSS styles to apply to the button. */
   style?: CSSProperties;
+  /** Whether the button is disabled or not */
+  disabled?: boolean;
 }
 
 export default function BogButton({

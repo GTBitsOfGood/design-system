@@ -19,6 +19,7 @@ export interface BogChipProps
   style?: React.CSSProperties;
   className?: string;
   children?: React.ReactNode;
+  variant?: 'solid' | 'soft' | 'surface' | 'outline';
 }
 
 const iconPxBySize: Record<'1' | '2' | '3', number> = {
@@ -43,6 +44,7 @@ export default function BogChip({
   state = undefined,
   className,
   style,
+  variant = 'soft',
   ...rest
 }: BogChipProps) {
   const breakpoint = useResponsive();
@@ -89,6 +91,7 @@ export default function BogChip({
         radius && styles[`radius-${radius}`],
         state && styles[state],
         color && styles[color],
+        variant && styles[`variant-${variant}`],
         className,
       )}
       style={style}

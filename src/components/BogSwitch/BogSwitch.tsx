@@ -14,6 +14,8 @@ interface BogSwitchProps
   className?: string;
   /** Additional CSS styles to apply to the switch. */
   style?: React.CSSProperties;
+  /** Whether the switch is disabled or not */
+  disabled?: boolean;
 }
 
 const BogSwitch: React.FC<BogSwitchProps> = ({
