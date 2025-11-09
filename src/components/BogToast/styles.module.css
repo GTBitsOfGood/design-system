@@ -12,6 +12,13 @@
     min-height: fit-content;
     min-width: 20rem; /* to prevent collapsing */
     position: relative;
+
+    &[data-state="open"] {
+        animation: var(--animate-fade-in);
+    }
+    &[data-state="closed"] {
+        animation: var(--animate-fade-out);
+    }
   }
 
   /* FILLED TOAST */

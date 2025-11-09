@@ -8,6 +8,13 @@
         font-family: var(--font-paragraph);
         font-size: var(--text-mobile-small);
         line-height: var(--text-mobile-small--line-height);
+
+        &[data-state="open"] {
+            animation: var(--animate-fade-in);
+        }
+        &[data-state="closed"] {
+            animation: var(--animate-fade-out);
+        }
     }
 
     .bog-tooltip__arrow {

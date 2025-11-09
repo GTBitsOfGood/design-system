@@ -10,6 +10,13 @@
     position: relative;
     max-width: 25vw;
 
+    &[data-state="open"] {
+        animation: var(--animate-fade-in);
+    }
+    &[data-state="closed"] {
+        animation: var(--animate-fade-out);
+    }
+
     .close {
         position: absolute;
         top: 0.5rem;
