@@ -80,7 +80,7 @@ export default function BogPopover({
   arrowProps,
   closeProps,
   className,
-  title,
+  title = <h4>Heading</h4>,
   ...props
 }: BogPopoverProps) {
   const [internalOpen, setInternalOpen] = useState<boolean>(defaultOpen);

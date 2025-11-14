@@ -41,7 +41,6 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Popover: Story = {
   args: {
-    title: <h4>Heading</h4>,
     trigger: <BogChip color="cyan">Click me</BogChip>,
     content: (
       <div
