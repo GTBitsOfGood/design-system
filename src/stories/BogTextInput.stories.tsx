@@ -26,7 +26,15 @@ type Story = StoryObj<typeof meta>;
 export const TextInput: Story = {
   args: {
     name: 'text-input',
-    placeholder: 'Enter text here',
+    label: 'Label',
+    placeholder: 'Placeholder text',
+    iconProps: {
+      iconProps: {
+        name: 'gear',
+        size: 18,
+      },
+      position: 'left',
+    },
   },
 };
 
