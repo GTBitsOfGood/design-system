@@ -16,7 +16,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding-bottom: 1rem;
+        padding-bottom: 2rem;
         .close {
             &:hover {
                 opacity: 75%;
