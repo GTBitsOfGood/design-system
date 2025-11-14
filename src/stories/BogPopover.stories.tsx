@@ -47,8 +47,8 @@ export const Popover: Story = {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 15,
-          width: '450px',
+          gap: '1.5rem',
+          width: '45rem',
         }}
       >
         <BogDropdown
