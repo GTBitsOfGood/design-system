@@ -63,16 +63,26 @@
   }
 
   .size1 {
-    min-width: 35.5rem !important;
-    min-height: 9.2rem !important;
+    min-width: 29.5rem !important;
+    min-height: 6.8rem !important;
   }
 
   .size2 {
+    min-width: 32.5rem !important;
+    min-height: 8rem !important;
+  }
+
+  .size3 {
+    min-width: 35.5rem !important;
+    min-height: 9.2rem !important;
+  }
+  
+  .size4 {
     min-width: 40.3rem !important;
     min-height: 10.4rem !important;
   }
 
-  .size3 {
+  .size5 {
     min-width: 48.9rem !important;
     min-height: 11.8rem !important;
   }
