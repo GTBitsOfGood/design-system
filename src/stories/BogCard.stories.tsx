@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import BogCard from '../components/BogCard/BogCard';
+import { useResponsive } from '../utils/design-system/hooks/useResponsive';
+import { getAltNumericalSizeFromBreakpoint } from '../utils/design-system/breakpoints/breakpoints';
 
 const meta: Meta<typeof BogCard> = {
   title: 'Card',
@@ -14,7 +16,7 @@ const meta: Meta<typeof BogCard> = {
     },
     size: {
       control: 'select',
-      options: ['1', '2', '3', 'responsive'],
+      options: ['1', '2', '3', '4', '5', 'responsive'],
     },
     children: {
       control: false,
@@ -30,38 +32,48 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const avatarPxForSize = (size: '1' | '2' | '3'): number => {
-  if (size === '1') return 60;
-  if (size === '2') return 72;
+const avatarPxForSize = (size: '1' | '2' | '3' | '4' | '5'): number => {
+  if (size === '1') return 36;
+  if (size === '2') return 48;
+  if (size === '3') return 60;
+  if (size === '4') return 72;
   return 86;
 };
 
-const nameClassForSize = (size: '1' | '2' | '3'): string => {
-  if (size === '1') return 'text-heading-4';
-  if (size === '2') return 'text-heading-3';
+const nameClassForSize = (size: '1' | '2' | '3' | '4' | '5'): string => {
+  if (size === '1') return 'text-paragraph-2';
+  if (size === '2') return 'text-paragraph-1';
+  if (size === '3') return 'text-heading-4';
+  if (size === '4') return 'text-heading-3';
   return 'text-heading-2';
 };
 
-const PersonContent = ({ size }: { size: '1' | '2' | '3' }) => {
+const PersonContent = ({ size }: { size: '1' | '2' | '3' | '4' | '5' }) => {
   const avatarPx = avatarPxForSize(size);
   const nameClass = nameClassForSize(size);
-  const nameStyle = { fontWeight: 800 };
+  const nameStyle = { fontWeight: 700 };
   const roleClass =
     size === '1'
-      ? 'text-paragraph-2'
+      ? 'text-small'
       : size === '2'
-        ? 'text-paragraph-1'
-        : 'text-heading-3';
+        ? 'text-paragraph-2'
+        : size === '3'
+          ? 'text-paragraph-2'
+          : size === '4'
+            ? 'text-paragraph-1'
+            : 'text-heading-3';
   const roleStyle =
     size === '3'
       ? {
           color: 'var(--color-grey-text-weak)',
-          fontWeight: 700,
           fontFamily: 'var(--font-paragraph)',
         }
-      : { color: 'var(--color-grey-text-weak)', fontWeight: 700 };
+      : {
+          color: 'var(--color-grey-text-weak)',
+          fontFamily: 'var(--font-paragraph)',
+        };
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
       <div
         style={{
           width: avatarPx,
@@ -88,12 +100,16 @@ const PersonContent = ({ size }: { size: '1' | '2' | '3' }) => {
 export const Card: Story = {
   args: {
     variant: 'classic',
-    size: '2',
+    size: 'responsive',
   },
   render: (args) => (
     <BogCard {...args}>
       <PersonContent
-        size={args.size === 'responsive' ? '2' : (args.size as '1' | '2' | '3')}
+        size={
+          args.size === 'responsive'
+            ? getAltNumericalSizeFromBreakpoint(useResponsive())
+            : (args.size as '1' | '2' | '3' | '4' | '5')
+        }
       />
     </BogCard>
   ),
