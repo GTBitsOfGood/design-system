@@ -160,6 +160,15 @@
     font-weight: normal;
     font-style: normal;
   }
+  
+  @font-face {
+    font-family: 'Open Sans Regular';
+    font-style: normal;
+    font-weight: 300 800;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url('/fonts/opensans-webfont.woff2') format('woff2'),
+  }
 
   html {
     font-size: 10px;
