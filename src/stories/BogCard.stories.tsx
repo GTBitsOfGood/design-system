@@ -48,22 +48,36 @@ const nameClassForSize = (size: '1' | '2' | '3' | '4' | '5'): string => {
   return 'text-heading-2';
 };
 
-const PersonContent = ({ size }: { size: '1' | '2' | '3' | '4' | '5' }) => {
-  const avatarPx = avatarPxForSize(size);
-  const nameClass = nameClassForSize(size);
+const PersonContent = ({
+  size,
+}: {
+  size: '1' | '2' | '3' | '4' | '5' | 'responsive';
+}) => {
+  const breakpoint = useResponsive();
+  const effectiveSize =
+    size === 'responsive'
+      ? getAltNumericalSizeFromBreakpoint(breakpoint)
+      : size;
+
+  const avatarPx = avatarPxForSize(
+    effectiveSize as '1' | '2' | '3' | '4' | '5',
+  );
+  const nameClass = nameClassForSize(
+    effectiveSize as '1' | '2' | '3' | '4' | '5',
+  );
   const nameStyle = { fontWeight: 700 };
   const roleClass =
-    size === '1'
+    effectiveSize === '1'
       ? 'text-small'
-      : size === '2'
+      : effectiveSize === '2'
         ? 'text-paragraph-2'
-        : size === '3'
+        : effectiveSize === '3'
           ? 'text-paragraph-2'
-          : size === '4'
+          : effectiveSize === '4'
             ? 'text-paragraph-1'
             : 'text-heading-3';
   const roleStyle =
-    size === '3'
+    effectiveSize === '3'
       ? {
           color: 'var(--color-grey-text-weak)',
           fontFamily: 'var(--font-paragraph)',
@@ -105,11 +119,7 @@ export const Card: Story = {
   render: (args) => (
     <BogCard {...args}>
       <PersonContent
-        size={
-          args.size === 'responsive'
-            ? getAltNumericalSizeFromBreakpoint(useResponsive())
-            : (args.size as '1' | '2' | '3' | '4' | '5')
-        }
+        size={args.size as '1' | '2' | '3' | '4' | '5' | 'responsive'}
       />
     </BogCard>
   ),
