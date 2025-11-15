@@ -167,7 +167,7 @@
     font-weight: 300 800;
     font-stretch: 100%;
     font-display: swap;
-    src: url('/fonts/opensans-webfont.woff2') format('woff2'),
+    src: url('/fonts/opensans-webfont.woff2') format('woff2');
   }
 
   html {
