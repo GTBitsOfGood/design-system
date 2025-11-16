@@ -3,7 +3,7 @@ import { Card } from '@radix-ui/themes';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 import { useResponsive } from '../../utils/design-system/hooks/useResponsive';
-import { getNumericalSizeFromBreakpoint } from '../../utils/design-system/breakpoints/breakpoints';
+import { getAltNumericalSizeFromBreakpoint } from '../../utils/design-system/breakpoints/breakpoints';
 
 export interface BogCardProps
   extends Omit<
@@ -11,7 +11,7 @@ export interface BogCardProps
     'size' | 'variant' | 'asChild'
   > {
   variant?: 'surface' | 'classic' | 'ghost';
-  size?: '1' | '2' | '3' | 'responsive';
+  size?: '1' | '2' | '3' | '4' | '5' | 'responsive';
   asChild?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -29,7 +29,9 @@ export default function BogCard({
 }: BogCardProps) {
   const breakpoint = useResponsive();
   const resolvedNumericSize =
-    size === 'responsive' ? getNumericalSizeFromBreakpoint(breakpoint) : size;
+    size === 'responsive'
+      ? getAltNumericalSizeFromBreakpoint(breakpoint)
+      : size;
 
   const sizeClass = styles[
     `size${resolvedNumericSize}` as keyof typeof styles
