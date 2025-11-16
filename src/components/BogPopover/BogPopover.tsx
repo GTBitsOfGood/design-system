@@ -47,6 +47,8 @@ interface BogPopoverProps extends React.ComponentProps<typeof Popover.Root> {
   trigger: ReactElement;
   /** Content inside the popover */
   content: ReactElement;
+  /** The title of the modal. */
+  title?: ReactElement;
   /** The open state and function to set the open state */
   openState?: OpenState;
   /** The default value for the open state */
@@ -78,6 +80,7 @@ export default function BogPopover({
   arrowProps,
   closeProps,
   className,
+  title = <h4>Heading</h4>,
   ...props
 }: BogPopoverProps) {
   const [internalOpen, setInternalOpen] = useState<boolean>(defaultOpen);
@@ -90,7 +93,7 @@ export default function BogPopover({
   };
 
   const closeButton = closeProps?.closeButton || (
-    <BogIcon name="close" size="24" />
+    <BogIcon name="trash" size="24" />
   );
 
   const finalContentProps = contentProps || { side: 'top' };
@@ -110,10 +113,13 @@ export default function BogPopover({
           className={`${styles.content} ${className}`}
           {...finalContentProps}
         >
+          <div className={styles.header}>
+            {title}
+            <Popover.Close className={styles.close} {...closeProps}>
+              {closeButton}
+            </Popover.Close>
+          </div>
           {content}
-          <Popover.Close className={styles.close} {...closeProps}>
-            {closeButton}
-          </Popover.Close>
           <Popover.Arrow className={styles.arrow} {...arrowProps} />
         </Popover.Content>
       </Popover.Portal>

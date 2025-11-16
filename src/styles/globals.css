@@ -74,6 +74,27 @@
     'Segoe UI Symbol', 'Noto Color Emoji';
   --font-paragraph: Open Sans Regular, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --animate-fade-in: fade-in 0.25s ease-out;
+  --animate-fade-out: fade-out 0.25s ease-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /*
@@ -91,6 +112,7 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
+    @apply transition duration-250 ease-in-out;
   }
 }
 
@@ -159,6 +181,15 @@
       url('/fonts/opensans-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Open Sans Regular';
+    font-style: normal;
+    font-weight: 300 800;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url('/fonts/opensans-webfont.woff2') format('woff2');
   }
 
   html {
