@@ -20,10 +20,17 @@
                 opacity: 75%;
                 cursor: pointer;
             }
-
             &:active {
-                opacity: 100%;
+                  opacity: 100%;
             }
+        }
+      
+        &[data-state="open"] {
+            animation: var(--animate-fade-in);
+        }
+      
+        &[data-state="closed"] {
+            animation: var(--animate-fade-out);
         }
     }
 

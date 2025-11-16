@@ -38,7 +38,7 @@ export default function BogTooltip({
   className,
   trigger,
   contentProps,
-  delayDuration = 700,
+  delayDuration = 150,
   skipDelayDuration = 300,
   disableHoverableContent = false,
   defaultOpen = false,
