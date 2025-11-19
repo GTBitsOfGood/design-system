@@ -100,11 +100,9 @@
   }
 
   .filterButton.filterButton {
-    border-width: 1px;
-    border-style: solid;
     box-sizing: border-box;
     gap: none !important;
-    min-height: 2.4rem;
+    height: 3.9rem;
   }
 
   .filterIcon {
@@ -119,7 +117,6 @@
     font-weight: 500 !important;
     box-sizing: border-box;
     border-radius: 0.4rem !important;
-    border: 1px solid transparent;
   }
 
   .filterButton > div {
@@ -130,7 +127,7 @@
   .searchWrapper {
     flex: 1;
     position: relative;
-    
+
   }
 
   .searchWithIcon input {
@@ -174,7 +171,7 @@
   .popoverFooter .popoverActionBtn.popoverActionBtn {
     padding: 0.65rem 1.4rem;
     border-radius: 0.4rem;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   .popoverContent {
@@ -219,7 +216,7 @@
   .chipPopoverFooter .chipPopoverFooterBtn.chipPopoverFooterBtn {
     padding: 0.65rem 1.4rem;
     border-radius: 0.4rem;
-    font-weight: bold;
+    font-weight: 500;
   }
 
 
@@ -310,17 +307,18 @@
   .filterChip.filterChip {
     --background: var(--color-grey-fill-weak);
     border-radius: 10000rem !important;
-    font-size: var(--text-mobile-paragraph-1) !important;
+    font-size: var(--text-mobile-paragraph-1);
     --foreground: black;
-    font-weight: 400;
+    font-weight: 400 !important;
     
   }
 
   .filterChipActive.filterChipActive {
-    --background: var(--color-status-blue-fill);
-    --foreground: var(--color-status-blue-text);
+    --background: var(--color-status-blue-fill) !important;
+    --foreground: var(--color-status-blue-text) !important;
     border: 0.1rem solid var(--color-status-blue-stroke-strong);
   }
+  
   .filterChip {
     gap: 2;
   }
@@ -436,8 +434,6 @@
     background-clip: padding-box;
     position: relative;
   }
-
-  
 
 }
 
