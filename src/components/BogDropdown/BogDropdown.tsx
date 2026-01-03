@@ -256,10 +256,14 @@ export default function BogDropdown({
                   </span>
                 )}
                 {isOpen ? (
-                  <BogIcon name="caret-up" size={16} className={styles.icon} />
+                  <BogIcon
+                    name="chevron-up"
+                    size={16}
+                    className={styles.icon}
+                  />
                 ) : (
                   <BogIcon
-                    name="caret-down"
+                    name="chevron-down"
                     size={16}
                     className={styles.icon}
                   />

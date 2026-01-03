@@ -40,39 +40,50 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Popover: Story = {
+  render: (args) => {
+    const [open, setOpen] = React.useState(false);
+    return (
+      <BogPopover
+        {...args}
+        openState={{ open, setOpen }}
+        content={
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.5rem',
+              width: '45rem',
+            }}
+          >
+            <BogDropdown
+              options={['Option 1', 'Option 2']}
+              name="condition"
+              label="Condition"
+              placeholder="Select condition"
+            />
+            <BogTextInput
+              name="value"
+              label="Value"
+              placeholder="Enter Filter Value"
+            />
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <BogButton variant="secondary" onClick={() => setOpen(false)}>
+                Cancel
+              </BogButton>
+              <BogButton onClick={() => setOpen(false)}>Apply Filter</BogButton>
+            </div>
+          </div>
+        }
+      />
+    );
+  },
   args: {
     trigger: <BogChip color="cyan">Click me</BogChip>,
-    content: (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1.5rem',
-          width: '45rem',
-        }}
-      >
-        <BogDropdown
-          options={['Option 1', 'Option 2']}
-          name="condition"
-          label="Condition"
-          placeholder="Select condition"
-        />
-        <BogTextInput
-          name="value"
-          label="Value"
-          placeholder="Enter Filter Value"
-        />
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <BogButton variant="secondary">Cancel</BogButton>
-          <BogButton>Apply Filter</BogButton>
-        </div>
-      </div>
-    ),
   },
 };

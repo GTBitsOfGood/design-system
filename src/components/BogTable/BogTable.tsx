@@ -249,6 +249,7 @@ const BogTable: React.FC<BogTableProps> = ({
             <BogIcon name="search" size={16} className={styles.searchIcon} />
           </div>
           <BogPopover
+            title=""
             onOpenChange={(open) => {
               if (open) setDraftFilterCols(selectedColumns);
             }}
@@ -359,8 +360,8 @@ const BogTable: React.FC<BogTableProps> = ({
 
             return (
               <BogPopover
+                title=""
                 key={`chip-${colIdx}`}
-                className={styles.noClosePadding}
                 onOpenChange={(open) => {
                   if (open) {
                     setDraftColumnFilters((prev) => {
@@ -395,9 +396,11 @@ const BogTable: React.FC<BogTableProps> = ({
                     size="responsive"
                     radius="full"
                     className={`${styles.filterChip} ${isActiveChip ? styles.filterChipActive : ''}`}
+                    data-table-chip="true"
+                    data-active={isActiveChip}
                   >
                     {chipText}
-                    <BogIcon name="caret-down" size={16} />
+                    <BogIcon name="chevron-down" size={16} />
                   </BogChip>
                 }
                 content={
@@ -583,7 +586,7 @@ const BogTable: React.FC<BogTableProps> = ({
                           }}
                         >
                           <BogIcon
-                            name="chevron-up"
+                            name="caret-up"
                             className={
                               dir === 'asc'
                                 ? styles.sortChevronActive
@@ -591,7 +594,7 @@ const BogTable: React.FC<BogTableProps> = ({
                             }
                           />
                           <BogIcon
-                            name="chevron-down"
+                            name="caret-down"
                             className={
                               dir === 'desc'
                                 ? styles.sortChevronActive
